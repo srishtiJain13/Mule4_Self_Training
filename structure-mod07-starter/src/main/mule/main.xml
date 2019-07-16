@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7cf62ca9-5960-4c9c-9e42-30fd2f1e11eb" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="b8629ef6-8539-4a66-8870-24426650260b" >
+		<http:request-connection host="localhost" port="8082" />
+	</http:request-config>
+	<flow name="initialize" doc:id="304b28bc-0558-4593-aebe-004ab8d04b8c" >
+		<http:listener doc:name="HTTP: GET /flights" doc:id="6d185fbd-aa8a-4c51-81b3-15b0f97f638a" config-ref="HTTP_Listener_config" path="/flights">
+			<http:response >
+				<http:headers ><![CDATA[#[output application/java
+---
+{
+	"Requester-ID" : ""
+}]]]></http:headers>
+			</http:response>
+		</http:listener>
+		<set-variable value="#[attributes.queryParams.destination]" doc:name="destination" doc:id="69ed4dd8-a3af-48f8-ace3-9905083273c8" variableName="destination"/>
+		<set-variable value="#[attributes.headers.'requester-id']" doc:name="requester-id" doc:id="8d56131a-98e5-4257-aa78-9d8317586470" variableName="requester-id" />
+		<http:request method="GET" doc:name="HTTP: GET /american/{destination}" doc:id="82fecaae-b623-4678-86cb-7ef507a6ea81" url="http://mu.learn.mulesoft.com/american/{destination}">
+			<http:headers><![CDATA[#[output application/java
+---
+{
+	'requester-id' : attributes.headers.'requester-id'
+}]]]></http:headers>
+			<http:uri-params><![CDATA[#[output application/java
+---
+{
+	destination : vars.destination
+}]]]></http:uri-params>
+		</http:request>
+		<set-variable value="#[payload]" doc:name="payload-GET" doc:id="05ff4f5c-30fa-4d71-b422-af82262196d4" variableName="payload-GET"/>
+		<flow-ref doc:name="processData" doc:id="92b07b04-3b8e-4f25-b439-ae883b117192" name="processData" />
+		<set-payload value="#[output application/json ---
+{
+    &quot;payload-GET&quot;: vars.'payload-GET',
+	&quot;payload-PROCESS&quot;: payload,
+    &quot;destination-process&quot;: vars.destination,
+    &quot;requesterID-process&quot;: vars.'requester-id'
+}]" doc:name="final summary" doc:id="68c44115-a04b-420b-8fe9-aa83f6d5c305" />
+	</flow>
+	<flow name="mockData" doc:id="a0e8e9fc-2207-4038-932e-aca20e1306b5" >
+		<set-payload value='[
+        {
+            "planeType": "Boeing 737",
+            "code2": "1093",
+            "toAirport": "SFO",
+            "takeOffDate": "2015-02-11",
+            "fromAirport": "MUA",
+            "price": 142,
+            "airlineName": "American Airlines",
+            "seatsAvailable": "1",
+            "code1": "rree"
+        },
+        {
+            "planeType": "Boeing 777",
+            "code2": "1994",
+            "toAirport": "SFO",
+            "takeOffDate": "2015-01-01",
+            "fromAirport": "MUA",
+            "price": 676,
+            "airlineName": "American Airlines",
+            "seatsAvailable": "none",
+            "code1": "rree"
+        },
+        {
+            "planeType": "Boeing 737",
+            "code2": "2000",
+            "toAirport": "SFO",
+            "takeOffDate": "2015-02-20",
+            "fromAirport": "MUA",
+            "price": 300,
+            "airlineName": "American Airlines",
+            "seatsAvailable": "30",
+            "code1": "rree"
+        },
+        {
+            "planeType": "Boeing 737",
+            "code2": "3000",
+            "toAirport": "SFO",
+            "takeOffDate": "2015-02-01",
+            "fromAirport": "MUA",
+            "price": 900,
+            "airlineName": "American Airlines",
+            "seatsAvailable": "none",
+            "code1": "rree"
+        },
+        {
+            "planeType": "Boeing 737",
+            "code2": "4567",
+            "toAirport": "SFO",
+            "takeOffDate": "2015-01-20",
+            "fromAirport": "MUA",
+            "price": 456,
+            "airlineName": "American Airlines",
+            "seatsAvailable": "100",
+            "code1": "rree"
+        }
+    ]' doc:name="flights" doc:id="71c10e25-6deb-4850-9659-a1615d4e75ec" mimeType="application/json" />
+	</flow>
+	<flow name="processData" doc:id="c7379ac2-5182-4bd2-8475-cd7c520f8319" >
+		<ee:transform doc:name="summary payload" doc:id="2ea0ec2d-22c7-48d1-94aa-529b34372457" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	payload: payload as Array map ((object) ->
+		{
+			planeType: object.planeType,
+			flightDate: object.takeOffDate,
+			price: object.price
+		}
+	),
+    destination: vars.destination,
+    requesterID: vars.'requester-id',
+    date: attributes.headers.date
+}
+]]></ee:set-payload>
+			</ee:message>
+			<ee:variables >
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO" doc:name="process data summary" doc:id="a14ca1a7-43ef-4479-b0d1-56d15a01c3a0" message="#[payload]"/>
+	</flow>
+
+</mule>

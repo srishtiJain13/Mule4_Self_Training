@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="dd" format="json">
+      <types:shape format="weave" example="examples/sampleJson"><![CDATA[%dw 2.0
+
+type dd = {|
+  name: String, 
+  age: Number {"typeId": "int"}, 
+  rights: Array<{|    roleName: String,     roleIds: Array<Number {"typeId": "int"}>
+  |}>
+|} {"example": "{\"name\":\"Admin\",\"age\":36,\"rights\":[{\"roleName\":\"admin\",\"roleIds\":[1,2,3]},{\"roleName\":\"editor\",\"roleIds\":[4,5,6]},{\"roleName\":\"contributor\",\"roleIds\":[7,8,9]}]}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#997b0f56-e194-4a30-bebf-626cd1955946"/>
+</types:mule>

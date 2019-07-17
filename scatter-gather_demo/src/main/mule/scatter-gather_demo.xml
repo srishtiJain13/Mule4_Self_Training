@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="67ee3a1e-baad-4b11-9d60-1009f40ae6c1" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="scatter-gather_demoFlow" doc:id="90c153ac-155d-4885-90fe-73500fddfebf" >
+		<http:listener doc:name="Listener" doc:id="6aeccbab-405d-4d64-a180-1e20f3cf7b44" config-ref="HTTP_Listener_config" path="/sc"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6a4004cb-4c83-448f-b7f7-7b8a77d1ac8a" message="#[payload]"/>
+		<scatter-gather doc:name="Scatter-Gather" doc:id="b7053b4f-ab53-478e-b0c9-eede00675319" >
+			<route >
+				<flow-ref doc:name="Flow Reference" doc:id="52db2119-62ca-4cdb-a1b7-4a284bbbed0b" name="scatter-gather_demoSub_Flow"/>
+			</route>
+			<route >
+				<flow-ref doc:name="Flow Reference" doc:id="7f57f517-5bee-49fe-bdf6-264c39c9002c" name="scatter-gather_demoSub_Flow1"/>
+			</route>
+		</scatter-gather>
+		<logger level="INFO" doc:name="Logger" doc:id="010afde4-69f9-44c9-87d7-2d051f3845c4" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="997b0f56-e194-4a30-bebf-626cd1955946" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+payload1: flatten(payload."0".payload.rights),
+payload2: flatten(payload."1".payload.rights)
+}
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<sub-flow name="scatter-gather_demoSub_Flow" doc:id="b17ef02c-1a0c-4778-a886-4e08b42c4e74" >
+		<set-payload value='#[{
+
+    "name" : "srishti",
+
+    "age" : 24,
+
+    "rights" :
+
+         [{"roleName" : "admin", "roleIds" : [11,21,31] },
+
+        {"roleName" : "editor", "roleIds" : [41,51,16] },
+
+       {"roleName" : "contributor", "roleIds" : [71,81,91]}]
+
+}]' doc:name="Set Payload" doc:id="9b3a9eed-8bb2-4994-a71b-8aeba30dd1d7" />
+	</sub-flow>
+	<sub-flow name="scatter-gather_demoSub_Flow1" doc:id="28318ed2-391c-4ee8-86fa-3f1dd9e90749" >
+		<set-payload value='#[{
+
+    "name" : "Admin",
+
+    "age" : 36,
+
+    "rights" :
+
+         [{"roleName" : "admin", "roleIds" : [1,2,3] },
+
+        {"roleName" : "editor", "roleIds" : [4,5,6] },
+
+       {"roleName" : "contributor", "roleIds" : [7,8,9]}]
+
+}]' doc:name="Set Payload" doc:id="001907ba-f9a2-49b5-8a9a-a3ac38c8c940" />
+	</sub-flow>
+</mule>

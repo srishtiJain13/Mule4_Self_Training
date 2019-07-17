@@ -1,0 +1,15 @@
+http:
+ port: "8083"
+  
+sfdc:
+ username: "srishti@niit-tech.com"
+ password: "Srish@1302"
+ token: "SCg0XMB0EoVqt1q12v4lXgtzd"
+ 
+db:
+  host: "mudb.learn.mulesoft.com"
+  port: "3306"
+  user: "mule"
+  password: "mule"
+  database: "training"
+ 

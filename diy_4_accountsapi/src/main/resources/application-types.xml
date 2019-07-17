@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="fsfg" format="json">
+      <types:shape format="weave" example="examples/outputdiy4"><![CDATA[%dw 2.0
+
+type fsfg = Array<{|  id: String,   firstName: String,   lastName: String,   address: String,   postal: String,   country: String,   creationDate: String,   accountType: String,   miles: Number {"typeId": "int"}|}> {"example": "[{\"id\":\"100\",\"firstName\":\"Alice\",\"lastName\":\"Green\",\"address\":\"77 Geary St., San Francisco\",\"postal\":\"94108\",\"country\":\"USA\",\"creationDate\":\"2018-10-01T23:57:59Z+0:00\",\"accountType\":\"business\",\"miles\":1000},{\"id\":\"1000\",\"firstName\":\"Alicjje\",\"lastName\":\"Greenjjj\",\"address\":\"77 Geary St., Sanjjj Francisco\",\"postal\":\"941088\",\"country\":\"USAhh\",\"creationDate\":\"2018-10-01T23:57:59Z+0:00\",\"accountType\":\"business\",\"miles\":1000}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#a4387a1f-dba2-4128-b6c4-573cd243c232">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="fsfg"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#1c4a0f6c-42ec-45ec-b0c9-4861901361f0">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="fsfg"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

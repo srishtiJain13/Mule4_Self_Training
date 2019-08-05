@@ -1,0 +1,78 @@
+{
+  "request" : {
+    "pos" : {
+      "aaa" : {
+        "country" : "AU",
+        "number" : "99401013"
+      },
+      "company" : "VA",
+      "lniata" : "BEC33E",
+      "sine" : "S19",
+      "pseudoCityCode" : "WIN",
+      "channel" : "ATO",
+      "localDateTime" : "2018-08-23T09:29:22",
+      "source" : "INTERACT"
+    },
+    "pnr" : "QTWMUM",
+    "orderDetails" : {
+      "passengerDetails" : [{
+        "nameNumber" : "01.01",
+        "type" : "ADT"
+      }, {
+        "nameNumber" : "02.01",
+        "type" : "ADT"
+      }
+      ]
+    },
+    "paymentData" : {
+      "payments" : [ {
+        "@type" : "CreditCard",
+        "details" : {
+          "paymentId" : 2,
+          "amount" : {
+            "value" : 0.77,
+            "currency" : "AUD"
+          }
+        },
+        "cardCode" : "VI,CA,AMEX",
+        "cardNumber" : "4005222222222223",
+        "expirationDate" : "2020-05",
+        "cardSecurityCode" : "123",
+        "cardHolder" : {
+          "firstName" : "Dariusz",
+          "lastName" : "Basista"
+        }
+      }
+      ],
+      "postTicketingFraudCheckEnabled" : true
+    },
+    "ticketingData" : {
+      "emd" : {
+        "ticketingId" : 1,
+        "totalCost" : {
+          "value" : 1.54,
+          "currency" : "AUD"
+        },
+        "emdDocuments" : [{
+          "aeItemId" : "61",
+          "documentAssociation" : [{
+            "segmentId" : "1",
+            "ticketNumber" : "7952145633308",
+            "couponNumber" : 1
+          }
+          ]
+        }, {
+          "aeItemId" : "63",
+          "documentAssociation" : [{
+            "segmentId" : "1",
+            "ticketNumber" : "7952145633309",
+            "couponNumber" : 1
+          }
+          ]
+        }
+        ]
+      },
+      "ticket" : true
+    }
+  }
+}

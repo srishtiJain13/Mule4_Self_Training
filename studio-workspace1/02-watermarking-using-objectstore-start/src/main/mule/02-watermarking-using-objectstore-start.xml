@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="9e9cf86f-8313-4da3-8a92-82a94e237af6" >
+		<db:my-sql-connection host="localhost" port="3306" user="root" password="root" database="muletrainingdb" />
+	</db:config>
+	<file:config name="File_Config" doc:name="File Config" doc:id="020dff73-6be5-4bf0-a0f2-84c5af36ef2b" >
+		<file:connection workingDir="C:\output" />
+	</file:config>
+	<os:object-store name="Object_store" doc:name="Object store" doc:id="f1ff0144-a3fb-4387-9ac3-1fb5d5b4bb7e" persistent="false" />
+	<flow name="02-watermarking-using-objectstore-startFlow" doc:id="688749dd-ad54-417c-985d-49984387376c" >
+		<db:listener table="product" doc:name="On Table Row" doc:id="c86f87e2-b3b0-4fe7-bdf8-2f4c54c5a391" config-ref="Database_Config" watermarkColumn="product_id">
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</db:listener>
+		<logger level="INFO" doc:name="Logger" doc:id="493468bf-4176-4d76-a948-a70cea4f9e15" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="c8a9cfd6-c609-4795-836e-71711ee8fc89" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/csv header=false
+---
+[payload]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<file:write doc:name="Write" doc:id="b63fdc6b-5721-4f8c-b242-08f1e1785abc" config-ref="File_Config" path="output/products.csv" mode="APPEND"/>
+	</flow>
+	<flow name="02-watermarking-using-objectstore-startFlow1" doc:id="053303ac-8740-4299-a222-86bc3c9e1a42" >
+		<scheduler doc:name="Scheduler" doc:id="d7c6b635-7e73-4cbf-9b68-1004cea985b4" >
+			<scheduling-strategy >
+				<fixed-frequency frequency="5" timeUnit="SECONDS"/>
+			</scheduling-strategy>
+		</scheduler>
+		<os:retrieve doc:name="Retrieve" doc:id="d10354c6-053d-48b7-8b2b-d8b154b2ec23" key="lastproductId" target="lastproductId" objectStore="Object_store">
+			<os:default-value ><![CDATA[#[0]]]></os:default-value>
+		</os:retrieve>
+		<db:select doc:name="Select" doc:id="39d2d221-cfce-4b1c-99bc-a99fc557b0b8" config-ref="Database_Config">
+			<db:sql>select * from product where product_id &gt; :lastproductId	</db:sql>
+			<db:input-parameters><![CDATA[#[%dw 2.0
+output application/java
+---
+{
+	lastproductId: vars.lastproductId as String
+}]]]></db:input-parameters>
+		</db:select>
+		<choice doc:name="Choice" doc:id="1b978e1d-51f1-4eb5-968a-af9a2bc9072d" >
+			<when expression="#[not isEmpty(payload)]">
+				<os:store doc:name="Store" doc:id="8b330652-78cf-4418-bea4-dbd96e66b710" key="lastproductId">
+			<os:value><![CDATA[#[max(payload.product_id)]]]></os:value>
+		</os:store>
+				<ee:transform doc:name="Transform Message" doc:id="9767bd59-d33a-4426-92e8-4582d9625541" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<logger level="INFO" doc:name="Logger" doc:id="e14057ff-a013-4d2f-8a51-191d1cd2ce05" message="#[payload]"/>
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="4aadf19b-416d-49a0-9dcf-2792333645e3" message="No new records!!"/>
+			</otherwise>
+		</choice>
+	</flow>
+</mule>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="org.eclipse.draw2d:3.10.100.201606061308"/>
+		<item value="org.eclipse.egit.gitflow.feature:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.egit.source:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.egit:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.emf.common:2.13.0.v20170609-0707"/>
+		<item value="org.eclipse.emf.ecore:2.13.0.v20170609-0707"/>
+		<item value="org.eclipse.gef:3.11.0.201606061308"/>
+		<item value="org.eclipse.help:2.2.102.v20171130-0510"/>
+		<item value="org.eclipse.jdt:3.13.2.v20171130-0906"/>
+		<item value="org.eclipse.jgit.lfs:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.jgit.pgm:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.jgit.ssh.apache:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.jgit:5.4.0.201906121030-r"/>
+		<item value="org.eclipse.pde:3.13.2.v20171130-0510"/>
+		<item value="org.eclipse.platform:4.7.2.v20171130-0510"/>
+		<item value="org.eclipse.rcp:4.7.2.v20171130-0510"/>
+		<item value="org.eclipse.wst.jsdt.chromium.debug.feature:0.6.0.v201705091354"/>
+		<item value="org.eclipse.wst.jsdt.feature:2.1.0.v201706011953"/>
+		<item value="org.eclipse.wst.json_ui.feature:1.1.1.v201707252002"/>
+		<item value="org.eclipse.wst.web_ui.feature:3.9.1.v201711152154"/>
+		<item value="org.eclipse.wst.xml_ui.feature:3.9.1.v201707252002"/>
+		<item value="org.eclipse.xsd.edit:2.9.0.v20170609-0928"/>
+		<item value="org.eclipse.xsd:2.13.0.v20170609-0928"/>
+		<item value="org.mule.tooling.extension.server.4.2.0.ee:7.3.4.201905081553"/>
+		<item value="org.mule.tooling.munit.extension:2.3.3.201905031842"/>
+		<item value="org.mule.tooling.studio:7.3.4.201905081638"/>
+		<item value="org.mule.tooling:7.3.4.201905081638"/>
+	</list>
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
+		<item value="402" key="DIALOG_HEIGHT"/>
+		<item value="390" key="DIALOG_X_ORIGIN"/>
+		<item value="224" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="338" key="DIALOG_X_ORIGIN"/>
+		<item value="313" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="false" key="FilterByLocation"/>
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/sabre/src/main/resources/GetReservation_1.18.0.wsdl&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="false" key="ShowDerived"/>
+		<section name="DialogBoundsSettings">
+			<item value="428" key="DIALOG_WIDTH"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+			<item value="523" key="DIALOG_HEIGHT"/>
+			<item value="12" key="DIALOG_X_ORIGIN"/>
+			<item value="-21" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

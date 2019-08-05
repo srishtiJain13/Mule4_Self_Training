@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="id" format="json">
+      <types:shape format="weave" example="examples/fulfillment_Response.json"><![CDATA[%dw 2.0
+
+type id = {|
+  request: {|
+    pos: {|
+      aaa: {|
+        country: String, 
+        number: String
+      |}, 
+      company: String, 
+      lniata: String, 
+      sine: String, 
+      pseudoCityCode: String, 
+      channel: String, 
+      localDateTime: String, 
+      source: String
+    |}, 
+    pnr: String, 
+    orderDetails: {|
+      passengerDetails: Array<{|        nameNumber: String,         "type": String      |}>
+    |}, 
+    paymentData: {|
+      payments: Array<{|        "@type": String,         details: {|          paymentId: Number {"typeId": "int"},           amount: {|            value: Number {"typeId": "double"},             currency: String          |}        |},         cardCode: String,         cardNumber: String,         expirationDate: String,         cardSecurityCode: String,         cardHolder: {|          firstName: String,           lastName: String        |}      |}>, 
+      postTicketingFraudCheckEnabled: Boolean
+    |}, 
+    ticketingData: {|
+      emd: {|
+        ticketingId: Number {"typeId": "int"}, 
+        totalCost: {|
+          value: Number {"typeId": "double"}, 
+          currency: String
+        |}, 
+        emdDocuments: Array<{|          aeItemId: String,           documentAssociation: Array<{|            segmentId: String,             ticketNumber: String,             couponNumber: Number {"typeId": "int"}          |}>
+        |}>
+      |}, 
+      ticket: Boolean
+    |}
+  |}, 
+  response: {|
+    status: {|
+      code: String, 
+      message: String
+    |}, 
+    paymentResults: {|
+      status: {|
+        code: String, 
+        message: String
+      |}, 
+      resultCode: String, 
+      posAction: String, 
+      sabreTransactionId: String, 
+      payments: Array<{|        status: {| code: String |},         responseCode: String,         fraudCheckResult: String,         details: {|          paymentId: Number {"typeId": "int"},           amount: {|            value: Number {"typeId": "double"},             currency: String          |}        |},         approvalCode: String,         remarks: Array<String>, 
+        fraudCheckRemarks: Array<String>
+      |}>, 
+      allRemarksAddedToReservation: Boolean
+    |}, 
+    ticketingResults: Array<{|      ticketingId: Number {"typeId": "int"},       status: {|        code: String,         message: String      |},       issuedDocumentNumbers: Array<String>
+    |}>
+  |}
+|} {"example": "{\"request\":{\"pos\":{\"aaa\":{\"country\":\"AU\",\"number\":\"99401013\"},\"company\":\"VA\",\"lniata\":\"BEC33E\",\"sine\":\"S19\",\"pseudoCityCode\":\"WIN\",\"channel\":\"ATO\",\"localDateTime\":\"2018-08-23T09:29:22\",\"source\":\"INTERACT\"},\"pnr\":\"QTWMUM\",\"orderDetails\":{\"passengerDetails\":[{\"nameNumber\":\"01.01\",\"type\":\"ADT\"},{\"nameNumber\":\"02.01\",\"type\":\"ADT\"}]},\"paymentData\":{\"payments\":[{\"@type\":\"CreditCard\",\"details\":{\"paymentId\":2,\"amount\":{\"value\":0.77,\"currency\":\"AUD\"}},\"cardCode\":\"VI\",\"cardNumber\":\"4005222222222223\",\"expirationDate\":\"2020-05\",\"cardSecurityCode\":\"123\",\"cardHolder\":{\"firstName\":\"Dariusz\",\"lastName\":\"Basista\"}}],\"postTicketingFraudCheckEnabled\":true},\"ticketingData\":{\"emd\":{\"ticketingId\":1,\"totalCost\":{\"value\":1.54,\"currency\":\"AUD\"},\"emdDocuments\":[{\"aeItemId\":\"61\",\"documentAssociation\":[{\"segmentId\":\"1\",\"ticketNumber\":\"7952145633308\",\"couponNumber\":1}]},{\"aeItemId\":\"63\",\"documentAssociation\":[{\"segmentId\":\"1\",\"ticketNumber\":\"7952145633309\",\"couponNumber\":1}]}]},\"ticket\":true}},\"response\":{\"status\":{\"code\":\"SUCCESS\",\"message\":\"Request processed successfully\"},\"paymentResults\":{\"status\":{\"code\":\"SUCCESS\",\"message\":\"Successful Transaction\"},\"resultCode\":\"SUCCESS\",\"posAction\":\"PROCEED\",\"sabreTransactionId\":\"01311535009367377500\",\"payments\":[{\"status\":{\"code\":\"SUCCESS\"},\"responseCode\":\"APPROVED\",\"fraudCheckResult\":\"REJECT\",\"details\":{\"paymentId\":1,\"amount\":{\"value\":0.77,\"currency\":\"AUD\"}},\"approvalCode\":\"X82235\",\"remarks\":[\"AUTH-PSS\/AX5550\/23AUG\/01811535009367409119\",\"  AUTH-APV\/X82235\/000\/AUD0.77\",\"  AUTH-CSC MATCHED\/Y\",\"  AUTH-AVS SUCCESS-Y\/ADDRESS AND ZIP\/POSTAL MATCH\/Y\"],\"fraudCheckRemarks\":[\"RISK MGNT\/REJECT\/\/\/6C8A7CBD-CFB3-45C5-A338-7E4502BE4018\"]},{\"status\":{\"code\":\"SUCCESS\"},\"responseCode\":\"APPROVED\",\"fraudCheckResult\":\"REJECT\",\"details\":{\"paymentId\":2,\"amount\":{\"value\":0.77,\"currency\":\"AUD\"}},\"approvalCode\":\"X02304\",\"remarks\":[\"AUTH-PSS\/VI2223\/23AUG\/01811535009369202120\",\"  AUTH-APV\/X02304\/00\/AUD0.77\",\"  AUTH-CSC MATCHED\/M\",\"  AUTH-AVS SUCCESS-Y\/ADDRESS AND ZIP\/POSTAL MATCH\/Y\"],\"fraudCheckRemarks\":[\"RISK MGNT\/REJECT\/\/\/6C8A7CBD-CFB3-45C5-A338-7E4502BE4018\"]}],\"allRemarksAddedToReservation\":true},\"ticketingResults\":[{\"ticketingId\":1,\"status\":{\"code\":\"SUCCESS\",\"message\":\"COMPLETE\"},\"issuedDocumentNumbers\":[\"7951500357955\",\"7951500357956\"]}]}}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="iwsf" format="json">
+      <types:shape format="weave" example="examples/fulfillment_Response-1.json"><![CDATA[%dw 2.0
+
+type iwsf = {|
+  response: {|
+    status: {|
+      code: String, 
+      message: String
+    |}, 
+    paymentResults: {|
+      status: {|
+        code: String, 
+        message: String
+      |}, 
+      resultCode: String, 
+      posAction: String, 
+      sabreTransactionId: String, 
+      payments: Array<{|        status: {| code: String |},         responseCode: String,         fraudCheckResult: String,         details: {|          paymentId: Number {"typeId": "int"},           amount: {|            value: Number {"typeId": "double"},             currency: String          |}        |},         approvalCode: String,         remarks: Array<String>, 
+        fraudCheckRemarks: Array<String>
+      |}>, 
+      allRemarksAddedToReservation: Boolean
+    |}, 
+    ticketingResults: Array<{|      ticketingId: Number {"typeId": "int"},       status: {|        code: String,         message: String      |},       issuedDocumentNumbers: Array<String>
+    |}>
+  |}
+|} {"example": "{\"response\":{\"status\":{\"code\":\"SUCCESS\",\"message\":\"Request processed successfully\"},\"paymentResults\":{\"status\":{\"code\":\"SUCCESS\",\"message\":\"Successful Transaction\"},\"resultCode\":\"SUCCESS\",\"posAction\":\"PROCEED\",\"sabreTransactionId\":\"01311535009367377500\",\"payments\":[{\"status\":{\"code\":\"SUCCESS\"},\"responseCode\":\"APPROVED\",\"fraudCheckResult\":\"REJECT\",\"details\":{\"paymentId\":1,\"amount\":{\"value\":0.77,\"currency\":\"AUD\"}},\"approvalCode\":\"X82235\",\"remarks\":[\"AUTH-PSS\/AX5550\/23AUG\/01811535009367409119\",\"  AUTH-APV\/X82235\/000\/AUD0.77\",\"  AUTH-CSC MATCHED\/Y\",\"  AUTH-AVS SUCCESS-Y\/ADDRESS AND ZIP\/POSTAL MATCH\/Y\"],\"fraudCheckRemarks\":[\"RISK MGNT\/REJECT\/\/\/6C8A7CBD-CFB3-45C5-A338-7E4502BE4018\"]},{\"status\":{\"code\":\"SUCCESS\"},\"responseCode\":\"APPROVED\",\"fraudCheckResult\":\"REJECT\",\"details\":{\"paymentId\":2,\"amount\":{\"value\":0.77,\"currency\":\"AUD\"}},\"approvalCode\":\"X02304\",\"remarks\":[\"AUTH-PSS\/VI2223\/23AUG\/01811535009369202120\",\"  AUTH-APV\/X02304\/00\/AUD0.77\",\"  AUTH-CSC MATCHED\/M\",\"  AUTH-AVS SUCCESS-Y\/ADDRESS AND ZIP\/POSTAL MATCH\/Y\"],\"fraudCheckRemarks\":[\"RISK MGNT\/REJECT\/\/\/6C8A7CBD-CFB3-45C5-A338-7E4502BE4018\"]}],\"allRemarksAddedToReservation\":true},\"ticketingResults\":[{\"ticketingId\":1,\"status\":{\"code\":\"SUCCESS\",\"message\":\"COMPLETE\"},\"issuedDocumentNumbers\":[\"7951500357955\",\"7951500357956\"]}]}}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="paymentOP" format="xml">
+      <types:example format="xml" element="{http://schemas.xmlsoap.org/soap/envelope/}Envelope" location="examples/paymentRS.xml"/>
+    </types:type>
+    <types:type name="new" format="xml">
+      <types:example format="xml" element="{http://schemas.xmlsoap.org/soap/envelope/}Envelope" location="examples/paymentRS.xml"/>
+    </types:type>
+    <types:type name="paymentRQ" format="xml">
+      <types:example format="xml" element="{http://schemas.xmlsoap.org/soap/envelope/}Envelope" location="examples/paymentRS.xml"/>
+    </types:type>
+    <types:type name="GetReservation" format="xml">
+      <types:example format="xml" element="{http://webservices.sabre.com/pnrbuilder/v1_18}GetReservationRS" location="examples/getReservationRS.xml"/>
+    </types:type>
+    <types:type name="CollectMiscRS" format="xml">
+      <types:example format="xml" element="{http://www.sabre.com/ns/Ticketing/misc/1.0}CollectMiscFeeRS" location="examples/collectMiscFeeRS.xml"/>
+    </types:type>
+    <types:type name="FraudRS" format="xml">
+      <types:example format="xml" element="{http://schemas.xmlsoap.org/soap/envelope/}Envelope" location="examples/fraudCheckRS.xml"/>
+    </types:type>
+    <types:type name="UpdateRS" format="xml">
+      <types:example format="xml" element="{http://schemas.xmlsoap.org/soap/envelope/}Envelope" location="examples/updateReservationRS.xml"/>
+    </types:type>
+    <types:type name="orininal_request" format="json">
+      <types:shape format="weave" example="examples/fulfillment_Request.json"><![CDATA[%dw 2.0
+
+type orininal_request = {|
+  request: {|
+    pos: {|
+      aaa: {|
+        country: String, 
+        number: String
+      |}, 
+      company: String, 
+      lniata: String, 
+      sine: String, 
+      pseudoCityCode: String, 
+      channel: String, 
+      localDateTime: String, 
+      source: String
+    |}, 
+    pnr: String, 
+    orderDetails: {|
+      passengerDetails: Array<{|        nameNumber: String,         "type": String      |}>
+    |}, 
+    paymentData: {|
+      payments: Array<{|        "@type": String,         details: {|          paymentId: Number {"typeId": "int"},           amount: {|            value: Number {"typeId": "double"},             currency: String          |}        |},         cardCode: String,         cardNumber: String,         expirationDate: String,         cardSecurityCode: String,         cardHolder: {|          firstName: String,           lastName: String        |}      |}>, 
+      postTicketingFraudCheckEnabled: Boolean
+    |}, 
+    ticketingData: {|
+      emd: {|
+        ticketingId: Number {"typeId": "int"}, 
+        totalCost: {|
+          value: Number {"typeId": "double"}, 
+          currency: String
+        |}, 
+        emdDocuments: Array<{|          aeItemId: String,           documentAssociation: Array<{|            segmentId: String,             ticketNumber: String,             couponNumber: Number {"typeId": "int"}          |}>
+        |}>
+      |}, 
+      ticket: Boolean
+    |}
+  |}
+|} {"example": "{\"request\":{\"pos\":{\"aaa\":{\"country\":\"AU\",\"number\":\"99401013\"},\"company\":\"VA\",\"lniata\":\"BEC33E\",\"sine\":\"S19\",\"pseudoCityCode\":\"WIN\",\"channel\":\"ATO\",\"localDateTime\":\"2018-08-23T09:29:22\",\"source\":\"INTERACT\"},\"pnr\":\"QTWMUM\",\"orderDetails\":{\"passengerDetails\":[{\"nameNumber\":\"01.01\",\"type\":\"ADT\"},{\"nameNumber\":\"02.01\",\"type\":\"ADT\"}]},\"paymentData\":{\"payments\":[{\"@type\":\"CreditCard\",\"details\":{\"paymentId\":2,\"amount\":{\"value\":0.77,\"currency\":\"AUD\"}},\"cardCode\":\"VI,CA,AMEX\",\"cardNumber\":\"4005222222222223\",\"expirationDate\":\"2020-05\",\"cardSecurityCode\":\"123\",\"cardHolder\":{\"firstName\":\"Dariusz\",\"lastName\":\"Basista\"}}],\"postTicketingFraudCheckEnabled\":true},\"ticketingData\":{\"emd\":{\"ticketingId\":1,\"totalCost\":{\"value\":1.54,\"currency\":\"AUD\"},\"emdDocuments\":[{\"aeItemId\":\"61\",\"documentAssociation\":[{\"segmentId\":\"1\",\"ticketNumber\":\"7952145633308\",\"couponNumber\":1}]},{\"aeItemId\":\"63\",\"documentAssociation\":[{\"segmentId\":\"1\",\"ticketNumber\":\"7952145633309\",\"couponNumber\":1}]}]},\"ticket\":true}}}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="updareRQ" format="xml">
+      <types:example format="xml" element="{http://schemas.xmlsoap.org/soap/envelope/}Envelope" location="examples/updateReservationRQ.xml"/>
+    </types:type>
+    <types:type name="ggg" format="xml">
+      <types:example format="xml" element="{http://webservices.sabre.com/pnrbuilder/v1_18}UpdateReservationRS" location="examples/updateReservationRS-1.xml"/>
+    </types:type>
+    <types:type name="error" format="xml">
+      <types:example format="xml" element="{http://schemas.xmlsoap.org/soap/envelope/}Envelope" location="error.wsdl"/>
+    </types:type>
+    <types:type name="updateResponse" format="xml">
+      <types:example format="xml" element="{http://webservices.sabre.com/pnrbuilder/v1_18}UpdateReservationRS" location="examples/updateReservationRS-2.xml"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#1e74f4c9-07ce-4b94-a60d-ff2c4524b3a7">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="iwsf"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#37fe005b-98fa-4534-a9c4-d7e05836b151">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:variables>
+          <types:variable name="originalReq" type="orininal_request"/>
+        </types:variables>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#cf1abfa7-e372-4190-8e63-1b2883840a3a">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="paymentOP"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#3d83969a-d5e2-43f2-974b-884b1928c163">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="GetReservation"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#469d6ede-f706-43b3-a3f5-41748441d552">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="CollectMiscRS"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#c6090b16-b94e-4418-aefc-29ba9f0a684b"/>
+  <types:enrichment select="#36c1cb20-755c-43b9-9b62-0d6c7f2442c6">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:variables>
+          <types:variable name="originalReq" type="orininal_request"/>
+        </types:variables>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#4adba04c-c566-4507-85c2-7c37c66aafcf">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="orininal_request"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#c5e66059-8081-4ed3-8f97-3e1c44b07d53">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="FraudRS"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#c7f2569c-47c7-43d9-bcdd-2c12b4e20905"/>
+  <types:enrichment select="#0683a147-d85a-4071-9d05-490c7850f2b1">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:variables>
+          <types:variable name="value" type="UpdateRS"/>
+        </types:variables>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="ggg"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#22157be8-c16c-41f5-b5ba-c1b7d6671991"/>
+  <types:enrichment select="#4294c81a-cbbf-4e62-ad93-ee7d709a1d82">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="UpdateRS"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#b04c6bfb-4b4e-45b4-8f48-a7448b8ec7f6">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="UpdateRS"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="ggg"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#4155c0f0-a483-427b-9835-3055e138a5e7">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:variables>
+          <types:variable name="myVar" type="error"/>
+        </types:variables>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="updateResponse"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="85c24da8-3fb2-49a0-b5c7-815f96a837fd" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="getconversionrateflow" doc:id="9e19c46a-74eb-44f0-820c-41632c6d2622" >
+		<choice doc:name="Choice" doc:id="317db4c8-8484-4a65-b27c-4f6b6211f295" >
+			<when expression="#[payload=='us']">
+				<set-payload value="#[65 as Number]" doc:name="USD" doc:id="d49f0da3-bb2c-4065-b57c-fff85a3586c5" />
+			</when>
+			<when expression="#[payload=='uk']">
+				<set-payload value="#[75 as Number]" doc:name="Euro" doc:id="34c1f25f-0f79-46a1-bbbe-e0faa70e5d99" />
+			</when>
+			<otherwise >
+				<set-payload value="#[1 as Number]" doc:name="Rupee" doc:id="05db87f5-923e-4a20-8be7-5749c0e749a4" />
+				<logger level="INFO" doc:name="Logger" doc:id="6c1d9002-220c-465e-8f23-feebea51e0ad" message="Default called "/>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="02-transformers-complex-startFlow" doc:id="c82acdff-4fb6-43ec-b840-1a76beb20f43" >
+		<http:listener doc:name="Listener" doc:id="01157644-8f63-4a8f-8113-dafca382ea13" config-ref="HTTP_Listener_config" path="transform"/>
+		<ee:transform doc:name="Transform Message" doc:id="9e13f6ef-905e-47f7-b0a3-06bc4cb0f7bc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+
+//var conversionRate=10
+//fun getConvertedOriginalPrice(price) = price*conversionRate
+fun getConvertedOriginalPrice(price) = price*conversionRate
+fun getimages(images)= {
+	(
+				images map{
+					
+				}
+				
+	)
+}
+var conversionRate= lookup('getconversionrateflow',attributes.queryParams.country) 
+var products = payload map(product,productIndex) -> {
+	product: {
+	productId: product.productId,
+	name: product.name,
+	brandName: product.brandName,
+	originalPrice: getConvertedOriginalPrice(product.originalPrice),
+	(images: getimages(product.images)) if product.images?
+	}
+}
+var sortedProducts= products orderBy $.product.originalPrice
+var filteredProducts= products filter $.product.brandName== attributes.queryParams.brandName
+var object1 = {
+		one: "1",
+		two: true
+}
+var object2 =
+[
+		{one: "1",two: 2},
+		{three: 3, four: "4"}
+]
+---
+products:{
+	(products)
+	}
+
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="4f128280-edda-4223-904f-c7041875376e" message="#[payload]"/>
+	</flow>
+	<flow name="02-transformers-complex-XML" doc:id="5a50c9b7-a1a0-4b26-a36a-4a8b4da9e262" >
+		<http:listener doc:name="Listener" doc:id="043c9be4-75a4-463c-a300-cbcb3c841c38" config-ref="HTTP_Listener_config" path="transformxml"/>
+		<ee:transform doc:name="Transform Message" doc:id="a13731bd-86ae-4172-aa7b-facae4681960" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+type myOffer= Object {class:"com.way2learnonline.Offer"}
+type myproduct= Object {class:"com.way2learnonline.Product"}
+---
+payload.products.*product map
+{
+	product:{
+				productId: $.productId as Number,
+				name: $.name,
+				brandName: $.brandName,
+				offer: {
+						offerPrice: $.offer.offerPrice as Number,
+						offerValidUntil: $.offer.offerValidUntil as Date {format:"yyyy-MM-dd"}
+					} as myOffer,
+				images: $.images.*image,
+				originalPrice: $.originalPrice,
+				description: $.description
+			} as myproduct
+
+}
+	]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

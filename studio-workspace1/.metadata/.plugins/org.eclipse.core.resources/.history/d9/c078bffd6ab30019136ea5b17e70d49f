@@ -1,0 +1,29 @@
+<PaymentRS xmlns="http://www.opentravel.org/OTA/2003/05/beta" SystemDateTime="2018-08-23T02:29:30" SabreTransactionID="01311535009367377500" Version="4.13.0">
+  <Result ResultCode="SUCCESS" Description="Successful Transaction" POSActionCode="PROCEED"/>
+  <Results FOP_RPH="1">
+    <FOP Type="CC"/>
+    <AuthorizationResult ResponseCode="APPROVED" ApprovalCode="X82235" SupplierID="PSSAMEX" SupplierTransID="230729288223535" SupplierResponseCode="000" PaymentRef="01811535009367409119">
+      <CSC_Result CSC_ResultCode="Y"/>
+      <AVS_Result AVS_ResultCode="Y"/>
+      <Remarks>
+        <Remark>AUTH-PSS/AX5550/23AUG/01811535009367409119</Remark>
+        <Remark>  AUTH-APV/X82235/000/AUD0.77</Remark>
+        <Remark>  AUTH-CSC MATCHED/Y</Remark>
+        <Remark>  AUTH-AVS SUCCESS-Y/ADDRESS AND ZIP/POSTAL MATCH/Y</Remark>
+      </Remarks>
+    </AuthorizationResult>
+  </Results>
+  <Results FOP_RPH="2">
+    <FOP Type="CC"/>
+    <AuthorizationResult ResponseCode="APPROVED" ApprovalCode="X02304" SupplierID="PSSVISA" SupplierTransID="502293004000077" SupplierResponseCode="00" PaymentRef="01811535009369202120">
+      <CSC_Result CSC_ResultCode="M"/>
+      <AVS_Result AVS_ResultCode="Y"/>
+      <Remarks>
+        <Remark>AUTH-PSS/VI2223/23AUG/01811535009369202120</Remark>
+        <Remark>  AUTH-APV/X02304/00/AUD0.77</Remark>
+        <Remark>  AUTH-CSC MATCHED/M</Remark>
+        <Remark>  AUTH-AVS SUCCESS-Y/ADDRESS AND ZIP/POSTAL MATCH/Y</Remark>
+      </Remarks>
+    </AuthorizationResult>
+  </Results>
+</PaymentRS>

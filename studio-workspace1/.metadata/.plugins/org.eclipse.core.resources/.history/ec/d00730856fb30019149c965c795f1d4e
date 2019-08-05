@@ -1,0 +1,87 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:mes="http://www.ebxml.org/namespaces/messageHeader" xmlns:beta="http://www.opentravel.org/OTA/2003/05/beta">
+   <soapenv:Header>
+      <sec:Security>
+         <!--Optional:-->
+         <sec:UsernameToken>
+            <!--Optional:-->
+            <sec:Username>?</sec:Username>
+            <!--Optional:-->
+            <sec:Password>?</sec:Password>
+            <!--0 to 2 repetitions:-->
+            <sec:NewPassword>?</sec:NewPassword>
+            <!--Optional:-->
+            <Organization>?</Organization>
+            <!--Optional:-->
+            <Domain>?</Domain>
+         </sec:UsernameToken>
+         <!--Optional:-->
+         <sec:SabreAth>?</sec:SabreAth>
+         <!--Optional:-->
+         <sec:BinarySecurityToken>?</sec:BinarySecurityToken>
+      </sec:Security>
+      <mes:MessageHeader mes:id="?" mes:version="?">
+         <mes:From>
+            <!--1 or more repetitions:-->
+            <mes:PartyId mes:type="?">?</mes:PartyId>
+            <!--Optional:-->
+            <mes:Role>?</mes:Role>
+         </mes:From>
+         <mes:To>
+            <!--1 or more repetitions:-->
+            <mes:PartyId mes:type="?">?</mes:PartyId>
+            <!--Optional:-->
+            <mes:Role>?</mes:Role>
+         </mes:To>
+         <mes:CPAId>?</mes:CPAId>
+         <mes:ConversationId>?</mes:ConversationId>
+         <mes:Service mes:type="?">?</mes:Service>
+         <mes:Action>?</mes:Action>
+         <mes:MessageData>
+            <mes:MessageId>?</mes:MessageId>
+            <mes:Timestamp>?</mes:Timestamp>
+            <!--Optional:-->
+            <mes:RefToMessageId>?</mes:RefToMessageId>
+            <!--Optional:-->
+            <mes:TimeToLive>?</mes:TimeToLive>
+         </mes:MessageData>
+         <!--Optional:-->
+         <mes:DuplicateElimination>?</mes:DuplicateElimination>
+         <!--Zero or more repetitions:-->
+         <mes:Description xml:lang="?">?</mes:Description>
+         <!--You may enter ANY elements at this point-->
+      </mes:MessageHeader>
+   </soapenv:Header>
+   <soapenv:Body>
+      <beta:PaymentRS SystemDateTime="2018-08-23T02:29:30" SabreTransactionID="01311535009367377500" Version="4.13.0">
+         <beta:Result ResultCode="SUCCESS" Description="Successful Transaction" POSActionCode="PROCEED"/>
+         <beta:Results FOP_RPH="1">
+            <beta:FOP Type="CC" FOP_Code="AX"/>
+            <beta:AuthorizationResult ResponseCode="APPROVED" ApprovalCode="X82235" SupplierID="PSSAMEX" SupplierTransID="230729288223535" SupplierResponseCode="000" PaymentRef="01811535009367409119" AuthRemarks1="test1" AuthRemarks2="test2">
+               <beta:CSC_Result CSC_ResultCode="Y" CSC_Remarks="test3"/>
+               <beta:AVS_Result AVS_ResultCode="Y" AVS_Remarks="test4"/>
+               <beta:Remarks>
+                  <!--1 or more repetitions:-->
+                  <beta:Remark>AUTH-PSS/AX5550/23AUG/01811535009367409119</beta:Remark>
+                  <beta:Remark>  AUTH-APV/X82235/000/AUD0.77</beta:Remark>
+                  <beta:Remark>  AUTH-CSC MATCHED/Y</beta:Remark>
+                  <beta:Remark>  AUTH-AVS SUCCESS-Y/ADDRESS AND ZIP/POSTAL MATCH/Y</beta:Remark>
+               </beta:Remarks>
+            </beta:AuthorizationResult>
+         </beta:Results>
+         <beta:Results FOP_RPH="2">
+            <beta:FOP Type="CC"  FOP_Code="AX"/>
+            <beta:AuthorizationResult  ResponseCode="APPROVED" ApprovalCode="X02304" SupplierID="PSSVISA" SupplierTransID="502293004000077" SupplierResponseCode="00" PaymentRef="01811535009369202120" AuthRemarks1="test1" AuthRemarks2="test2">
+               <beta:CSC_Result CSC_ResultCode="M" CSC_Remarks="test3"/>
+               <beta:AVS_Result AVS_ResultCode="Y" AVS_Remarks="test4" />
+               <beta:Remarks>
+                  <!--1 or more repetitions:-->
+                  <beta:Remark>AUTH-PSS/VI2223/23AUG/01811535009369202120</beta:Remark>
+                  <beta:Remark>  AUTH-APV/X02304/00/AUD0.77</beta:Remark>
+                  <beta:Remark>  AUTH-CSC MATCHED/M</beta:Remark>
+                  <beta:Remark>  AUTH-AVS SUCCESS-Y/ADDRESS AND ZIP/POSTAL MATCH/Y</beta:Remark>
+               </beta:Remarks>
+            </beta:AuthorizationResult>
+         </beta:Results>
+      </beta:PaymentRS>
+   </soapenv:Body>
+</soapenv:Envelope>

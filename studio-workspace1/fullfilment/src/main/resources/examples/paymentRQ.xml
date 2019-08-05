@@ -1,0 +1,53 @@
+<ns6:PaymentRQ xmlns:ns1="http://www.ebxml.org/namespaces/messageHeader" xmlns:ns2="http://www.w3.org/1999/xlink" xmlns:ns3="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns4="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:ns6="http://www.opentravel.org/OTA/2003/05/beta" xmlns:ns7="http://www.w3.org/2000/09/xmldsig#" SystemDateTime="2018-08-23T09:29:26.000Z" Version="4.13.0">
+  <ns6:Action>OrchPayment</ns6:Action>
+  <ns6:POS PseudoCityCode="WIN" AgentSine="S19" LNIATA="BEC33E" StationNumber="99401013" ISOCountry="AU" ChannelID="ATO" LocalDateTime="2018-08-23T09:29:22.000Z" SourceID="INTERACT"/>
+  <ns6:MerchantDetail MerchantID="VA"/>
+  <ns6:OrderDetail OrderType="O" RecordLocator="QTWMUM">
+    <ns6:ProductDetail ProductID="1004" CurrencyCode="AUD" UnitPrice="0.77" Taxes="0.07" Quantity="1"/>
+    <ns6:ProductDetail ProductID="1004" CurrencyCode="AUD" UnitPrice="0.77" Taxes="0.07" Quantity="1"/>
+    <ns6:PassengerDetail NameInPNR="SLODOWY/ADAM M MR*ADT" NameNumberInPNR="01.01" PsgrType="ADT" Gender="M" Name="ADAM M MR SLODOWY" FirstName="ADAM M MR" LastName="SLODOWY">
+      <ns6:Identifications>
+        <ns6:Passport CountryOfIssue="PL" Nationality="PL" Number="ADAC24" ExpireDate="2019-11-12"/>
+      </ns6:Identifications>
+      <ns6:Document DocType="EMD" DocCurrency="AUD" DocAmount="0.77" BaseFare="0.70" Taxes="0.07" AssociatedDocNumber="7952145633308" DocSubType="A" EMD_GroupCode="TS" RFI_Code="D">
+        <ns6:TaxBreak TaxCode="UOA" TaxAmount="0.07"/>
+        <ns6:EMD_CouponDetail RFIC_SubCode="0LT" AssociatedDocNumber="7952145633308" AssociatedSegmentNumber="1" ConsumedAtIssuanceInd=" " Quantity="1"/>
+      </ns6:Document>
+    </ns6:PassengerDetail>
+    <ns6:PassengerDetail NameInPNR="SLODOWY/ANNA M MS*ADT" NameNumberInPNR="02.01" PsgrType="ADT" Gender="M" Name="ANNA M MS SLODOWY" FirstName="ANNA M MS" LastName="SLODOWY">
+      <ns6:Identifications>
+        <ns6:Passport CountryOfIssue="PL" Nationality="PL" Number="ADAC24" ExpireDate="2019-11-12"/>
+      </ns6:Identifications>
+      <ns6:Document DocType="EMD" DocCurrency="AUD" DocAmount="0.77" BaseFare="0.70" Taxes="0.07" AssociatedDocNumber="7952145633309" DocSubType="A" EMD_GroupCode="TS" RFI_Code="D">
+        <ns6:TaxBreak TaxCode="UOA" TaxAmount="0.07"/>
+        <ns6:EMD_CouponDetail RFIC_SubCode="0LT" AssociatedDocNumber="7952145633309" AssociatedSegmentNumber="1" ConsumedAtIssuanceInd=" " Quantity="1"/>
+      </ns6:Document>
+    </ns6:PassengerDetail>
+    <ns6:ContactInfo Name="ADAM M MR SLODOWY" FirstName="ADAM M MR" LastName="SLODOWY">
+      <ns6:EmailAddress>ACCEPT@ACCEPT.COM</ns6:EmailAddress>
+      <ns6:PhoneNumber Number="48-48-12345678X101" Type="M"/>
+    </ns6:ContactInfo>
+    <ns6:FlightDetail>
+      <ns6:AirlineCode>VA</ns6:AirlineCode>
+      <ns6:OperatingAirlineCode>VA</ns6:OperatingAirlineCode>
+      <ns6:FlightNumber>0800</ns6:FlightNumber>
+      <ns6:ClassOfService>L</ns6:ClassOfService>
+      <ns6:DepartureInfo DepartureAirport="SYD" DepartureDateTime="2018-09-22T06:00:00.000Z"/>
+      <ns6:ArrivalInfo ArrivalAirport="MEL" ArrivalDateTime="2018-09-22T07:35:00.000Z"/>
+    </ns6:FlightDetail>
+  </ns6:OrderDetail>
+  <ns6:PaymentDetail FOP_RPH="1">
+    <ns6:FOP Type="CC"/>
+    <ns6:PaymentCard CardCode="AX" CardNumber="372055555555550" CardSecurityCode="123" ExpireDate="052020">
+      <ns6:CardHolderName Name="Dariusz Basista" FirstName="Dariusz" LastName="Basista"/>
+    </ns6:PaymentCard>
+    <ns6:AmountDetail Amount="0.77" CurrencyCode="AUD"/>
+  </ns6:PaymentDetail>
+  <ns6:PaymentDetail FOP_RPH="2">
+    <ns6:FOP Type="CC"/>
+    <ns6:PaymentCard CardCode="VI" CardNumber="4005222222222223" CardSecurityCode="123" ExpireDate="052020">
+      <ns6:CardHolderName Name="Dariusz Basista" FirstName="Dariusz" LastName="Basista"/>
+    </ns6:PaymentCard>
+    <ns6:AmountDetail Amount="0.77" CurrencyCode="AUD"/>
+  </ns6:PaymentDetail>
+</ns6:PaymentRQ>

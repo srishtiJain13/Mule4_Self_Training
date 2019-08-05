@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="536ade4d-482e-4d2f-9de5-613baf48fc09" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="4ab95b8b-2156-475d-b066-d09a3a8b3973" >
+		<wsc:connection wsdlLocation="GetReservation_1.18.0.wsdl" service="GetReservationService" port="GetReservationPortType" address="http://localhost:8088/mockGetReservationSoapBinding" />
+	</wsc:config>
+	<flow name="getReservation" doc:id="4bada60e-e79c-419f-a536-15025df65955" >
+		<http:listener doc:name="/getReservation" doc:id="2c4b04e4-54de-48be-8d89-c2a1092afb2f" config-ref="HTTP_Listener_config" path="/getReservation" outputMimeType="application/xml"/>
+		<ee:transform doc:name="Transform Message" doc:id="fb0e46c5-641b-489a-aa37-33517187eace" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://schemas.xmlsoap.org/soap/envelope/
+ns ns01 http://webservices.sabre.com/pnrbuilder/v1_18
+---
+{
+	ns0#Envelope: {
+		ns0#Body: {
+			ns01#GetReservationRQ: {
+				Locator: payload.request.pnr,
+				RequestType: payload.request.orderDetails.passengerDetails."type",
+				ReturnOptions: {
+					ViewName: payload.request.orderDetails.passengerDetails.nameNumber,
+					ResponseFormat: "application/xml"
+				}
+			}
+		}
+	}
+	
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<wsc:consume doc:name="Consume" doc:id="bdfa2ba4-4168-4b4a-ac79-61e43492fef7" config-ref="Web_Service_Consumer_Config" operation="GetReservationOperation"/>
+		<ee:transform doc:name="Transform Message" doc:id="6f9fc3ae-f38f-4dc5-adf3-496b0e22d5de" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="daef5ceb-4e9b-433b-9a11-a39c73b27bdd" message="#[payload]"/>
+	</flow>
+</mule>

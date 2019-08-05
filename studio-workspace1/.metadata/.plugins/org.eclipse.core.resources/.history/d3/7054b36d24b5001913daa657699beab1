@@ -1,0 +1,8 @@
+<ns6:GetReservationRQ xmlns:ns1="http://www.ebxml.org/namespaces/messageHeader" xmlns:ns2="http://www.w3.org/1999/xlink" xmlns:ns3="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns4="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:ns6="http://webservices.sabre.com/pnrbuilder/v1_18" xmlns:ns7="http://services.sabre.com/res/or/v1_12" xmlns:ns8="http://www.w3.org/2000/09/xmldsig#" Version="1.18.0">
+  <ns6:Locator>QTWMUM</ns6:Locator>
+  <ns6:RequestType>Stateless</ns6:RequestType>
+  <ns6:ReturnOptions>
+    <ns6:ViewName>SswDefault</ns6:ViewName>
+    <ns6:ResponseFormat>STL</ns6:ResponseFormat>
+  </ns6:ReturnOptions>
+</ns6:GetReservationRQ>

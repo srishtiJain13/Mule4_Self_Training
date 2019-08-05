@@ -1,0 +1,7 @@
+<FraudCheckRS xmlns="http://www.opentravel.org/OTA/2003/05/beta" SystemDateTime="2018-08-23T02:29:38" SabreTransactionID="04411535009377496410" Version="1.7.0">
+  <Result ResultCode="SUCCESS" Description="Successful Transaction"/>
+  <FraudScreenResult Result="REJECT" SupplierTransID="6C8A7CBD-CFB3-45C5-A338-7E4502BE4018"/>
+  <FraudRemarks>
+    <Remarks1>RISK MGNT/REJECT///6C8A7CBD-CFB3-45C5-A338-7E4502BE4018</Remarks1>
+  </FraudRemarks>
+</FraudCheckRS>

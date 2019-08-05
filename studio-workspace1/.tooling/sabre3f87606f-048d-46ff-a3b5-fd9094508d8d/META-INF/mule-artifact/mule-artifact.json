@@ -1,0 +1,55 @@
+{
+  "configs": [
+    "sabre.xml",
+    "SystemAPI.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:sabre:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.2.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "Air.1.12.0.xsd",
+        "Ancillaries.1.12.0.xsd",
+        "application-types.xml",
+        "datatypes.dtd",
+        "env.xsd",
+        "envelope.xsd",
+        "examples/collectMiscFeeRQ.xml",
+        "examples/collectMiscFeeRS.xml",
+        "examples/fraudCheckRQ.xml",
+        "examples/fraudCheckRS.xml",
+        "examples/fulfillment_Request.json",
+        "examples/getReservationRQ.xml",
+        "examples/getReservationRS.xml",
+        "examples/paymentRQ.xml",
+        "examples/paymentRS.xml",
+        "examples/updateReservationRQ.xml",
+        "examples/updateReservationRS.xml",
+        "GetReservationSTLRQ_v1.18.0.xsd",
+        "GetReservationSTLRS_v1.18.0.xsd",
+        "GetReservation_1.18.0.wsdl",
+        "log4j2.xml",
+        "msg-header-2_0.xsd",
+        "OpenReservation.1.12.0.xsd",
+        "PNRBuilderTypes_v1.18.0.xsd",
+        "Pricing.1.12.0.xsd",
+        "sabre.xml",
+        "SystemAPI.xml",
+        "wsse.xsd",
+        "xlink.xsd",
+        "xml.xsd",
+        "xmldsig-core-schema.xsd",
+        "XMLSchema.dtd"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

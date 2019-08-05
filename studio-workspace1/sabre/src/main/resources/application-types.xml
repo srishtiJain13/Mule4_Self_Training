@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="originalReq" format="json">
+      <types:shape format="weave" example="examples/fulfillment_Request.json"><![CDATA[%dw 2.0
+
+type originalReq = {|
+  request: {|
+    pos: {|
+      aaa: {|
+        country: String, 
+        number: String
+      |}, 
+      company: String, 
+      lniata: String, 
+      sine: String, 
+      pseudoCityCode: String, 
+      channel: String, 
+      localDateTime: String, 
+      source: String
+    |}, 
+    pnr: String, 
+    orderDetails: {|
+      passengerDetails: Array<{|        nameNumber: String,         "type": String      |}>
+    |}, 
+    paymentData: {|
+      payments: Array<{|        "@type": String,         details: {|          paymentId: Number {"typeId": "int"},           amount: {|            value: Number {"typeId": "double"},             currency: String          |}        |},         cardCode: String,         cardNumber: String,         expirationDate: String,         cardSecurityCode: String,         cardHolder: {|          firstName: String,           lastName: String        |}      |}>, 
+      postTicketingFraudCheckEnabled: Boolean
+    |}, 
+    ticketingData: {|
+      emd: {|
+        ticketingId: Number {"typeId": "int"}, 
+        totalCost: {|
+          value: Number {"typeId": "double"}, 
+          currency: String
+        |}, 
+        emdDocuments: Array<{|          aeItemId: String,           documentAssociation: Array<{|            segmentId: String,             ticketNumber: String,             couponNumber: Number {"typeId": "int"}          |}>
+        |}>
+      |}, 
+      ticket: Boolean
+    |}
+  |}
+|} {"example": "{\"request\":{\"pos\":{\"aaa\":{\"country\":\"AU\",\"number\":\"99401013\"},\"company\":\"VA\",\"lniata\":\"BEC33E\",\"sine\":\"S19\",\"pseudoCityCode\":\"WIN\",\"channel\":\"ATO\",\"localDateTime\":\"2018-08-23T09:29:22\",\"source\":\"INTERACT\"},\"pnr\":\"QTWMUM\",\"orderDetails\":{\"passengerDetails\":[{\"nameNumber\":\"01.01\",\"type\":\"ADT\"},{\"nameNumber\":\"02.01\",\"type\":\"ADT\"}]},\"paymentData\":{\"payments\":[{\"@type\":\"CreditCard\",\"details\":{\"paymentId\":2,\"amount\":{\"value\":0.77,\"currency\":\"AUD\"}},\"cardCode\":\"VI,CA,AMEX\",\"cardNumber\":\"4005222222222223\",\"expirationDate\":\"2020-05\",\"cardSecurityCode\":\"123\",\"cardHolder\":{\"firstName\":\"Dariusz\",\"lastName\":\"Basista\"}}],\"postTicketingFraudCheckEnabled\":true},\"ticketingData\":{\"emd\":{\"ticketingId\":1,\"totalCost\":{\"value\":1.54,\"currency\":\"AUD\"},\"emdDocuments\":[{\"aeItemId\":\"61\",\"documentAssociation\":[{\"segmentId\":\"1\",\"ticketNumber\":\"7952145633308\",\"couponNumber\":1}]},{\"aeItemId\":\"63\",\"documentAssociation\":[{\"segmentId\":\"1\",\"ticketNumber\":\"7952145633309\",\"couponNumber\":1}]}]},\"ticket\":true}}}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#fb0e46c5-641b-489a-aa37-33517187eace"/>
+  <types:enrichment select="#ed710993-6ba7-4887-ac16-918e0fbc900e">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="originalReq"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

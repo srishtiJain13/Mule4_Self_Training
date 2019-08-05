@@ -1,0 +1,11 @@
+{
+  "sampleData": {
+    "9e13f6ef-905e-47f7-b0a3-06bc4cb0f7bc": {
+      "payload": "sample_data/list_json.json",
+      "attributes": "sample_data/httprequestattributes.dwl"
+    },
+    "a13731bd-86ae-4172-aa7b-facae4681960": {
+      "payload": "sample_data/products_1.xml"
+    }
+  }
+}

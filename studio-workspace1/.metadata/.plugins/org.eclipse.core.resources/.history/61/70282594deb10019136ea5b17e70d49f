@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ 
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd
+
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
+
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+
+ 
+
+      
+
+       <flow name="get-reservationFlow" doc:id="29158eb8-fcc9-4115-94b3-4ea51d35291e" >
+
+              <http:listener doc:name="get-reservationListner" path="/get-reservation" allowedMethods="POST" outputMimeType="application/xml" config-ref="HTTP_Listener_config"/>
+
+              <http:request method="POST" doc:name="get-ReservationRequestor" doc:id="ffb2b722-0899-4f44-8554-0461f95b96ef" path="/mockGetReservationSoapBinding" config-ref="HTTP_Request_configuration"/>
+
+       </flow>
+
+      
+
+       <flow name="paymentFlow" doc:id="8921fb5c-177c-4afe-be8b-3a19c6db6c80" >
+
+              <http:listener doc:name="paymentListener" doc:id="e3269a5a-7b78-4396-b763-67f7ef10bd7c" path="/payment" allowedMethods="POST" config-ref="HTTP_Listener_config"/>
+
+              <http:request method="POST" doc:name="paymentRequest" doc:id="1551fa84-088c-43d8-99f7-b18843470eeb" path="/mockPaymentServiceSoapBinding" config-ref="HTTP_Request_configuration"/>
+
+       </flow>
+
+      
+
+       <flow name="fraud-checkFlow" doc:id="08b8f629-623e-4986-b097-84143dd6838f" >
+
+              <http:listener doc:name="fraud-checkListener" doc:id="97af00bf-69c1-45f5-8780-af0f0a76e1a9" path="/fraud-check" allowedMethods="POST" config-ref="HTTP_Listener_config"/>
+
+              <http:request method="POST" doc:name="fraud-check_Request" doc:id="82a43e0f-da06-48d5-8756-b70975c5746e" path="/mockFraudCheckServiceSoapBinding" config-ref="HTTP_Request_configuration"/>
+
+       </flow>
+
+      
+
+       <flow name="collect-miscFlow" doc:id="440b5f5b-6909-46dc-8de5-35d6c191ff00" >
+
+              <http:listener doc:name="collect-miscListener" doc:id="aeaaa575-7a10-4e0d-9b71-98e76bff8c1b" path="/collect-misc" allowedMethods="POST"/>
+
+              <http:request method="POST" doc:name="collect-misc_Request" doc:id="1357df0f-8cc5-4cb0-accb-02f3bb5dbc3a" path="/mockCollectMiscFeeSoapBinding"/>
+
+       </flow>
+
+      
+
+       <flow name="update-reservationFlow" doc:id="f358657d-65fd-4f4f-bee3-310ae92f2c59" >
+
+              <http:listener doc:name="update-reservationListener" doc:id="dbc7c204-05a4-4caf-9626-137b7df767fc" path="/update-reservation" allowedMethods="POST"/>
+
+             
+
+              <http:request method="POST" doc:name="updateReservationRequest" doc:id="54fee34b-f7ae-4b76-a23f-d20e8b3228e6" path="/mockUpdateReservationSoapBinding">
+
+              <http:response-validator>
+
+                     <http:success-status-code-validator values="0..600" />
+
+              </http:response-validator>
+
+              </http:request>
+
+       </flow>
+
+</mule>

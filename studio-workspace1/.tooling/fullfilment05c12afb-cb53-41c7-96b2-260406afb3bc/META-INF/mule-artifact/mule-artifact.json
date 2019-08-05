@@ -1,0 +1,61 @@
+{
+  "configs": [
+    "sabretravels.xml",
+    "sabreFulfillment.xml",
+    "global.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:fullfilment:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.2.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "application-types.xml",
+        "error.wsdl",
+        "examples/collectMiscFeeRQ.xml",
+        "examples/collectMiscFeeRS.xml",
+        "examples/fraudCheckRQ.xml",
+        "examples/fraudCheckRS.xml",
+        "examples/fulfillment_Request.json",
+        "examples/fulfillment_Response-1.json",
+        "examples/fulfillment_Response.json",
+        "examples/getReservationRQ.xml",
+        "examples/getReservationRS.xml",
+        "examples/paymentRQ.xml",
+        "examples/paymentRS.xml",
+        "examples/updateReservationRQ.xml",
+        "examples/updateReservationRS-1.xml",
+        "examples/updateReservationRS-2.xml",
+        "examples/updateReservationRS.xml",
+        "fraud-checkTransformMsg.dwl",
+        "fulfilmentResponse.dwl",
+        "getreservationTransformMsg.dwl",
+        "global.xml",
+        "jsonToXmlTM.dwl",
+        "log4j2.xml",
+        "MuleDMLTransformations/fraud-checkTransformMsg.dwl",
+        "MuleDMLTransformations/fulfilmentResponse.dwl",
+        "MuleDMLTransformations/getreservationTransformMsg.dwl",
+        "MuleDMLTransformations/jsonToXmlTM.dwl",
+        "MuleDMLTransformations/payload.dwl",
+        "MuleDMLTransformations/paymentTransformMsg.dwl",
+        "MuleDMLTransformations/updateReservationsRequest.dwl",
+        "MuleDMLTransformations/xmlpayload.dwl",
+        "payload.dwl",
+        "paymentTransformMsg.dwl",
+        "sabreFulfillment.xml",
+        "sabretravels.xml",
+        "updateReservationsRequest.dwl",
+        "xmlpayload.dwl"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

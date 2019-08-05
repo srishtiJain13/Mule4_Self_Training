@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ 
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+
+       xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
+
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+ 
+
+       <http:listener-config name="Fulfillment_Listener_config" doc:name="HTTP Listener config" doc:id="760f3d9f-b179-4ca7-8410-f4ccbb6b984a" >
+
+              <http:listener-connection host="0.0.0.0" port="8083" />
+
+       </http:listener-config>
+
+      
+
+       <http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a9aa2e0b-3657-4ef3-8872-634b95ddab81" >
+
+              <http:listener-connection host="0.0.0.0" port="8082" />
+
+       </http:listener-config>
+
+      
+
+       <http:request-config name="HTTP_Request_config" doc:name="HTTP Request configuration" doc:id="672ac3f5-a24a-43f8-8a1d-bc0999650f8b" >
+
+              <http:request-connection host="localhost" port="8088" />
+
+       </http:request-config>
+
+ 
+ <error-handler name="error_handling_global">
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="2c34c713-4daf-43be-aac4-d769c59bdcf1" type="EXPRESSION">
+				<ee:transform doc:name="Transform Message" doc:id="89852b6b-fc55-4753-9aeb-2b81e5a86abf" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://schemas.xmlsoap.org/soap/envelope/
+ns ns01 http://webservices.sabre.com/pnrbuilder/v1_18
+---
+{
+	ns0#Envelope: {
+		ns0#Body: {
+			ns01#UpdateReservationRQ: {
+				ns01#RequestType: "Stateless",
+				ns01#ReturnOptions: "ABC",
+				ns01#ReservationUpdateList: {
+					ns01#Locator: "QTWMUM",
+					ns01#ReservationUpdateItem:[
+						ns01#RemarkUpdate: {
+							ns01#RemarkText:"AUTH-PSS/AX5550/23AUG/01811535009367409119"
+					}]
+					
+				}
+			}
+		}
+	}
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<flow-ref doc:name="Flow Reference" doc:id="e3ce139d-86de-49fc-ad9d-b93727c8386d" name="update-reservationFlow"/>
+				<logger level="INFO" doc:name="Logger" doc:id="c1a8e8f3-7518-4bb8-965f-a2cdf7f0be07" message="#[payload]"/>
+				<set-variable value="#[payload]" doc:name="Set Variable" doc:id="3da623c0-7f4b-4835-84d2-902dbc391616" variableName="myVar"/>
+				<ee:transform doc:name="Transform Message" doc:id="4155c0f0-a483-427b-9835-3055e138a5e7" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://webservices.sabre.com/pnrbuilder/v1_18
+ns ns01 http://schemas.xmlsoap.org/soap/envelope/
+---
+{
+	ns0#UpdateReservationRS: {
+		ns0#Success: payload.ns01#Envelope.ns01#Body.ns0#UpdateReservationRS.ns0#Success
+	}
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</on-error-propagate>
+		</error-handler>
+ 
+
+      
+</mule>

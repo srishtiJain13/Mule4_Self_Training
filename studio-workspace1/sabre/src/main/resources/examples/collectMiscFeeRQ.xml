@@ -1,0 +1,102 @@
+<ns7:CollectMiscFeeRQ xmlns:ns1="http://www.ebxml.org/namespaces/messageHeader" xmlns:ns2="http://www.w3.org/1999/xlink" xmlns:ns3="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns4="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:ns6="http://services.sabre.com/STL/v01" xmlns:ns7="http://www.sabre.com/ns/Ticketing/misc/1.0" xmlns:ns8="http://www.w3.org/2000/09/xmldsig#" version="1.4.1">
+  <ns6:AgentPOS company="VA" lniata="BEC33E" sine="S19">
+    <ns6:AAA country="AU" number="99401013"/>
+  </ns6:AgentPOS>
+  <ns6:Transaction code="EMD"/>
+  <ns6:Fees>
+    <ns6:Linked>
+      <ns6:Customer lastName="SLODOWY" firstName="ADAM M MR">
+        <ns6:CustomerDetails nameRefNumber="1.01" pnrLocator="QTWMUM"/>
+      </ns6:Customer>
+      <ns6:Fee>
+        <ns6:FeeDetails code="0LT" quantity="1">
+          <ns6:Base currencyCode="AUD">0.70</ns6:Base>
+          <ns6:Equiv currencyCode="AUD">0.70</ns6:Equiv>
+          <ns6:TotalTax currencyCode="AUD">0.07</ns6:TotalTax>
+          <ns6:Total currencyCode="AUD">0.77</ns6:Total>
+        </ns6:FeeDetails>
+        <ns6:OptionalService name="CARBON OFFSET" group="TS" segmentIndicator="S" RFIC="D" subCode="0LT">
+          <ns6:EmdType>Associated</ns6:EmdType>
+          <ns6:AirExtraItemNumber>61</ns6:AirExtraItemNumber>
+          <ns6:OwningCarrierCode>VA</ns6:OwningCarrierCode>
+          <ns6:Vendor>MMGR</ns6:Vendor>
+          <ns6:IATAParameters commission="Y" refundable="R" interline="Y"/>
+        </ns6:OptionalService>
+        <ns6:AssociatedFlight segmentID="1" segmentNumber="1">
+          <ns6:CarrierCode>VA</ns6:CarrierCode>
+          <ns6:OperatingCarrierCode>VA</ns6:OperatingCarrierCode>
+          <ns6:FlightNumber>0800</ns6:FlightNumber>
+          <ns6:ClassOfService>L</ns6:ClassOfService>
+          <ns6:DepartureCity>SYD</ns6:DepartureCity>
+          <ns6:ArrivalCity>MEL</ns6:ArrivalCity>
+          <ns6:DepartureDate>2018-09-22</ns6:DepartureDate>
+          <ns6:AssociatedTicketNumber couponNumber="1">7952145633308</ns6:AssociatedTicketNumber>
+        </ns6:AssociatedFlight>
+        <ns6:Tax code="UOA">
+          <ns6:Amount currencyCode="AUD">0.07</ns6:Amount>
+        </ns6:Tax>
+      </ns6:Fee>
+    </ns6:Linked>
+  </ns6:Fees>
+  <ns6:Fees>
+    <ns6:Linked>
+      <ns6:Customer lastName="SLODOWY" firstName="ANNA M MS">
+        <ns6:CustomerDetails nameRefNumber="2.01" pnrLocator="QTWMUM"/>
+      </ns6:Customer>
+      <ns6:Fee>
+        <ns6:FeeDetails code="0LT" quantity="1">
+          <ns6:Base currencyCode="AUD">0.70</ns6:Base>
+          <ns6:Equiv currencyCode="AUD">0.70</ns6:Equiv>
+          <ns6:TotalTax currencyCode="AUD">0.07</ns6:TotalTax>
+          <ns6:Total currencyCode="AUD">0.77</ns6:Total>
+        </ns6:FeeDetails>
+        <ns6:OptionalService name="CARBON OFFSET" group="TS" segmentIndicator="S" RFIC="D" subCode="0LT">
+          <ns6:EmdType>Associated</ns6:EmdType>
+          <ns6:AirExtraItemNumber>63</ns6:AirExtraItemNumber>
+          <ns6:OwningCarrierCode>VA</ns6:OwningCarrierCode>
+          <ns6:Vendor>MMGR</ns6:Vendor>
+          <ns6:IATAParameters commission="Y" refundable="R" interline="Y"/>
+        </ns6:OptionalService>
+        <ns6:AssociatedFlight segmentID="1" segmentNumber="1">
+          <ns6:CarrierCode>VA</ns6:CarrierCode>
+          <ns6:OperatingCarrierCode>VA</ns6:OperatingCarrierCode>
+          <ns6:FlightNumber>0800</ns6:FlightNumber>
+          <ns6:ClassOfService>L</ns6:ClassOfService>
+          <ns6:DepartureCity>SYD</ns6:DepartureCity>
+          <ns6:ArrivalCity>MEL</ns6:ArrivalCity>
+          <ns6:DepartureDate>2018-09-22</ns6:DepartureDate>
+          <ns6:AssociatedTicketNumber couponNumber="1">7952145633309</ns6:AssociatedTicketNumber>
+        </ns6:AssociatedFlight>
+        <ns6:Tax code="UOA">
+          <ns6:Amount currencyCode="AUD">0.07</ns6:Amount>
+        </ns6:Tax>
+      </ns6:Fee>
+    </ns6:Linked>
+  </ns6:Fees>
+  <ns6:TotalCost currencyCode="AUD">1.54</ns6:TotalCost>
+  <ns6:Payment>
+    <ns6:Amount currencyCode="AUD">0.77</ns6:Amount>
+    <ns6:FormOfPayment>
+      <ns6:CreditCard>
+        <ns6:Code>AX</ns6:Code>
+        <ns6:Number>372055555555550</ns6:Number>
+        <ns6:ExpiryDate>0520</ns6:ExpiryDate>
+        <ns6:SecurityCode>123</ns6:SecurityCode>
+        <ns6:ApprovalCode>X82235</ns6:ApprovalCode>
+      </ns6:CreditCard>
+    </ns6:FormOfPayment>
+  </ns6:Payment>
+  <ns6:Payment>
+    <ns6:Amount currencyCode="AUD">0.77</ns6:Amount>
+    <ns6:FormOfPayment>
+      <ns6:CreditCard>
+        <ns6:Code>VI</ns6:Code>
+        <ns6:Number>4005222222222223</ns6:Number>
+        <ns6:ExpiryDate>0520</ns6:ExpiryDate>
+        <ns6:SecurityCode>123</ns6:SecurityCode>
+        <ns6:ApprovalCode>X02304</ns6:ApprovalCode>
+      </ns6:CreditCard>
+    </ns6:FormOfPayment>
+  </ns6:Payment>
+  <ns6:DetailLevel>Full</ns6:DetailLevel>
+</ns7:CollectMiscFeeRQ>

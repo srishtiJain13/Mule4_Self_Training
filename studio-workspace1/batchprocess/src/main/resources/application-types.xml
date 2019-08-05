@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="products" format="csv">
+      <types:shape format="weave" example="examples/sales.csv"><![CDATA[%dw 2.0
+
+type products = Array<{|  Transaction_date: String,   Product: String,   Price: String,   Payment_Type: String,   Name: String,   City: String,   State: String,   Country: String,   Account_Created: String,   Last_Login: String,   Latitude: String,   Longitude: String|}>
+
+]]></types:shape>
+      <types:properties>
+        <types:property name="headerLineNumber" value="0"/>
+        <types:property name="header" value="true"/>
+        <types:property name="isQuotedString" value="false"/>
+      </types:properties>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#45f94f71-d9b7-4963-8111-1c969a6dfcbe">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="products"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#f5ddb765-a32d-4dd5-8e0d-8ca9add7442b"/>
+</types:mule>

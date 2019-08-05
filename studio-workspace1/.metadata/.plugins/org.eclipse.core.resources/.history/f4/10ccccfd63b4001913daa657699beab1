@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ 
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+
+       xmlns="http://www.mulesoft.org/schema/mule/core"
+
+       xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+
+ 
+
+       <flow name="sabreFulfillmentFlow1" doc:id="57a7e6ef-6634-4f55-a0b0-559e43ca58c2" >
+
+              <http:listener doc:name="Listener" doc:id="5289571f-91b7-47ea-9024-d0bdc6318c55" path="/fulfillment" allowedMethods="POST" config-ref="Fulfillment_Listener_config"/>
+
+              <set-variable value="#[payload]" doc:name="originalReq" doc:id="4adba04c-c566-4507-85c2-7c37c66aafcf" variableName="originalReq"/>
+
+              <ee:transform doc:name="JsonToXml" doc:id="36c1cb20-755c-43b9-9b62-0d6c7f2442c6" >
+
+                     <ee:message >
+
+                           <ee:set-payload resource="MuleDMLTransformations/jsonToXmlTM.dwl" />
+
+                     </ee:message>
+
+              </ee:transform>
+
+              <flow-ref doc:name="callGetReservationFlow" doc:id="46870975-6285-433d-9f17-cfc043eaf60b" name="get-reservationFlow"/>
+
+              <ee:transform doc:name="getReservationTransformMessage" doc:id="3d83969a-d5e2-43f2-974b-884b1928c163">
+
+                     <ee:message>
+
+                           <ee:set-payload resource="MuleDMLTransformations/getreservationTransformMsg.dwl" />
+
+                     </ee:message>
+
+                     <ee:variables >
+
+                           <ee:set-variable resource="MuleDMLTransformations/payload.dwl" variableName="getReservationsResponse" />
+
+                     </ee:variables>
+
+              </ee:transform>
+
+              <logger level="INFO" doc:name="Logger" doc:id="07149e95-91f0-4589-9344-6a56812ddf9e" message="PostGetReservationTM #[payload] and Original Request=&gt; #[vars.originalReq]"/>
+
+              <flow-ref doc:name="callPaymentFlow" doc:id="de04b095-4ef2-4ab1-9704-3764868c71fb" name="paymentFlow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="93d72670-aea1-4a4d-a760-257781cdc5dc" message="After payment  Transform =&gt; #[payload]"/>
+
+              <set-variable value="#[payload.Envelope.Body]" doc:name="paymentPayload" doc:id="cf1abfa7-e372-4190-8e63-1b2883840a3a" variableName="paymentPayload" />
+		<logger level="INFO" doc:name="paymentPayload" doc:id="5eb1e602-8298-4189-aa8a-1785c2d4bcff" message="After Set Variable Logger.."/>
+		<ee:transform doc:name="paymentTransformMessage" doc:id="37fe005b-98fa-4534-a9c4-d7e05836b151" >
+
+                     <ee:message >
+
+                           <ee:set-payload resource="MuleDMLTransformations/paymentTransformMsg.dwl" />
+
+                     </ee:message>
+
+                     <ee:variables >
+
+                     </ee:variables>
+
+              </ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="d57c0ed4-7733-4591-a5fd-4df681744efd" message="PostPaymentTM #[payload]  and variable :#[vars.paymentPayload]"/>
+		<flow-ref doc:name="callCollectMiscFlow" doc:id="0936a5a6-220f-4238-9b2b-e71cc88aefd7" name="collect-miscFlow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e93dcd42-2dc8-4f9b-9f8a-3d82dba75681" message="BeforeChoice #[vars.originalReq.request.paymentData.postTicketingFraudCheckEnabled]"/>
+
+              <ee:transform doc:name="Transform Message" doc:id="469d6ede-f706-43b3-a3f5-41748441d552" >
+
+                     <ee:message >
+
+                           <ee:set-payload resource="MuleDMLTransformations/payload.dwl" />
+
+                     </ee:message>
+
+                     <ee:variables >
+
+                           <ee:set-variable resource="MuleDMLTransformations/payload.dwl" variableName="collectMisc" />
+
+                     </ee:variables>
+
+              </ee:transform>
+
+              <choice doc:name="Choice" doc:id="22aae098-ec32-4447-8b53-edf9b7244b3c" >
+
+                     <when expression="#[vars.originalReq.request.paymentData.postTicketingFraudCheckEnabled == true]">
+
+                           <ee:transform doc:name="fraud-checkTransformMessage" doc:id="c6090b16-b94e-4418-aefc-29ba9f0a684b">
+
+                     <ee:message>
+
+                                         <ee:set-payload resource="MuleDMLTransformations/fraud-checkTransformMsg.dwl" />
+
+                     </ee:message>
+					<ee:variables >
+					</ee:variables>
+
+              
+</ee:transform>
+
+                           <logger level="INFO" doc:name="Logger" doc:id="a2814d50-1f8c-4d16-b3a9-a2ff847cc634" message="Postfraud-checkTM #[payload]"/>
+
+                           <flow-ref doc:name="callfraud-checkFlow" doc:id="b9f41849-aeea-4807-b697-ffb8be39db97" name="fraud-checkFlow"/>
+
+                     
+</when>
+
+                     <otherwise >
+
+                           <logger level="INFO" doc:name="Logger" doc:id="c0afa962-fffa-4f33-bce0-c4dc9f28c8ab" message="postTicketingFraudCheckEnabled is found False"/>
+
+                     </otherwise>
+
+              </choice>
+
+              <set-variable value="#[payload.Envelope.Body]" doc:name="FraudPayload" doc:id="c5e66059-8081-4ed3-8f97-3e1c44b07d53" variableName="FraudPayload"/>
+
+              <!-- <ee:transform doc:name="Transform Message" doc:id="23e32635-da5e-454f-bb9c-6fe08d7e8bf2">
+
+                     <ee:message>
+
+                           <ee:set-payload resource="MuleDMLTransformations/fulfilmentResponse.dwl" />
+
+                     </ee:message>
+
+              </ee:transform> -->
+
+             
+
+             
+
+              <ee:transform doc:name="Transform Message" doc:id="1e74f4c9-07ce-4b94-a60d-ff2c4524b3a7" >
+
+                     <ee:message >
+
+                           <ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+ns ns0 http://www.opentravel.org/OTA/2003/05/beta
+ns ns01 http://schemas.xmlsoap.org/soap/envelope/
+ns ns02 http://webservices.sabre.com/pnrbuilder/v1_18
+ns ns03 http://www.sabre.com/ns/Ticketing/misc/1.0
+ns ns04 http://services.sabre.com/STL/v01
+---
+{
+	response: {
+		status: {
+			code: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@ResultCode,
+			message: vars.FraudPayload.ns0#FraudCheckRS.ns0#Result.@Description
+		},
+		paymentResults: {
+			status: {
+				code: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@ResultCode default "",
+				message: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@Description default ""
+			},
+			resultCode: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@ResultCode default "",
+			posAction: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@POSActionCode default "",
+			sabreTransactionId: vars.paymentPayload.ns0#PaymentRS.@SabreTransactionID as String default "",
+			payments: [{
+				status: {
+					code: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@ResultCode default ""
+				},
+				responseCode: vars.paymentPayload.ns0#PaymentRS.ns0#Results.ns0#AuthorizationResult.@ResponseCode,
+				fraudCheckResult: vars.FraudPayload.ns0#FraudCheckRS.ns0#Result.@ResultCode,
+				details: {
+					paymentId: vars.originalReq.request.ticketingData.emd.ticketingId,
+					amount: {
+						value: vars.originalReq.request.ticketingData.emd.totalCost.value,
+						currency: vars.originalReq.request.ticketingData.emd.totalCost.currency
+					},
+					approvalCode: vars.paymentPayload.ns0#PaymentRS.ns0#Results.ns0#AuthorizationResult.@ApprovalCode,
+					remarks: vars.paymentPayload.ns0#PaymentRS.ns0#Results.ns0#AuthorizationResult.ns0#Remarks.*ns0#Remark
+				},
+				fraudCheckRemarks: vars.FraudPayload.ns0#FraudCheckRS.ns0#FraudRemarks.*ns0#Remarks1
+			}],
+			allRemarksAddedToReservation: vars.originalReq.request.ticketingData.ticket
+		},
+		ticketingResults: [{
+			ticketingId: vars.originalReq.request.ticketingData.emd.ticketingId,
+			status: {
+				code: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@ResultCode,
+				message: vars.paymentPayload.ns0#PaymentRS.ns0#Result.@Description
+			},
+			issuedDocumentNumbers: vars.originalReq.request.ticketingData.emd.emdDocuments[0].documentAssociation[0].*ticketNumber
+		}]
+	}
+}
+
+
+]]></ee:set-payload>
+
+                     </ee:message>
+
+              </ee:transform>
+		<error-handler >
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="601c412c-6231-4108-9e01-d59f09cd9f87" type="EXPRESSION">
+				<ee:transform doc:name="Transform Message" doc:id="4294c81a-cbbf-4e62-ad93-ee7d709a1d82" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://schemas.xmlsoap.org/soap/envelope/
+ns ns01 http://webservices.sabre.com/pnrbuilder/v1_18
+---
+{
+	ns0#Envelope: {
+		ns0#Body: {
+			ns01#UpdateReservationRQ: {
+				ns01#RequestType: "Stateless",
+				ns01#ReturnOptions: "ABC",
+				ns01#ReservationUpdateList: {
+					ns01#Locator: "QTWMUM",
+					ns01#ReservationUpdateItem:[
+						ns01#RemarkUpdate: {
+							ns01#RemarkText:"AUTH-PSS/AX5550/23AUG/01811535009367409119"
+					}]
+					
+				}
+			}
+		}
+	}
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<flow-ref doc:name="Flow Reference" doc:id="88812dee-3bee-4a57-88c3-3f0bba67a7f3" name="update-reservationFlow"/>
+				<logger level="INFO" doc:name="Logger" doc:id="5b85eee5-f365-48fb-9d0f-8e3459132944" message="#[payload]"/>
+				<set-variable value="#[payload]" doc:name="Set Variable" doc:id="5fd6d8f8-204e-4697-9c76-b786afd00840" variableName="myVar"/>
+				<ee:transform doc:name="Transform Message" doc:id="b04c6bfb-4b4e-45b4-8f48-a7448b8ec7f6" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</on-error-propagate>
+		</error-handler>
+
+              
+
+       
+</flow>
+
+</mule>

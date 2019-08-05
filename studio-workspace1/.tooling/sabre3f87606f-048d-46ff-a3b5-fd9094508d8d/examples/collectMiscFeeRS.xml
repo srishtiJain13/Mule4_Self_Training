@@ -1,0 +1,114 @@
+<misc:CollectMiscFeeRS xmlns:misc="http://www.sabre.com/ns/Ticketing/misc/1.0" xmlns="http://services.sabre.com/STL/v01" version="1.4.1">
+  <Header>
+    <Results messageId="TKTVLC750-5914-349959199-1535009371091-491-misc" timeStamp="2018-08-23T02:29:31">
+      <ErrorSource>TPF</ErrorSource>
+      <Status>Success</Status>
+      <CompletionStatus>Complete</CompletionStatus>
+      <SystemSpecificResults>
+        <ErrorMessage>OK</ErrorMessage>
+        <ShortText>OK</ShortText>
+      </SystemSpecificResults>
+    </Results>
+  </Header>
+  <AgentPOS company="VA" sine="S19" lniata="161E7F">
+    <AAA country="AU" number="99401013"/>
+  </AgentPOS>
+  <Transaction code="EMD"/>
+  <Fees>
+    <Linked>
+      <Customer firstName="ADAM M MR" lastName="SLODOWY">
+        <CustomerDetails nameRefNumber="1.01" pnrLocator="QTWMUM"/>
+      </Customer>
+      <Fee>
+        <FeeDetails code="0LT" quantity="1">
+          <Base currencyCode="AUD">0.70</Base>
+          <Equiv currencyCode="AUD">0.70</Equiv>
+          <TotalTax currencyCode="AUD">0.07</TotalTax>
+          <Total currencyCode="AUD">0.77</Total>
+        </FeeDetails>
+        <OptionalService RFIC="D" subCode="0LT" name="CARBON OFFSET" group="Travel Services" segmentIndicator="S" userFee="false">
+          <EmdType>Associated</EmdType>
+          <AirExtraItemNumber>61</AirExtraItemNumber>
+          <OwningCarrierCode>VA</OwningCarrierCode>
+          <Vendor>MMGR</Vendor>
+          <IATAParameters refundable="R" commission="Y" interline="Y" consumed="N/A" taxExempt="false"/>
+        </OptionalService>
+        <AssociatedFlight segmentID="1" segmentNumber="1">
+          <CarrierCode>VA</CarrierCode>
+          <OperatingCarrierCode>VA</OperatingCarrierCode>
+          <FlightNumber>800</FlightNumber>
+          <ClassOfService>L</ClassOfService>
+          <DepartureCity>SYD</DepartureCity>
+          <ArrivalCity>MEL</ArrivalCity>
+          <DepartureDate>2018-09-22</DepartureDate>
+          <AssociatedTicketNumber couponNumber="1">7952145633308</AssociatedTicketNumber>
+          <IssuedDocumentNumber couponNumber="1">7951500357955</IssuedDocumentNumber>
+        </AssociatedFlight>
+        <Tax exempt="false" code="UOA">
+          <Amount currencyCode="AUD">0.07</Amount>
+        </Tax>
+      </Fee>
+    </Linked>
+  </Fees>
+  <Fees>
+    <Linked>
+      <Customer firstName="ANNA M MS" lastName="SLODOWY">
+        <CustomerDetails nameRefNumber="2.01" pnrLocator="QTWMUM"/>
+      </Customer>
+      <Fee>
+        <FeeDetails code="0LT" quantity="1">
+          <Base currencyCode="AUD">0.70</Base>
+          <Equiv currencyCode="AUD">0.70</Equiv>
+          <TotalTax currencyCode="AUD">0.07</TotalTax>
+          <Total currencyCode="AUD">0.77</Total>
+        </FeeDetails>
+        <OptionalService RFIC="D" subCode="0LT" name="CARBON OFFSET" group="Travel Services" segmentIndicator="S" userFee="false">
+          <EmdType>Associated</EmdType>
+          <AirExtraItemNumber>63</AirExtraItemNumber>
+          <OwningCarrierCode>VA</OwningCarrierCode>
+          <Vendor>MMGR</Vendor>
+          <IATAParameters refundable="R" commission="Y" interline="Y" consumed="N/A" taxExempt="false"/>
+        </OptionalService>
+        <AssociatedFlight segmentID="1" segmentNumber="1">
+          <CarrierCode>VA</CarrierCode>
+          <OperatingCarrierCode>VA</OperatingCarrierCode>
+          <FlightNumber>800</FlightNumber>
+          <ClassOfService>L</ClassOfService>
+          <DepartureCity>SYD</DepartureCity>
+          <ArrivalCity>MEL</ArrivalCity>
+          <DepartureDate>2018-09-22</DepartureDate>
+          <AssociatedTicketNumber couponNumber="1">7952145633309</AssociatedTicketNumber>
+          <IssuedDocumentNumber couponNumber="1">7951500357956</IssuedDocumentNumber>
+        </AssociatedFlight>
+        <Tax exempt="false" code="UOA">
+          <Amount currencyCode="AUD">0.07</Amount>
+        </Tax>
+      </Fee>
+    </Linked>
+  </Fees>
+  <TotalCost currencyCode="AUD">1.54</TotalCost>
+  <Payment>
+    <Amount currencyCode="AUD">0.77</Amount>
+    <FormOfPayment>
+      <CreditCard>
+        <Code>AX</Code>
+        <Number>372055555555550</Number>
+        <ExpiryDate>0520</ExpiryDate>
+        <SecurityCode>123</SecurityCode>
+        <ApprovalCode>X82235</ApprovalCode>
+      </CreditCard>
+    </FormOfPayment>
+  </Payment>
+  <Payment>
+    <Amount currencyCode="AUD">0.77</Amount>
+    <FormOfPayment>
+      <CreditCard>
+        <Code>VI</Code>
+        <Number>4005222222222223</Number>
+        <ExpiryDate>0520</ExpiryDate>
+        <SecurityCode>123</SecurityCode>
+        <ApprovalCode>X02304</ApprovalCode>
+      </CreditCard>
+    </FormOfPayment>
+  </Payment>
+</misc:CollectMiscFeeRS>

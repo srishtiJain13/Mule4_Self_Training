@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.mule.tooling.runtime.muleServerLaunchType">
+<stringAttribute key="clear_data" value="PROMPT"/>
+<booleanAttribute key="consoleEnabled" value="true"/>
+<stringAttribute key="launch_mule_server_version" value="org.mule.tooling.server.4.2.0.ee"/>
+<stringAttribute key="maven.command.line" value=""/>
+<stringAttribute key="mule-agent-port" value="60908"/>
+<listAttribute key="mule-project-names">
+<listEntry value="02-watermarking-using-objectstore-start"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="02-watermarking-using-objectstore-start"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-M-XX:-UseBiasedLocking"/>
+<intAttribute key="remote-debug-max-stream-size" value="2"/>
+<intAttribute key="remote-debug-port" value="6666"/>
+<booleanAttribute key="remote-debug-suspend" value="false"/>
+</launchConfiguration>

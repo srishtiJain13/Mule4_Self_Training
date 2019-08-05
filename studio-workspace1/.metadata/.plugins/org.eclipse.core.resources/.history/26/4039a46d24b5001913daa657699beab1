@@ -1,0 +1,755 @@
+<stl18:GetReservationRS xmlns:stl18="http://webservices.sabre.com/pnrbuilder/v1_18" xmlns:ns6="http://services.sabre.com/res/orr/v0" xmlns:raw="http://tds.sabre.com/itinerary" xmlns:ns4="http://webservices.sabre.com/pnrconn/ReaccSearch" xmlns:or112="http://services.sabre.com/res/or/v1_12" Version="1.18.0">
+  <stl18:Reservation numberInParty="2" numberOfInfants="0" NumberInSegment="2">
+    <stl18:BookingDetails>
+      <stl18:RecordLocator>QTWMUM</stl18:RecordLocator>
+      <stl18:CreationTimestamp>2018-08-23T02:27:00</stl18:CreationTimestamp>
+      <stl18:SystemCreationTimestamp>2018-08-23T02:27:00</stl18:SystemCreationTimestamp>
+      <stl18:CreationAgentID>SSW</stl18:CreationAgentID>
+      <stl18:UpdateTimestamp>2018-08-23T02:29:09</stl18:UpdateTimestamp>
+      <stl18:PNRSequence>37</stl18:PNRSequence>
+      <stl18:FlightsRange Start="2018-09-22T06:00:00" End="2018-09-22T07:35:00"/>
+      <stl18:DivideSplitDetails/>
+      <stl18:EstimatedPurgeTimestamp>2018-10-22T00:00:00</stl18:EstimatedPurgeTimestamp>
+      <stl18:UpdateToken>51eca6e3d39dce9315e088421771c0c9a6569a5724f294cf</stl18:UpdateToken>
+    </stl18:BookingDetails>
+    <stl18:POS AirExtras="true" InhibitCode="U">
+      <stl18:Source BookingSource="A0A0" AgentSine="SSW" PseudoCityCode="WIN" ISOCountry="AU" AgentDutyCode="5" AirlineVendorID="VA" HomePseudoCityCode="WIN">
+        <stl18:OAC>
+          <stl18:PartitionId>VA</stl18:PartitionId>
+          <stl18:AccountingCityCode>WIN</stl18:AccountingCityCode>
+          <stl18:AccountingCode>WC</stl18:AccountingCode>
+          <stl18:AccountingOfficeStationCode>9940101</stl18:AccountingOfficeStationCode>
+        </stl18:OAC>
+      </stl18:Source>
+    </stl18:POS>
+    <stl18:PassengerReservation>
+      <stl18:Passengers>
+        <stl18:Passenger id="5" nameType="S" referenceNumber="ADT" nameId="01.01" nameAssocId="1" elementId="pnr-5.1">
+          <stl18:LastName>SLODOWY</stl18:LastName>
+          <stl18:FirstName>ADAM M MR</stl18:FirstName>
+          <stl18:EmailAddress id="79">
+            <stl18:Address>ACCEPT@ACCEPT.COM</stl18:Address>
+            <stl18:Comment/>
+          </stl18:EmailAddress>
+          <stl18:EmailAddress id="78">
+            <stl18:Address>ACCEPT@ACCEPT.COM</stl18:Address>
+            <stl18:Comment/>
+          </stl18:EmailAddress>
+          <stl18:Gender>M</stl18:Gender>
+          <stl18:SpecialRequests>
+            <stl18:GenericSpecialRequest id="41" type="A" msgType="S">
+              <stl18:Code>TKNE</stl18:Code>
+              <stl18:FreeText>VA HK1 SYDMEL0800L22SEP/7952145633308C1</stl18:FreeText>
+              <stl18:ActionCode>HK</stl18:ActionCode>
+              <stl18:NumberInParty>1</stl18:NumberInParty>
+              <stl18:AirlineCode>VA</stl18:AirlineCode>
+              <stl18:TicketNumber>7952145633308</stl18:TicketNumber>
+              <stl18:FullText>TKNE VA HK1 SYDMEL0800L22SEP/7952145633308C1</stl18:FullText>
+            </stl18:GenericSpecialRequest>
+            <stl18:APISRequest>
+              <stl18:DOCSEntry id="15" type="A">
+                <stl18:DocumentType>P</stl18:DocumentType>
+                <stl18:CountryOfIssue>PL</stl18:CountryOfIssue>
+                <stl18:DocumentNumber>ADAC24</stl18:DocumentNumber>
+                <stl18:DocumentNationalityCountry>PL</stl18:DocumentNationalityCountry>
+                <stl18:DateOfBirth>1990-01-01</stl18:DateOfBirth>
+                <stl18:Gender>M</stl18:Gender>
+                <stl18:DocumentExpirationDate>2019-11-12</stl18:DocumentExpirationDate>
+                <stl18:Surname>SLODOWY</stl18:Surname>
+                <stl18:Forename>ADAM</stl18:Forename>
+                <stl18:MiddleName>MAJSTER</stl18:MiddleName>
+                <stl18:PrimaryHolder>false</stl18:PrimaryHolder>
+                <stl18:FreeText/>
+                <stl18:ActionCode>HK</stl18:ActionCode>
+                <stl18:NumberInParty>1</stl18:NumberInParty>
+                <stl18:VendorCode>VA</stl18:VendorCode>
+              </stl18:DOCSEntry>
+            </stl18:APISRequest>
+          </stl18:SpecialRequests>
+          <stl18:Seats/>
+          <stl18:AncillaryServices>
+            <stl18:AncillaryService id="61" sequenceNumber="1" elementId="pnr-61">
+              <stl18:CommercialName>CARBON OFFSET</stl18:CommercialName>
+              <stl18:RficCode>D</stl18:RficCode>
+              <stl18:RficSubcode>0LT</stl18:RficSubcode>
+              <stl18:OwningCarrierCode>VA</stl18:OwningCarrierCode>
+              <stl18:BookingIndicator>  </stl18:BookingIndicator>
+              <stl18:Vendor>MMGR</stl18:Vendor>
+              <stl18:EMDType>2</stl18:EMDType>
+              <stl18:EquivalentPrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:EquivalentPrice>
+              <stl18:TTLPrice>
+                <stl18:Price>0.77</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TTLPrice>
+              <stl18:OriginalBasePrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:OriginalBasePrice>
+              <stl18:RefundIndicator>R</stl18:RefundIndicator>
+              <stl18:CommisionIndicator>Y</stl18:CommisionIndicator>
+              <stl18:InterlineIndicator>Y</stl18:InterlineIndicator>
+              <stl18:FeeApplicationIndicator>4</stl18:FeeApplicationIndicator>
+              <stl18:PassengerTypeCode>ADT</stl18:PassengerTypeCode>
+              <stl18:BoardPoint>SYD</stl18:BoardPoint>
+              <stl18:OffPoint>MEL</stl18:OffPoint>
+              <stl18:TaxesIncluded>true</stl18:TaxesIncluded>
+              <stl18:Taxes>
+                <stl18:Tax>
+                  <stl18:TaxAmount>0.07</stl18:TaxAmount>
+                  <stl18:TaxCode>UOA</stl18:TaxCode>
+                </stl18:Tax>
+              </stl18:Taxes>
+              <stl18:TotalOriginalBasePrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TotalOriginalBasePrice>
+              <stl18:TotalEquivalentPrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TotalEquivalentPrice>
+              <stl18:TotalTTLPrice>
+                <stl18:Price>0.77</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TotalTTLPrice>
+              <stl18:TotalTaxes>
+                <stl18:Tax>
+                  <stl18:TaxAmount>0.07</stl18:TaxAmount>
+                  <stl18:TaxCode>UOA</stl18:TaxCode>
+                </stl18:Tax>
+              </stl18:TotalTaxes>
+              <stl18:FareCalculationModeIndicator>0</stl18:FareCalculationModeIndicator>
+              <stl18:FareCalculationPriceIndicator>0</stl18:FareCalculationPriceIndicator>
+              <stl18:NumberOfItems>1</stl18:NumberOfItems>
+              <stl18:ActionCode>HD</stl18:ActionCode>
+              <stl18:SegmentIndicator>S</stl18:SegmentIndicator>
+              <stl18:FareGuaranteedIndicator>T</stl18:FareGuaranteedIndicator>
+              <stl18:BookingSource>0</stl18:BookingSource>
+              <stl18:TicketingIndicator>0</stl18:TicketingIndicator>
+              <stl18:GroupCode>TS</stl18:GroupCode>
+              <stl18:TicketUsedForEMDPricing>N</stl18:TicketUsedForEMDPricing>
+              <stl18:EMDConsummedAtIssuance> </stl18:EMDConsummedAtIssuance>
+              <stl18:PaperDocRequired>N</stl18:PaperDocRequired>
+              <stl18:TaxExemption>N</stl18:TaxExemption>
+              <stl18:ACSCount>0</stl18:ACSCount>
+              <stl18:Segment id="3" sequence="1">
+                <stl18:AirlineCode>VA</stl18:AirlineCode>
+                <stl18:FlightNumber>0800</stl18:FlightNumber>
+                <stl18:ClassOfService>L</stl18:ClassOfService>
+                <stl18:DepartureDate>2018-09-22</stl18:DepartureDate>
+                <stl18:BoardPoint>SYD</stl18:BoardPoint>
+                <stl18:OffPoint>MEL</stl18:OffPoint>
+                <stl18:MarketingCarrier>VA</stl18:MarketingCarrier>
+                <stl18:OperatingCarrier>VA</stl18:OperatingCarrier>
+              </stl18:Segment>
+            </stl18:AncillaryService>
+          </stl18:AncillaryServices>
+        </stl18:Passenger>
+        <stl18:Passenger id="6" nameType="S" referenceNumber="ADT" nameId="02.01" nameAssocId="2" elementId="pnr-6.2">
+          <stl18:LastName>SLODOWY</stl18:LastName>
+          <stl18:FirstName>ANNA M MS</stl18:FirstName>
+          <stl18:Gender>M</stl18:Gender>
+          <stl18:SpecialRequests>
+            <stl18:GenericSpecialRequest id="43" type="A" msgType="S">
+              <stl18:Code>TKNE</stl18:Code>
+              <stl18:FreeText>VA HK1 SYDMEL0800L22SEP/7952145633309C1</stl18:FreeText>
+              <stl18:ActionCode>HK</stl18:ActionCode>
+              <stl18:NumberInParty>1</stl18:NumberInParty>
+              <stl18:AirlineCode>VA</stl18:AirlineCode>
+              <stl18:TicketNumber>7952145633309</stl18:TicketNumber>
+              <stl18:FullText>TKNE VA HK1 SYDMEL0800L22SEP/7952145633309C1</stl18:FullText>
+            </stl18:GenericSpecialRequest>
+            <stl18:APISRequest>
+              <stl18:DOCSEntry id="16" type="A">
+                <stl18:DocumentType>P</stl18:DocumentType>
+                <stl18:CountryOfIssue>PL</stl18:CountryOfIssue>
+                <stl18:DocumentNumber>ADAC24</stl18:DocumentNumber>
+                <stl18:DocumentNationalityCountry>PL</stl18:DocumentNationalityCountry>
+                <stl18:DateOfBirth>1991-02-02</stl18:DateOfBirth>
+                <stl18:Gender>M</stl18:Gender>
+                <stl18:DocumentExpirationDate>2019-11-12</stl18:DocumentExpirationDate>
+                <stl18:Surname>SLODOWY</stl18:Surname>
+                <stl18:Forename>ANNA</stl18:Forename>
+                <stl18:MiddleName>MAJSTER</stl18:MiddleName>
+                <stl18:PrimaryHolder>false</stl18:PrimaryHolder>
+                <stl18:FreeText/>
+                <stl18:ActionCode>HK</stl18:ActionCode>
+                <stl18:NumberInParty>1</stl18:NumberInParty>
+                <stl18:VendorCode>VA</stl18:VendorCode>
+              </stl18:DOCSEntry>
+            </stl18:APISRequest>
+          </stl18:SpecialRequests>
+          <stl18:Seats/>
+          <stl18:AncillaryServices>
+            <stl18:AncillaryService id="63" sequenceNumber="2" elementId="pnr-63">
+              <stl18:CommercialName>CARBON OFFSET</stl18:CommercialName>
+              <stl18:RficCode>D</stl18:RficCode>
+              <stl18:RficSubcode>0LT</stl18:RficSubcode>
+              <stl18:OwningCarrierCode>VA</stl18:OwningCarrierCode>
+              <stl18:BookingIndicator>  </stl18:BookingIndicator>
+              <stl18:Vendor>MMGR</stl18:Vendor>
+              <stl18:EMDType>2</stl18:EMDType>
+              <stl18:EquivalentPrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:EquivalentPrice>
+              <stl18:TTLPrice>
+                <stl18:Price>0.77</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TTLPrice>
+              <stl18:OriginalBasePrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:OriginalBasePrice>
+              <stl18:RefundIndicator>R</stl18:RefundIndicator>
+              <stl18:CommisionIndicator>Y</stl18:CommisionIndicator>
+              <stl18:InterlineIndicator>Y</stl18:InterlineIndicator>
+              <stl18:FeeApplicationIndicator>4</stl18:FeeApplicationIndicator>
+              <stl18:PassengerTypeCode>ADT</stl18:PassengerTypeCode>
+              <stl18:BoardPoint>SYD</stl18:BoardPoint>
+              <stl18:OffPoint>MEL</stl18:OffPoint>
+              <stl18:TaxesIncluded>true</stl18:TaxesIncluded>
+              <stl18:Taxes>
+                <stl18:Tax>
+                  <stl18:TaxAmount>0.07</stl18:TaxAmount>
+                  <stl18:TaxCode>UOA</stl18:TaxCode>
+                </stl18:Tax>
+              </stl18:Taxes>
+              <stl18:TotalOriginalBasePrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TotalOriginalBasePrice>
+              <stl18:TotalEquivalentPrice>
+                <stl18:Price>0.70</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TotalEquivalentPrice>
+              <stl18:TotalTTLPrice>
+                <stl18:Price>0.77</stl18:Price>
+                <stl18:Currency>AUD</stl18:Currency>
+              </stl18:TotalTTLPrice>
+              <stl18:TotalTaxes>
+                <stl18:Tax>
+                  <stl18:TaxAmount>0.07</stl18:TaxAmount>
+                  <stl18:TaxCode>UOA</stl18:TaxCode>
+                </stl18:Tax>
+              </stl18:TotalTaxes>
+              <stl18:FareCalculationModeIndicator>0</stl18:FareCalculationModeIndicator>
+              <stl18:FareCalculationPriceIndicator>0</stl18:FareCalculationPriceIndicator>
+              <stl18:NumberOfItems>1</stl18:NumberOfItems>
+              <stl18:ActionCode>HD</stl18:ActionCode>
+              <stl18:SegmentIndicator>S</stl18:SegmentIndicator>
+              <stl18:FareGuaranteedIndicator>T</stl18:FareGuaranteedIndicator>
+              <stl18:BookingSource>0</stl18:BookingSource>
+              <stl18:TicketingIndicator>0</stl18:TicketingIndicator>
+              <stl18:GroupCode>TS</stl18:GroupCode>
+              <stl18:TicketUsedForEMDPricing>N</stl18:TicketUsedForEMDPricing>
+              <stl18:EMDConsummedAtIssuance> </stl18:EMDConsummedAtIssuance>
+              <stl18:PaperDocRequired>N</stl18:PaperDocRequired>
+              <stl18:TaxExemption>N</stl18:TaxExemption>
+              <stl18:ACSCount>0</stl18:ACSCount>
+              <stl18:Segment id="3" sequence="1">
+                <stl18:AirlineCode>VA</stl18:AirlineCode>
+                <stl18:FlightNumber>0800</stl18:FlightNumber>
+                <stl18:ClassOfService>L</stl18:ClassOfService>
+                <stl18:DepartureDate>2018-09-22</stl18:DepartureDate>
+                <stl18:BoardPoint>SYD</stl18:BoardPoint>
+                <stl18:OffPoint>MEL</stl18:OffPoint>
+                <stl18:MarketingCarrier>VA</stl18:MarketingCarrier>
+                <stl18:OperatingCarrier>VA</stl18:OperatingCarrier>
+              </stl18:Segment>
+            </stl18:AncillaryService>
+          </stl18:AncillaryServices>
+        </stl18:Passenger>
+      </stl18:Passengers>
+      <stl18:Segments>
+        <stl18:Poc>
+          <stl18:Airport>SYD</stl18:Airport>
+          <stl18:Departure>2018-09-22T06:00:00</stl18:Departure>
+        </stl18:Poc>
+        <stl18:Air id="3" sequence="1" segmentAssociationId="2" isPast="false" DayOfWeekInd="6" CodeShare="false" SpecialMeal="false" SmokingAllowed="false" ResBookDesigCode="L">
+          <stl18:DepartureAirport>SYD</stl18:DepartureAirport>
+          <stl18:DepartureAirportCodeContext>IATA</stl18:DepartureAirportCodeContext>
+          <stl18:ArrivalAirport>MEL</stl18:ArrivalAirport>
+          <stl18:ArrivalAirportCodeContext>IATA</stl18:ArrivalAirportCodeContext>
+          <stl18:OperatingAirlineCode>VA</stl18:OperatingAirlineCode>
+          <stl18:OperatingAirlineShortName>VIRGIN AUSTRALIA</stl18:OperatingAirlineShortName>
+          <stl18:OperatingFlightNumber>0800</stl18:OperatingFlightNumber>
+          <stl18:EquipmentType>73H</stl18:EquipmentType>
+          <stl18:MarketingAirlineCode>VA</stl18:MarketingAirlineCode>
+          <stl18:MarketingFlightNumber>0800</stl18:MarketingFlightNumber>
+          <stl18:OperatingClassOfService>L</stl18:OperatingClassOfService>
+          <stl18:MarketingClassOfService>L</stl18:MarketingClassOfService>
+          <stl18:MarriageGrp>
+            <stl18:Ind>0</stl18:Ind>
+            <stl18:Group>0</stl18:Group>
+            <stl18:Sequence>0</stl18:Sequence>
+          </stl18:MarriageGrp>
+          <stl18:Seats/>
+          <stl18:Eticket>true</stl18:Eticket>
+          <stl18:DepartureDateTime>2018-09-22T06:00:00</stl18:DepartureDateTime>
+          <stl18:ArrivalDateTime>2018-09-22T07:35:00</stl18:ArrivalDateTime>
+          <stl18:FlightNumber>0800</stl18:FlightNumber>
+          <stl18:ClassOfService>L</stl18:ClassOfService>
+          <stl18:ActionCode>HK</stl18:ActionCode>
+          <stl18:NumberInParty>2</stl18:NumberInParty>
+          <stl18:SegmentSpecialRequests>
+            <stl18:GenericSpecialRequest id="4" type="A" msgType="S">
+              <stl18:Code>BRND</stl18:Code>
+              <stl18:FreeText>/FD</stl18:FreeText>
+              <stl18:ActionCode>NN</stl18:ActionCode>
+              <stl18:NumberInParty>1</stl18:NumberInParty>
+              <stl18:AirlineCode>VA</stl18:AirlineCode>
+              <stl18:FullText>BRND VA NN1 SYDMEL0800L22SEP/FD</stl18:FullText>
+            </stl18:GenericSpecialRequest>
+            <stl18:GenericSpecialRequest id="41" type="A" msgType="S">
+              <stl18:Code>TKNE</stl18:Code>
+              <stl18:FreeText>VA HK1 SYDMEL0800L22SEP/7952145633308C1</stl18:FreeText>
+              <stl18:ActionCode>HK</stl18:ActionCode>
+              <stl18:NumberInParty>1</stl18:NumberInParty>
+              <stl18:AirlineCode>VA</stl18:AirlineCode>
+              <stl18:TicketNumber>7952145633308</stl18:TicketNumber>
+              <stl18:FullText>TKNE VA HK1 SYDMEL0800L22SEP/7952145633308C1</stl18:FullText>
+            </stl18:GenericSpecialRequest>
+            <stl18:GenericSpecialRequest id="43" type="A" msgType="S">
+              <stl18:Code>TKNE</stl18:Code>
+              <stl18:FreeText>VA HK1 SYDMEL0800L22SEP/7952145633309C1</stl18:FreeText>
+              <stl18:ActionCode>HK</stl18:ActionCode>
+              <stl18:NumberInParty>1</stl18:NumberInParty>
+              <stl18:AirlineCode>VA</stl18:AirlineCode>
+              <stl18:TicketNumber>7952145633309</stl18:TicketNumber>
+              <stl18:FullText>TKNE VA HK1 SYDMEL0800L22SEP/7952145633309C1</stl18:FullText>
+            </stl18:GenericSpecialRequest>
+          </stl18:SegmentSpecialRequests>
+          <stl18:inboundConnection>false</stl18:inboundConnection>
+          <stl18:outboundConnection>false</stl18:outboundConnection>
+          <stl18:AncillaryServices>
+            <stl18:AncillaryService ref="61"/>
+            <stl18:AncillaryService ref="63"/>
+          </stl18:AncillaryServices>
+          <stl18:ScheduleChangeIndicator>false</stl18:ScheduleChangeIndicator>
+          <stl18:SegmentBookedDate>2018-08-23T02:27:00</stl18:SegmentBookedDate>
+          <stl18:Pos>
+            <stl18:IataNumber>0</stl18:IataNumber>
+            <stl18:AgencyCityCode>WIN</stl18:AgencyCityCode>
+            <stl18:CountryCode>AU</stl18:CountryCode>
+            <stl18:DutyCode>5</stl18:DutyCode>
+            <stl18:OACAccountingCityCode>WIN</stl18:OACAccountingCityCode>
+            <stl18:OACAccountingCode>WC</stl18:OACAccountingCode>
+          </stl18:Pos>
+          <stl18:Banner>MARKETED BY VIRGIN AUSTRALIA</stl18:Banner>
+        </stl18:Air>
+      </stl18:Segments>
+      <stl18:TicketingInfo>
+        <stl18:AlreadyTicketed id="47" index="1" elementId="pnr-47">
+          <stl18:Code>T-23AUG-WIN5SSW</stl18:Code>
+        </stl18:AlreadyTicketed>
+        <stl18:ETicketNumber id="45" index="2" elementId="pnr-45">TE 7952145633308 SLODO/A WIN5SSW 1727/23AUG</stl18:ETicketNumber>
+        <stl18:ETicketNumber id="46" index="3" elementId="pnr-46">TE 7952145633309 SLODO/A WIN5SSW 1727/23AUG</stl18:ETicketNumber>
+        <stl18:TicketDetails id="45" index="2" elementId="pnr-45">
+          <stl18:OriginalTicketDetails>TE 7952145633308 SLODO/A WIN5SSW 1727/23AUG</stl18:OriginalTicketDetails>
+          <stl18:TransactionIndicator>TE</stl18:TransactionIndicator>
+          <stl18:TicketNumber>7952145633308</stl18:TicketNumber>
+          <stl18:PassengerName>SLODO/A</stl18:PassengerName>
+          <stl18:AgencyLocation>WIN</stl18:AgencyLocation>
+          <stl18:DutyCode>5</stl18:DutyCode>
+          <stl18:AgentSine>SSW</stl18:AgentSine>
+          <stl18:Timestamp>2018-08-23T17:27:00</stl18:Timestamp>
+          <stl18:PaymentType/>
+          <stl18:NameAssociation nameId="01.01"/>
+          <stl18:SegmentAssociation id="3"/>
+          <stl18:PaperTicketInd>false</stl18:PaperTicketInd>
+        </stl18:TicketDetails>
+        <stl18:TicketDetails id="46" index="3" elementId="pnr-46">
+          <stl18:OriginalTicketDetails>TE 7952145633309 SLODO/A WIN5SSW 1727/23AUG</stl18:OriginalTicketDetails>
+          <stl18:TransactionIndicator>TE</stl18:TransactionIndicator>
+          <stl18:TicketNumber>7952145633309</stl18:TicketNumber>
+          <stl18:PassengerName>SLODO/A</stl18:PassengerName>
+          <stl18:AgencyLocation>WIN</stl18:AgencyLocation>
+          <stl18:DutyCode>5</stl18:DutyCode>
+          <stl18:AgentSine>SSW</stl18:AgentSine>
+          <stl18:Timestamp>2018-08-23T17:27:00</stl18:Timestamp>
+          <stl18:PaymentType/>
+          <stl18:NameAssociation nameId="02.01"/>
+          <stl18:SegmentAssociation id="3"/>
+          <stl18:PaperTicketInd>false</stl18:PaperTicketInd>
+        </stl18:TicketDetails>
+      </stl18:TicketingInfo>
+      <stl18:ItineraryPricing/>
+    </stl18:PassengerReservation>
+    <stl18:ReceivedFrom>
+      <stl18:Name>SSW</stl18:Name>
+    </stl18:ReceivedFrom>
+    <stl18:PhoneNumbers>
+      <stl18:PhoneNumber id="7" index="1" elementId="pnr-7">
+        <stl18:CityCode>WIN</stl18:CityCode>
+        <stl18:Extension>101</stl18:Extension>
+        <stl18:Number>48-48-12345678X101-M</stl18:Number>
+      </stl18:PhoneNumber>
+      <stl18:PhoneNumber id="8" index="2" elementId="pnr-8">
+        <stl18:CityCode>WIN</stl18:CityCode>
+        <stl18:Extension>101</stl18:Extension>
+        <stl18:Number>48-48-12345678X101-M-1.1</stl18:Number>
+      </stl18:PhoneNumber>
+      <stl18:PhoneNumber id="9" index="3" elementId="pnr-9">
+        <stl18:CityCode>WIN</stl18:CityCode>
+        <stl18:Extension>101</stl18:Extension>
+        <stl18:Number>48-48-12345678X101-M-2.1</stl18:Number>
+      </stl18:PhoneNumber>
+      <stl18:PhoneNumber id="13" index="4" elementId="pnr-13">
+        <stl18:CityCode>WIN</stl18:CityCode>
+        <stl18:Extension>1</stl18:Extension>
+        <stl18:Number>48-91-123456789X1-H-PURCHASER</stl18:Number>
+      </stl18:PhoneNumber>
+    </stl18:PhoneNumbers>
+    <stl18:Remarks>
+      <stl18:Remark index="1" id="26" type="HS" elementId="pnr-26">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-PSS/CA7778/23AUG/01411535009265270548</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="2" id="27" type="HS" elementId="pnr-27">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-APV/X62447/00/AUD880.00</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="3" id="28" type="HS" elementId="pnr-28">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-AVS SUCCESS-Y/ADDRESS AND ZIP/POSTAL MATCH/Y</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="4" id="29" type="HS" elementId="pnr-29">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-CSC MATCHED/M</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="5" id="30" type="HS" elementId="pnr-30">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>FARE/PUB/LZFD0</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="6" id="31" type="HS" elementId="pnr-31">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>FARE/PUB/AMT/2ADT/757.48/122.52/880.00/AUD</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="7" id="33" type="HS" elementId="pnr-33">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>BRND-SYDMEL-VA0800-FD-98464-22SEP2018</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="8" id="34" type="HS" elementId="pnr-34">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>SSWMOD-DT/2018/08/23-02-27/IP/10.162.218.106</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="9" id="35" type="HS" elementId="pnr-35">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH/CSCCA</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="10" id="36" type="FOP" elementId="pnr-36">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>TBM*CA5XXXXXXXXXXX7778¥06/19</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="11" id="37" type="HS" elementId="pnr-37">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>CARDHOLDERNAME-TEST TESTOWY</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="12" id="38" type="HS" elementId="pnr-38">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>SSWREF/8DCB7CDDC55DF7B609A719DB4F5A5F2D/CTOVM1824/1</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="13" id="40" type="REG" elementId="pnr-40">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>XXAUTH/X62447   *Z/CA7778</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="14" id="51" type="HS" elementId="pnr-51">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>SENT HOLD BOOKING EMAIL</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="15" id="55" type="HS" elementId="pnr-55">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-PSS/CA7778/23AUG/01811535009298374100</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="16" id="56" type="HS" elementId="pnr-56">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-APV/X92122/00/AUD1.54</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="17" id="57" type="HS" elementId="pnr-57">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-AVS SUCCESS-Y/ADDRESS AND ZIP/POSTAL MATCH/Y</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="18" id="58" type="HS" elementId="pnr-58">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>AUTH-CSC MATCHED/M</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="19" id="68" type="HS" elementId="pnr-68">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>ADD MISC ERR - CARBON OFFSET FOR SYDMEL PAX 1.1 AMT 0.70AUD -</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="20" id="69" type="REG" elementId="pnr-69">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>JAVAX.XML.WS.SOAP.SOAPFAULTEXCEPTION RESPONSE WAS OF UNEXPECTED</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="21" id="70" type="REG" elementId="pnr-70">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>TEXT/HTML CONTENTTYPE.  INCOMING PORTION OF HTML STREAM NONE</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="22" id="71" type="HS" elementId="pnr-71">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>ADD MISC ERR - CARBON OFFSET FOR SYDMEL PAX 2.1 AMT 0.70AUD -</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="23" id="72" type="REG" elementId="pnr-72">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>JAVAX.XML.WS.SOAP.SOAPFAULTEXCEPTION RESPONSE WAS OF UNEXPECTED</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="24" id="73" type="REG" elementId="pnr-73">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>TEXT/HTML CONTENTTYPE.  INCOMING PORTION OF HTML STREAM NONE</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="25" id="75" type="FOP" elementId="pnr-75">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>TBM*CA5XXXXXXXXXXX7778¥06/19</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="26" id="81" type="HS" elementId="pnr-81">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>B¥A/DPQKCX 1¥B/JUYMCS 93¥C/DALLAS, TX, US¥Z/75069</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+      <stl18:Remark index="27" id="96" type="HS" elementId="pnr-96">
+        <stl18:RemarkLines>
+          <stl18:RemarkLine>
+            <stl18:Text>RISK MGNT/ACCEPT///9EA3E441-03A6-4947-A15C-99113A72E543</stl18:Text>
+          </stl18:RemarkLine>
+        </stl18:RemarkLines>
+      </stl18:Remark>
+    </stl18:Remarks>
+    <stl18:EmailAddresses>
+      <stl18:EmailAddress id="80">
+        <stl18:Address>ACCEPT@ACCEPT.COM</stl18:Address>
+        <stl18:Comment>PURCHASER</stl18:Comment>
+      </stl18:EmailAddress>
+    </stl18:EmailAddresses>
+    <stl18:OpenReservationElements>
+      <or112:OpenReservationElement id="4" type="SRVC" elementId="pnr-4">
+        <or112:ServiceRequest actionCode="NN" airlineCode="VA" code="BRND" serviceCount="1" serviceType="SSR" ssrType="AFX">
+          <or112:FreeText>/FD</or112:FreeText>
+          <or112:FullText>BRND VA NN1 SYDMEL0800L22SEP/FD</or112:FullText>
+        </or112:ServiceRequest>
+        <or112:SegmentAssociation Id="3" SegmentAssociationId="2">
+          <or112:AirSegment>
+            <or112:CarrierCode>VA</or112:CarrierCode>
+            <or112:FlightNumber>0800</or112:FlightNumber>
+            <or112:DepartureDate>2018-09-22</or112:DepartureDate>
+            <or112:BoardPoint>SYD</or112:BoardPoint>
+            <or112:OffPoint>MEL</or112:OffPoint>
+            <or112:ClassOfService>L</or112:ClassOfService>
+          </or112:AirSegment>
+        </or112:SegmentAssociation>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="15" type="SRVC" elementId="pnr-15">
+        <or112:ServiceRequest actionCode="HK" airlineCode="VA" code="DOCS" serviceCount="1" serviceType="SSR" ssrType="AFX">
+          <or112:FreeText>/P/PL/ADAC24/PL/01JAN1990/M/12NOV2019/SLODOWY/ADAM/MAJSTER</or112:FreeText>
+          <or112:FullText>DOCS VA HK1/P/PL/ADAC24/PL/01JAN1990/M/12NOV2019/SLODOWY/ADAM/MAJSTER</or112:FullText>
+          <or112:TravelDocument>
+            <or112:Type>P</or112:Type>
+            <or112:DocumentIssueCountry>PL</or112:DocumentIssueCountry>
+            <or112:DocumentNumber>ADAC24</or112:DocumentNumber>
+            <or112:DocumentNationalityCountry>PL</or112:DocumentNationalityCountry>
+            <or112:DocumentExpirationDate>12NOV2019</or112:DocumentExpirationDate>
+            <or112:DateOfBirth>01JAN1990</or112:DateOfBirth>
+            <or112:Gender>M</or112:Gender>
+            <or112:LastName>SLODOWY</or112:LastName>
+            <or112:FirstName>ADAM</or112:FirstName>
+            <or112:MiddleName>MAJSTER</or112:MiddleName>
+            <or112:Infant>false</or112:Infant>
+            <or112:PrimaryDocHolderInd>false</or112:PrimaryDocHolderInd>
+            <or112:HasDocumentData>true</or112:HasDocumentData>
+          </or112:TravelDocument>
+        </or112:ServiceRequest>
+        <or112:NameAssociation>
+          <or112:LastName>SLODOWY</or112:LastName>
+          <or112:FirstName>ADAM M MR</or112:FirstName>
+          <or112:NameRefNumber>01.01</or112:NameRefNumber>
+        </or112:NameAssociation>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="16" type="SRVC" elementId="pnr-16">
+        <or112:ServiceRequest actionCode="HK" airlineCode="VA" code="DOCS" serviceCount="1" serviceType="SSR" ssrType="AFX">
+          <or112:FreeText>/P/PL/ADAC24/PL/02FEB1991/M/12NOV2019/SLODOWY/ANNA/MAJSTER</or112:FreeText>
+          <or112:FullText>DOCS VA HK1/P/PL/ADAC24/PL/02FEB1991/M/12NOV2019/SLODOWY/ANNA/MAJSTER</or112:FullText>
+          <or112:TravelDocument>
+            <or112:Type>P</or112:Type>
+            <or112:DocumentIssueCountry>PL</or112:DocumentIssueCountry>
+            <or112:DocumentNumber>ADAC24</or112:DocumentNumber>
+            <or112:DocumentNationalityCountry>PL</or112:DocumentNationalityCountry>
+            <or112:DocumentExpirationDate>12NOV2019</or112:DocumentExpirationDate>
+            <or112:DateOfBirth>02FEB1991</or112:DateOfBirth>
+            <or112:Gender>M</or112:Gender>
+            <or112:LastName>SLODOWY</or112:LastName>
+            <or112:FirstName>ANNA</or112:FirstName>
+            <or112:MiddleName>MAJSTER</or112:MiddleName>
+            <or112:Infant>false</or112:Infant>
+            <or112:PrimaryDocHolderInd>false</or112:PrimaryDocHolderInd>
+            <or112:HasDocumentData>true</or112:HasDocumentData>
+          </or112:TravelDocument>
+        </or112:ServiceRequest>
+        <or112:NameAssociation>
+          <or112:LastName>SLODOWY</or112:LastName>
+          <or112:FirstName>ANNA M MS</or112:FirstName>
+          <or112:NameRefNumber>02.01</or112:NameRefNumber>
+        </or112:NameAssociation>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="41" type="SRVC" elementId="pnr-41">
+        <or112:ServiceRequest actionCode="HK" airlineCode="VA" code="TKNE" serviceCount="1" serviceType="SSR" ssrType="AFX">
+          <or112:FreeText>/7952145633308C1</or112:FreeText>
+          <or112:FullText>TKNE VA HK1 SYDMEL0800L22SEP/7952145633308C1</or112:FullText>
+        </or112:ServiceRequest>
+        <or112:SegmentAssociation Id="3" SegmentAssociationId="2">
+          <or112:AirSegment>
+            <or112:CarrierCode>VA</or112:CarrierCode>
+            <or112:FlightNumber>0800</or112:FlightNumber>
+            <or112:DepartureDate>2018-09-22</or112:DepartureDate>
+            <or112:BoardPoint>SYD</or112:BoardPoint>
+            <or112:OffPoint>MEL</or112:OffPoint>
+            <or112:ClassOfService>L</or112:ClassOfService>
+          </or112:AirSegment>
+        </or112:SegmentAssociation>
+        <or112:NameAssociation>
+          <or112:LastName>SLODOWY</or112:LastName>
+          <or112:FirstName>ADAM M MR</or112:FirstName>
+          <or112:NameRefNumber>01.01</or112:NameRefNumber>
+        </or112:NameAssociation>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="43" type="SRVC" elementId="pnr-43">
+        <or112:ServiceRequest actionCode="HK" airlineCode="VA" code="TKNE" serviceCount="1" serviceType="SSR" ssrType="AFX">
+          <or112:FreeText>/7952145633309C1</or112:FreeText>
+          <or112:FullText>TKNE VA HK1 SYDMEL0800L22SEP/7952145633309C1</or112:FullText>
+        </or112:ServiceRequest>
+        <or112:SegmentAssociation Id="3" SegmentAssociationId="2">
+          <or112:AirSegment>
+            <or112:CarrierCode>VA</or112:CarrierCode>
+            <or112:FlightNumber>0800</or112:FlightNumber>
+            <or112:DepartureDate>2018-09-22</or112:DepartureDate>
+            <or112:BoardPoint>SYD</or112:BoardPoint>
+            <or112:OffPoint>MEL</or112:OffPoint>
+            <or112:ClassOfService>L</or112:ClassOfService>
+          </or112:AirSegment>
+        </or112:SegmentAssociation>
+        <or112:NameAssociation>
+          <or112:LastName>SLODOWY</or112:LastName>
+          <or112:FirstName>ANNA M MS</or112:FirstName>
+          <or112:NameRefNumber>02.01</or112:NameRefNumber>
+        </or112:NameAssociation>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="80" type="PSG_DETAILS_MAIL" elementId="pnr-80">
+        <or112:Email comment="PURCHASER">
+          <or112:Address>ACCEPT@ACCEPT.COM</or112:Address>
+        </or112:Email>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="79" type="PSG_DETAILS_MAIL" elementId="pnr-79">
+        <or112:Email comment="">
+          <or112:Address>ACCEPT@ACCEPT.COM</or112:Address>
+        </or112:Email>
+        <or112:NameAssociation>
+          <or112:LastName>SLODOWY</or112:LastName>
+          <or112:FirstName>ADAM M MR</or112:FirstName>
+          <or112:NameRefNumber>01.01</or112:NameRefNumber>
+        </or112:NameAssociation>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="78" type="PSG_DETAILS_MAIL" elementId="pnr-78">
+        <or112:Email comment="">
+          <or112:Address>ACCEPT@ACCEPT.COM</or112:Address>
+        </or112:Email>
+        <or112:NameAssociation>
+          <or112:LastName>SLODOWY</or112:LastName>
+          <or112:FirstName>ADAM M MR</or112:FirstName>
+          <or112:NameRefNumber>01.01</or112:NameRefNumber>
+        </or112:NameAssociation>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="36" type="FP" displayIndex="1" elementId="pnr-36">
+        <or112:FormOfPayment migrated="false">
+          <or112:Other>
+            <or112:Text>TBM*CA5XXXXXXXXXXX7778¥06/19</or112:Text>
+          </or112:Other>
+        </or112:FormOfPayment>
+      </or112:OpenReservationElement>
+      <or112:OpenReservationElement id="75" type="FP" displayIndex="2" elementId="pnr-75">
+        <or112:FormOfPayment migrated="false">
+          <or112:Other>
+            <or112:Text>TBM*CA5XXXXXXXXXXX7778¥06/19</or112:Text>
+          </or112:Other>
+        </or112:FormOfPayment>
+      </or112:OpenReservationElement>
+    </stl18:OpenReservationElements>
+  </stl18:Reservation>
+</stl18:GetReservationRS>

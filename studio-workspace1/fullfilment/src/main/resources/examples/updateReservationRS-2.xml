@@ -1,0 +1,3 @@
+<stl18:UpdateReservationRS xmlns:stl18="http://webservices.sabre.com/pnrbuilder/v1_18" xmlns:ns6="http://services.sabre.com/res/orr/v0" xmlns:raw="http://tds.sabre.com/itinerary" xmlns:ns4="http://webservices.sabre.com/pnrconn/ReaccSearch" xmlns:or112="http://services.sabre.com/res/or/v1_12">
+  <stl18:Success>OK</stl18:Success>
+</stl18:UpdateReservationRS>

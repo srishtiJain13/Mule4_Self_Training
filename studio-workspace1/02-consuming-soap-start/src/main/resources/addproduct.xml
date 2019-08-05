@@ -1,0 +1,19 @@
+<dom:addProductRequest xmlns:dom="http//way2learnonline.com/domain">
+	<product>
+
+		<brandName>Siva Brand</brandName>
+
+		<description>Siva Brand Desc</description>
+
+		<images>siva.jpg</images>
+
+		<name>Siva Product</name>
+		<offer>
+			<offerPrice>2000</offerPrice>
+			<offerValidUntil>2016-06-24</offerValidUntil>
+		</offer>
+		<originalPrice>3000</originalPrice>
+
+	
+	</product>
+</dom:addProductRequest>

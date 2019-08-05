@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="49b1ee88-0d26-45cf-acf0-3fff67b2fe1c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="aa35a83f-5f24-4785-8132-535097006771" basePath="/rest" >
+		<http:request-connection host="localhost" port="7070" />
+	</http:request-config>
+	<flow name="01-consuming-rest-startFlow" doc:id="0da95956-8985-41b3-aa44-e7bab9340761" >
+		<http:listener doc:name="Listener" doc:id="179fd640-a603-4df7-8715-c95950efe358" config-ref="HTTP_Listener_config" path="/products/{pname}"/>
+		<set-variable value="#[attributes.uriParams.pname as String]" doc:name="Set Variable" doc:id="8c3357a5-83bc-4297-84ed-843218d234fd" variableName="pname"/>
+		<http:request method="GET" doc:name="Request" doc:id="84324174-4865-49b0-a31a-c59949fad104" config-ref="HTTP_Request_configuration" path="/products/{pname}">
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	"pname" : vars.pname
+}]]]></http:uri-params>
+		</http:request>
+	</flow>
+</mule>

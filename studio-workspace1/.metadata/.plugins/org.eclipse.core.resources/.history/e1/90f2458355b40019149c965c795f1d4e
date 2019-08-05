@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ns0:Envelope xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/">
+  <ns0:Body>
+    <ns01:UpdateReservationRQ xmlns:ns01="http://webservices.sabre.com/pnrbuilder/v1_18">
+      <ns01:RequestType>Stateless</ns01:RequestType>
+      <ns01:ReturnOptions>ABC</ns01:ReturnOptions>
+      <ns01:ReservationUpdateList>
+        <ns01:Locator>QTWMUM</ns01:Locator>
+        <ns01:ReservationUpdateItem>
+          <ns01:RemarkUpdate>
+            <ns01:RemarkText>AUTH-PSS/AX5550/23AUG/01811535009367409119</ns01:RemarkText>
+          </ns01:RemarkUpdate>
+        </ns01:ReservationUpdateItem>
+      </ns01:ReservationUpdateList>
+    </ns01:UpdateReservationRQ>
+  </ns0:Body>
+</ns0:Envelope>

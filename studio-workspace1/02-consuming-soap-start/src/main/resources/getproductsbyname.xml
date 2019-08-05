@@ -1,0 +1,3 @@
+ <dom:getProductsByNameRequest xmlns:dom="http//way2learnonline.com/domain">
+      <name>#[message.inboundProperties.'http.query.params'.productname]</name>
+ </dom:getProductsByNameRequest>

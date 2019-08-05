@@ -1,0 +1,49 @@
+<ns6:FraudCheckRQ xmlns:ns1="http://www.ebxml.org/namespaces/messageHeader" xmlns:ns2="http://www.w3.org/1999/xlink" xmlns:ns3="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns4="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:ns6="http://www.opentravel.org/OTA/2003/05/beta" xmlns:ns7="http://www.w3.org/2000/09/xmldsig#" SystemDateTime="2018-08-23T09:29:37.000Z" Version="1.7.0">
+  <ns6:Action Type="Screen">FraudScreen</ns6:Action>
+  <ns6:POS PseudoCityCode="WIN" AgentSine="S19" StationNumber="99401013" ISOCountry="AU" ChannelID="ATO" LocalDateTime="2018-08-23T09:29:22.000Z" SourceID="INTERACT"/>
+  <ns6:MerchantDetail MerchantID="VA"/>
+  <ns6:OrderDetail OrderType="O" RecordLocator="QTWMUM">
+    <ns6:ProductDetail ProductID="1004" UnitPrice="0.77" Quantity="1"/>
+    <ns6:ProductDetail ProductID="1004" UnitPrice="0.77" Quantity="1"/>
+    <ns6:PassengerDetail NameInPNR="SLODOWY/ADAM M MR*ADT" PsgrType="ADT" Gender="M" FirstName="ADAM M MR" LastName="SLODOWY">
+      <ns6:Identifications>
+        <ns6:Passport CountryOfIssue="PL" Nationality="PL" Number="ADAC24" ExpireDate="2019-11-12"/>
+      </ns6:Identifications>
+      <ns6:Document DocType="EMD" DocNumber="7951500357955" BaseFare="0.70" Taxes="0.07"/>
+    </ns6:PassengerDetail>
+    <ns6:PassengerDetail NameInPNR="SLODOWY/ANNA M MS*ADT" PsgrType="ADT" Gender="M" FirstName="ANNA M MS" LastName="SLODOWY">
+      <ns6:Identifications>
+        <ns6:Passport CountryOfIssue="PL" Nationality="PL" Number="ADAC24" ExpireDate="2019-11-12"/>
+      </ns6:Identifications>
+      <ns6:Document DocType="EMD" DocNumber="7951500357956" BaseFare="0.70" Taxes="0.07"/>
+    </ns6:PassengerDetail>
+    <ns6:ContactInfo>
+      <ns6:EmailAddress>ACCEPT@ACCEPT.COM</ns6:EmailAddress>
+      <ns6:PhoneNumber Number="48-48-12345678X101" Type="M"/>
+    </ns6:ContactInfo>
+    <ns6:FlightDetail>
+      <ns6:AirlineCode>VA</ns6:AirlineCode>
+      <ns6:OperatingAirlineCode>VA</ns6:OperatingAirlineCode>
+      <ns6:FlightNumber>0800</ns6:FlightNumber>
+      <ns6:ClassOfService>L</ns6:ClassOfService>
+      <ns6:DepartureInfo DepartureAirport="SYD" DepartureDateTime="2018-09-22T06:00:00.000Z"/>
+      <ns6:ArrivalInfo ArrivalAirport="MEL" ArrivalDateTime="2018-09-22T07:35:00.000Z"/>
+    </ns6:FlightDetail>
+  </ns6:OrderDetail>
+  <ns6:PaymentDetail>
+    <ns6:FOP Type="CC"/>
+    <ns6:PaymentCard CardCode="AX" CardNumber="372055555555550" CardSecurityCode="123" ExpireDate="052020">
+      <ns6:CardHolderName Name="Dariusz Basista" FirstName="Dariusz" LastName="Basista"/>
+    </ns6:PaymentCard>
+    <ns6:AmountDetail Amount="0.77" CurrencyCode="AUD"/>
+    <ns6:AuthorizationResult ResponseCode="APPROVED" ApprovalCode="X82235" AVS_ResultCode="Y" CSC_ResultCode="Y" SupplierID="PSSAMEX" SupplierResponseCode="000" SupplierTransID="230729288223535" PaymentRef="01811535009367409119"/>
+  </ns6:PaymentDetail>
+  <ns6:PaymentDetail>
+    <ns6:FOP Type="CC"/>
+    <ns6:PaymentCard CardCode="VI" CardNumber="4005222222222223" CardSecurityCode="123" ExpireDate="052020">
+      <ns6:CardHolderName Name="Dariusz Basista" FirstName="Dariusz" LastName="Basista"/>
+    </ns6:PaymentCard>
+    <ns6:AmountDetail Amount="0.77" CurrencyCode="AUD"/>
+    <ns6:AuthorizationResult ResponseCode="APPROVED" ApprovalCode="X02304" AVS_ResultCode="Y" CSC_ResultCode="M" SupplierID="PSSVISA" SupplierResponseCode="00" SupplierTransID="502293004000077" PaymentRef="01811535009369202120"/>
+  </ns6:PaymentDetail>
+</ns6:FraudCheckRQ>

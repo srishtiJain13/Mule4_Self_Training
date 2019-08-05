@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b8bad242-743d-4595-a3d0-c477085d5538" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config> 
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="bd318e5b-87be-463c-90ad-f9e8afb0aea5" >
+		<wsc:connection wsdlLocation="http://localhost:4040/soap/ws/products.wsdl" service="ProductServicePortService" port="ProductServicePortSoap11" address="http://localhost:4040/soap/ws" />
+	</wsc:config>
+	<validation:config name="Validation_Config" doc:name="Validation Config" doc:id="351e7c1c-2f5c-4e99-bdef-56663705ee20" />
+	<configuration doc:name="Configuration" doc:id="2f5972ef-a7c7-4cc4-82a3-151943dc2ab9" defaultErrorHandler-ref="01-exceptions-solutionError_Handler" />
+	<error-handler name="01-exceptions-solutionError_Handler" doc:id="da21a2fe-fb0e-443d-9376-d64b74cf5100" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="fc470640-650d-4c88-947d-8715b4406559" >
+			<logger level="INFO" doc:name="Logger" doc:id="af2d5696-5c6d-49c4-9992-bded304d01ef" message="“In Global Error Handler”"/>
+		</on-error-propagate>
+	</error-handler>
+	<flow name="getproductsbyname" doc:id="d954f7f3-18a7-4285-a430-eaa9a82e9466" >
+		<wsc:consume operation="getProductsByName" doc:name="Consume" doc:id="4f535350-6c55-40d9-bb10-93282d305486" config-ref="Web_Service_Consumer_Config" >
+			<error-mapping sourceType="WSC:CONNECTIVITY" targetType="APP:SRISHTIERRORWSDL" />
+		</wsc:consume>
+		<logger level="INFO" doc:name="Logger" doc:id="b45dbcf6-8ee9-4d00-84a5-28a42d9b8d8e" message="#['After  webservice consumer =========='+payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="0d0c39a3-0e01-47d8-90cc-699948f41303" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<error-handler >
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="411a55ce-ca7f-4c99-afd5-6a172ee23768" type="APP:SRISHTIERRORWSDL">
+				<set-payload value="'In getproductsbyname after error from webservice----on error Propagate error type: APP:SIVACONNECTIVITYERROR'" doc:name="Set Payload" doc:id="ef93b864-4c1a-4f77-9d2c-4917342b5d09" />
+				<logger level="INFO" doc:name="Logger" doc:id="ba6a3a19-70ba-465b-8710-fe06cf2c8ab5" message="'In getproductsbyname after error from webservice----on error Propagate'"/>
+				<raise-error doc:name="Raise error" doc:id="f86a3f60-615d-4a7e-834f-e4b11e1a5253" type="APP:SRISHTIERRORWSDL"/>
+			</on-error-propagate>
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="94641d8d-cdd8-4947-bbfa-5c8f91b55dff" >
+				<set-payload value="'In getproductsbyname after error from webservice----on error continue'" doc:name="Set Payload" doc:id="644fb175-5e66-401c-a048-e0e0c4b1b9cc" />
+				<logger level="INFO" doc:name="Logger" doc:id="a7a45fec-28da-46f1-a5d3-569f48143855" message="“In getproductsbyname after error from webservice----on error continue”"/>
+			</on-error-continue>
+		</error-handler>
+	</flow>
+	<flow name="ValidateAndTransform" doc:id="65e8fa3b-488e-433f-bbe5-9f29d816e89b" >
+		<validation:is-true doc:name="Is true" doc:id="e268bfe3-66f5-40cb-820c-a341ffa6f24c" config-ref="Validation_Config" expression="#[['Hp','Mac'] contains  attributes.queryParams.productname]" message="Invalid productname!!!!!!!!!!!!!!!!!!!!!!!" />
+		<ee:transform doc:name="Transform Message" doc:id="9940b230-b383-43c1-a7a1-29c6c6009a55">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http//way2learnonline.com/domain
+---
+{
+	ns0#getProductsByNameRequest: {
+		name: attributes.queryParams.productname as String
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<flow-ref doc:name="getproductsbyname" doc:id="bb84052b-0b6b-42fe-8a0a-84b1625045ce" name="getproductsbyname"/>
+		<error-handler>
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="f67f9ed3-f524-4381-8511-b1cc859cca7d" >
+				<logger level="INFO" doc:name="Logger" doc:id="918497c8-4364-4a29-8ef7-00ac2a257a6d" message="“Inside on error propagate of ValidateAndTransform”."/>
+			</on-error-propagate>
+		</error-handler>
+	</flow>
+	<flow name="mainflow" doc:id="ee659804-71de-4bec-b8b8-508498da5f77" >
+		<http:listener doc:name="Listener" doc:id="d46fbdb5-7ef4-4cdc-b402-a27750ed9768" config-ref="HTTP_Listener_config" path="/error" >
+			<http:error-response statusCode="400" >
+				<http:body ><![CDATA[#[output application/json
+---
+error.errorType]]]></http:body>
+			</http:error-response>
+		</http:listener>
+		<flow-ref doc:name="ValidateAndTransform" doc:id="ec1054d2-5bce-4ecf-bf53-bf8c3bb49f60" name="ValidateAndTransform"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f52a19db-0726-4478-a10b-50bea1955787" message="#['in main flow After Getting all products']"/>
+	</flow>
+</mule>

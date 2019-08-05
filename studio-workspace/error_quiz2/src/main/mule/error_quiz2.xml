@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="91533b27-1445-4e8d-9581-9de840bb0f6d" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="error_quiz2Flow" doc:id="6c8bca86-203a-41f2-9c6b-8c464fa5f675" >
+		<http:listener doc:name="Listener" doc:id="0616f274-c0e3-45ca-b5e3-a81357ecfc00" config-ref="HTTP_Listener_config" path="/error"/>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="76a1dc31-fd99-4928-95ec-cc802c97d5ba" />
+		<validation:is-number doc:name="Is number" doc:id="fc4604ea-096a-4d41-a4c3-d0efb5c5279d" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="6e7e90a6-ccb6-467b-b60d-dd5d40bb4e9c" />
+		<error-handler>
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="ff7184ff-b6e8-4d26-aa52-88eead25f44c" >
+				<set-payload value="#[payload]" doc:name="Set Payload" doc:id="c89d1c90-3a4b-4f23-82be-ab736b220d2a" />
+			</on-error-propagate>
+		</error-handler>
+	</flow>
+</mule>

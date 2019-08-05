@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.mule.tooling.runtime.muleServerLaunchType">
+<stringAttribute key="clear_data" value="NEVER"/>
+<booleanAttribute key="consoleEnabled" value="true"/>
+<stringAttribute key="launch_mule_server_version" value="org.mule.tooling.server.4.2.0.ee"/>
+<stringAttribute key="maven.command.line" value=""/>
+<stringAttribute key="mule-agent-port" value="63655"/>
+<listAttribute key="mule-project-names">
+<listEntry value="mod6_wt_6-1_apdev-examples"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ALLOW_TERMINATE" value="true"/>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="mod6_wt_6-1_apdev-examples"/>
+<intAttribute key="remote-debug-max-stream-size" value="2"/>
+<intAttribute key="remote-debug-port" value="6661"/>
+<booleanAttribute key="remote-debug-suspend" value="false"/>
+</launchConfiguration>

@@ -1,0 +1,17 @@
+# Configuration settings to connect to MuleSoft's training remote endpoints
+
+american:
+  host: "training4-american-ws.cloudhub.io"
+  port: "80"
+  path: "/api/flights"
+
+united:
+  host: "mu.learn.mulesoft.com"
+  port: "80"
+  path: "/united/flights"
+
+delta:
+  wsdl: "http://mu.learn.mulesoft.com/delta?wsdl"
+  service: "TicketServiceService"
+  port: "TicketServicePort"
+  address: "http://mu.learn.mulesoft.com/delta"

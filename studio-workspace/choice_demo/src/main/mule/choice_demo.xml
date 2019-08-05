@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ab171461-80e5-497c-8bd4-ec110a431389" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="choice_demoFlow" doc:id="2c05fa49-05c3-4111-a181-fd9730b36fd2" >
+		<http:listener doc:name="Listener" doc:id="42cd216c-3c3e-43fb-a5ad-369cf43618f9" config-ref="HTTP_Listener_config" path="/choice"/>
+		<set-payload value='#[{
+  "first_name": "Jeanette",
+  "last_name": "Penddreth",
+  "email": "jpenddreth0@census.gov",
+  "gender": "Female",
+  "ip_address": "26.58.193.2",
+  "phNumber": "123456789",
+  "schoolYear": "2014",
+  "schoolName": "This is a Mule school"
+}]' doc:name="Set Payload" doc:id="d2f8eb89-33af-432b-9647-1371821fb016" />
+		<choice doc:name="Choice" doc:id="e49de39a-964e-4ad4-ae8a-7d8a4e72fc74" >
+			<when expression="#[payload contains 'id']">
+				<ee:transform doc:name="Transform Message" doc:id="0547b4bb-0e0b-497b-a4fa-04ae326cec90" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"id" : payload.id as String default 'srishti123',
+	"name" : if(payload.firstName?) payload.first_name ++" " ++ payload.last_name else ("Error: FirstName should Exists!"),
+	"school" : if (payload.schoolName?) payload.schoolName ++ payload.schoolYear else ("Error: It must contain schoolName!"),
+	"current date": now().day ++ "/" ++ now().month ++ "/" ++ now().year
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="24ab0fd8-5a9e-42a8-96d6-70eeab19e0ab" message="failed"/>
+			</otherwise>
+		</choice>
+	</flow>
+</mule>

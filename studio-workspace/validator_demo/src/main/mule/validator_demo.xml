@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="914881e6-5e72-498f-9eea-375f1322f6e1" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="validator_demoFlow" doc:id="c2907a91-fc64-4d19-9da2-40b890b5320e" >
+		<http:listener doc:name="Listener" doc:id="dc091527-eea3-4771-937e-5b668f9e94fe" config-ref="HTTP_Listener_config" path="/validator"/>
+		<validation:is-url doc:name="Is URL" doc:id="08a335f6-6d6f-4f1e-bcf2-91315a9bafcf" url="#[payload]" message="validation failed"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d9cf5ff8-6388-4fec-9ccd-59be10ee073b" message="Input type is URL"/>
+	</flow>
+	<flow name="validator_demoFlow1" doc:id="6e8b7e10-29c3-4e17-8213-578710c6101e" >
+		<http:listener doc:name="Listener" doc:id="9f333955-ea9d-474b-9464-d206ba6d6589" config-ref="HTTP_Listener_config" path="/validateString"/>
+		<validation:is-not-blank-string doc:name="Is not blank string" doc:id="33653d4b-c921-423b-bc85-f234916e4ba9" />
+		<logger level="INFO" doc:name="Logger" doc:id="b37d9ea3-a626-4301-8bed-3fd8f530fdf8" message="Test Passed: String is not blank! :) "/>
+	</flow>
+</mule>

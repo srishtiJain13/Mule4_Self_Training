@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="08b21d6b-d5b7-4c5e-bdb9-9d87c5a9d505" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="foreach_DemoFlow" doc:id="f3f0552e-6888-4e56-b288-31cb789f5c71" >
+		<http:listener doc:name="Listener" doc:id="3fdcdbda-b694-4dcc-ad25-4a5cd1b24474" config-ref="HTTP_Listener_config" path="/foreach"/>
+		<foreach doc:name="For Each" doc:id="d11e6a85-6e86-4253-b847-4c556ee7677b" collection="#[payload.colors]">
+			<logger level="INFO" doc:name="Logger" doc:id="fe2687ac-4504-48f6-89f3-cae3b46b426e" message='payload in foreach is:  #[payload]'/>
+		</foreach>
+	</flow>
+</mule>

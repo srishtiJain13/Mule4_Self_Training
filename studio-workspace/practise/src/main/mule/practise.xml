@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f2383b9d-bd32-4e90-b1e1-a8415ab84111" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="f9ef4afd-9181-40d2-84f3-49e080780bf9" basePath="/process">
+		<http:request-connection host="localhost" port="8082" />
+	</http:request-config>
+	<flow name="parentFlow" doc:id="1bd2e22f-ee64-44d7-acb7-5ef18c5b1b63" >
+		<http:listener doc:name="Listener" doc:id="8940fde0-d215-4c98-a766-9ae2764336d5" config-ref="HTTP_Listener_config" path="/test"/>
+		<flow-ref doc:name="Flow Reference" doc:id="c8d814d7-3bfe-42ba-bd76-f83abc110f09" name="childFlow" targetValue='#[payload]' target="payload"/>
+		<logger level="INFO" doc:name="Logger" doc:id="70a71dd4-efda-4c35-afe1-b02708faa837" message="Parent flow=&gt; #[payload]"/>
+	</flow>
+	<flow name="childFlow" doc:id="d50f8ecc-1bbd-490f-8b51-21fd1239a861" >
+		<set-payload value='#[%dw 2.0
+output application/json
+---
+{
+	"message": "Hi Srishti!"
+}]' doc:name="Set Payload" doc:id="4aab1b7a-9feb-416e-9a97-d0445f83623c" />
+		<logger level="INFO" doc:name="Logger" doc:id="fceb8447-97ec-48ca-8a7a-5a4a2dbe3bc4" message="chidFlow=&gt;#[payload]"/>
+	</flow>
+	<flow name="practiseFlow" doc:id="311e3b1a-451d-45e5-a635-8e145acd33d2" >
+		<http:listener doc:name="Listener" doc:id="5c52bfe1-c675-4387-9282-adb374fabd4d" config-ref="HTTP_Listener_config" path="/list"/>
+		<file:list doc:name="List" doc:id="ce7b44ba-6f04-4b80-8fde-fb83cc72531c" directoryPath="C:\Users\Training\Downloads\MUFundamentals4.1_studentFiles_22sept2018\MUFundamentals4.1_studentFiles_22sept2018\resources\ output"/>
+		<http:request method="GET" doc:name="Request" doc:id="74a1259f-b46e-4f13-9dcc-2a2217f042ae" config-ref="HTTP_Request_configuration" url="acme.com"/>
+	</flow>
+</mule>

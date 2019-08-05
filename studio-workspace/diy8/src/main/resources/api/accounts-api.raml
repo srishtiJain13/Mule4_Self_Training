@@ -1,0 +1,124 @@
+#%RAML 1.0
+version: v1
+title: Accounts API
+
+types: 
+  accounts: !include Datatypes/Account_data_type.raml
+  accountsPost: !include Datatypes/Account_DataType_PostMethod.raml
+
+/accounts:
+  get:
+    headers:
+      Requester-ID:
+        description: This header helps identify the person in the organization making account requests.
+    queryParameters:
+      type:
+        enum: 
+        - personal 
+        - business
+        required: true
+        
+      Name:
+        required: false
+        description: name query parameter value is  used to filter and return all account records for a particular account owner
+      Country: 
+        required: false 
+        description: The country query parameter value is used to filter and return records matching the account owner's country of residence 
+    responses:
+      200:
+        body:
+          application/json:
+            type: accounts[]
+            example: !include Examples/AccountsExample.raml
+      400:
+        body:
+          application/json:
+            example:
+              message: "Bad request"
+              
+  post:
+    body:
+     application/json:
+       type: accountsPost[]
+       required: true
+       example:
+         !include Examples/AccountsExamplePostMethod.raml
+
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: "Account created (but not really)"
+      400:
+        body:
+          application/json:
+            example:
+              message: "Bad request"
+  
+  /{id}:
+    get:
+      description: id is a URI parameter that should match the accountID column of the flights_customers database.
+      headers:
+        Requester-ID:
+          description: id of the person requesting the accounts information
+          required: true
+      queryParameters:
+        type:
+          enum: 
+          - personal 
+          - business
+          required: false
+      responses:
+        200:
+          body:
+            application/json:
+              type: accounts[]
+              example: !include Examples/AccountsExample.raml
+        400:
+          body:
+            application/json:
+              example:
+                message: "Check wether you have provided a valid ID."
+    put:
+      description: to replace the particular account holder.
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                message: "account replaced (but not really)"
+        400:
+          body:
+            application/json:
+              example:
+                message: "Bad request for Put method."
+    patch:
+      description: to modify the information of particular account holder.
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                message: "account modified (but not really)"
+        400:
+          body:
+            application/json:
+              example:
+                message: "Bad request for Patch method."
+    delete:
+      description: to delete the particular account holder.
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                message: "account deleted (but not really)"
+        400:
+          body:
+            application/json:
+              example:
+                message: "Bad request for Delete method."
+                  
+    
+    

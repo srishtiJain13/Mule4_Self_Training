@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="output" format="json">
+      <types:shape format="weave" example="examples/outputdiy4-1."><![CDATA[%dw 2.0
+
+type output = Array<{|  id: String,   firstName: String,   lastName: String,   address: String,   postal: String,   country: String,   creationDate: String,   accountType: String,   miles: Number {"typeId": "int"}|}> {"example": "[{\"id\":\"100\",\"firstName\":\"Alice\",\"lastName\":\"Green\",\"address\":\"77 Geary St., San Francisco\",\"postal\":\"94108\",\"country\":\"USA\",\"creationDate\":\"2018-10-01T23:57:59Z+0:00\",\"accountType\":\"business\",\"miles\":1000},{\"id\":\"1000\",\"firstName\":\"Alicjje\",\"lastName\":\"Greenjjj\",\"address\":\"77 Geary St., Sanjjj Francisco\",\"postal\":\"941088\",\"country\":\"USAhh\",\"creationDate\":\"2018-10-01T23:57:59Z+0:00\",\"accountType\":\"business\",\"miles\":1000}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="hjkkjnj" format="json">
+      <types:shape format="weave" example="examples/outputdiy4-1."><![CDATA[%dw 2.0
+
+type hjkkjnj = Array<{|  id: String,   firstName: String,   lastName: String,   address: String,   postal: String,   country: String,   creationDate: String,   accountType: String,   miles: Number {"typeId": "int"}|}> {"example": "[{\"id\":\"100\",\"firstName\":\"Alice\",\"lastName\":\"Green\",\"address\":\"77 Geary St., San Francisco\",\"postal\":\"94108\",\"country\":\"USA\",\"creationDate\":\"2018-10-01T23:57:59Z+0:00\",\"accountType\":\"business\",\"miles\":1000},{\"id\":\"1000\",\"firstName\":\"Alicjje\",\"lastName\":\"Greenjjj\",\"address\":\"77 Geary St., Sanjjj Francisco\",\"postal\":\"941088\",\"country\":\"USAhh\",\"creationDate\":\"2018-10-01T23:57:59Z+0:00\",\"accountType\":\"business\",\"miles\":1000}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#7297c2cd-203d-43e5-93d6-edc0d497e56c">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="hjkkjnj"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

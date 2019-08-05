@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://soap.training.mulesoft.com/" xmlns:ns2="http://soap.training.mulesoft.com/">
+  <xs:element name="listAllFlightsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="return" form="unqualified">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="airlineName" form="unqualified" type="xs:NCName"/>
+              <xs:element name="code" form="unqualified" type="xs:NCName"/>
+              <xs:element name="departureDate" form="unqualified" type="xs:string"/>
+              <xs:element name="destination" form="unqualified" type="xs:NCName"/>
+              <xs:element name="emptySeats" form="unqualified" type="xs:integer"/>
+              <xs:element name="origin" form="unqualified" type="xs:NCName"/>
+              <xs:element name="planeType" form="unqualified" type="xs:string"/>
+              <xs:element name="price" form="unqualified" type="xs:decimal"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

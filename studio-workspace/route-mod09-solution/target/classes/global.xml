@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	
+	
+		<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e876f2c2-d087-4bb9-a084-ab2509caf622" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="40ca3736-da4f-443b-871a-616fcc22c9f0" file="configuration.yaml" />
+		<http:request-config name="HTTP_Request_Accounts_API" doc:name="HTTP Request configuration" doc:id="90dc47b7-b997-4d9d-98e6-7daa066484ad" basePath="${accounts.base}" responseTimeout="15000">
+		<http:request-connection host="${accounts.host}" port="${accounts.port}" >
+		</http:request-connection>
+	</http:request-config>
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="9855259c-2d45-4535-b310-8f0a07dd77f6" >
+		<wsc:connection wsdlLocation="${flights.wsdl}" service="${flights.service}" port="${flights.port}" address="${flights.address}"/>
+	</wsc:config>
+	
+	
+	
+	
+	</mule>

@@ -1,0 +1,103 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "array",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "items": {
+    "$id": "http://example.com/example.json/items",
+    "type": "object",
+    "required": ["salesID","id","firstName","lastName","address","postal","country","creationDate","accountType","miles"],
+    "properties": {
+      "salesID": {
+        "$id": "http://example.com/example.json/items/properties/salesID",
+        "type": "string",
+        "title": "The Salesid Schema ",
+        "default": "",
+        "examples": [
+          "4401Rajesh Patil591412017-08-23T00:52:42+0.00"
+        ]
+      },
+      "id": {
+        "$id": "http://example.com/example.json/items/properties/id",
+        "type": "string",
+        "title": "The Id Schema ",
+        "default": "",
+        "examples": [
+          "4401"
+        ]
+      },
+      "firstName": {
+        "$id": "http://example.com/example.json/items/properties/firstName",
+        "type": "string",
+        "title": "The Firstname Schema ",
+        "default": "",
+        "examples": [
+          "Rajesh"
+        ]
+      },
+      "lastName": {
+        "$id": "http://example.com/example.json/items/properties/lastName",
+        "type": "string",
+        "title": "The Lastname Schema ",
+        "default": "",
+        "examples": [
+          "Patil"
+        ]
+      },
+      "address": {
+        "$id": "http://example.com/example.json/items/properties/address",
+        "type": "string",
+        "title": "The Address Schema ",
+        "default": "",
+        "examples": [
+          "89 Nibm Road, Pune, Maharashtra"
+        ]
+      },
+      "postal": {
+        "$id": "http://example.com/example.json/items/properties/postal",
+        "type": "string",
+        "title": "The Postal Schema ",
+        "default": "",
+        "examples": [
+          "59141"
+        ]
+      },
+      "country": {
+        "$id": "http://example.com/example.json/items/properties/country",
+        "type": "string",
+        "title": "The Country Schema ",
+        "default": "",
+        "examples": [
+          "India"
+        ]
+      },
+      "creationDate": {
+        "$id": "http://example.com/example.json/items/properties/creationDate",
+        "type": "string",
+        "title": "The Creationdate Schema ",
+        "default": "",
+        "examples": [
+          "2017-08-23T00:52:42+0.00"
+        ]
+      },
+      "accountType": {
+        "$id": "http://example.com/example.json/items/properties/accountType",
+        "type": "string",
+        "title": "The Accounttype Schema ",
+        "default": "",
+        "examples": [
+          "personal"
+        ]
+      },
+      "miles": {
+        "$id": "http://example.com/example.json/items/properties/miles",
+        "type": "integer",
+        "title": "The Miles Schema ",
+        "default": 0,
+        "examples": [
+          36470
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="cbb5125d-ed63-4b3a-90eb-9700d9f081f4" >
+		<http:listener-connection host="0.0.0.0" port="8088" />
+	</http:listener-config>
+	<flow name="Copy_of_roundrobin_demoFlow" doc:id="c91553b7-6780-47c6-b044-90384e1fa71f" >
+		<http:listener doc:name="Copy_of_Listener" doc:id="af12a6a2-2570-4d38-abb0-71d2380b20aa" path="/fs" config-ref="HTTP_Listener_config"/>
+		<set-payload value="#[payload]" doc:name="Copy_of_Set Payload" doc:id="9953ce16-0130-4b39-9d16-5d5121fca2d0" />
+		<first-successful doc:name="First Successful" doc:id="44483a46-2622-4ee3-a9b7-681f7f0e122c" >
+			<route >
+				<logger level="INFO" doc:name="Logger" doc:id="d2108b69-df13-4914-89a8-d38941b69a1b" message="1"/>
+			</route>
+			<route >
+				<logger level="INFO" doc:name="Logger" doc:id="67cedcb4-807d-4888-9bce-9501be3cf27c" message="2"/>
+			</route>
+			<route >
+				<logger level="INFO" doc:name="Logger" doc:id="6f7e5a8e-a879-4caf-aeb5-d335be6f680b" message="3"/>
+			</route>
+		</first-successful>
+	</flow>
+</mule>

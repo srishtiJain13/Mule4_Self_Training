@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<flow name="flights" doc:id="b370431e-7c48-4222-8759-0f238c5f0965" >
+        <http:listener doc:name="HTTP: GET /flights/{destination}" doc:id="762f564c-fe75-46f9-a494-35c7cf0046cc" config-ref="HTTP_Listener_config" path="/flights/{destination}">
+			<http:error-response statusCode="#[vars.statusCode]">
+				<http:body ><![CDATA[#[output application/json --- 
+
+{
+    errorObject: error.errorType,
+    errorNamespace: error.errorType.namespace,
+    errorID: error.errorType.identifier,
+	description: error.description
+}]]]></http:body>
+			</http:error-response>
+		</http:listener>
+		<set-variable value="#[attributes.uriParams.destination]" doc:name="destination" doc:id="c24cc62f-673a-49c0-83b6-71153a7c3b8b" variableName="destinationCode"/>
+		<set-variable value="#[attributes.queryParams.maxprice]" doc:name="maxPrice" doc:id="ceb2692f-9291-4b92-be33-43fcad0ce0da" variableName="maxPrice"/>
+		<validation:is-not-null doc:name="maxPrice" doc:id="2a335e95-a356-4e93-a88a-0112048eac26" value="#[vars.maxPrice]" message="Max price is not set. Please pass in a maxprice query parameter." />
+		<scatter-gather doc:name="Scatter-Gather" doc:id="5529d0bf-9c13-4d54-a152-b1d575e7468d" >
+			<route >
+				<flow-ref doc:name="getUnited" doc:id="0128b1de-7307-45d9-b363-5073e51bb791" name="getUnited"/>
+			</route>
+			<route >
+				<flow-ref doc:name="getDelta" doc:id="c4f0a492-02f7-4d62-8f3d-0ac4e0112e36" name="getDelta"/>
+			</route>
+			<route >
+				<flow-ref doc:name="getAmerican" doc:id="fab0d5c9-5240-44fd-bea8-c04db507564d" name="getAmerican"/>
+			</route>
+		</scatter-gather>
+		<ee:transform doc:name="Convert to JSON" doc:id="9249779c-bddd-4393-8719-3b51960cdfa6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+using (flattened = flatten(payload..payload as Array) )
+(
+ if (not isEmpty(flattened))
+	flattened filter $.price <= vars.maxPrice
+ else
+ 	[]
+)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

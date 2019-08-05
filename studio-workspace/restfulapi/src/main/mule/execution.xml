@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="executionFlow" doc:id="c7343d33-921a-4b62-9665-0ced9a4c7ee6" >
+		<flow-ref doc:name="Flow Reference" doc:id="9cdda6eb-5b2d-484b-96ec-d6e18c467bf1" name="GetFlightsByIDImplementation"/>
+	</flow>
+</mule>

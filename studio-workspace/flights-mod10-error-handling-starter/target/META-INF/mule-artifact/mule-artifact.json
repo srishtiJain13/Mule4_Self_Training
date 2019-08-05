@@ -1,0 +1,30 @@
+{
+  "configs": [
+    "gatherdata.xml",
+    "global.xml",
+    "standardize.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:application:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.1.2",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "application-types.xml",
+        "configuration.yaml",
+        "gatherdata.xml",
+        "global.xml",
+        "log4j2.xml",
+        "standardize.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

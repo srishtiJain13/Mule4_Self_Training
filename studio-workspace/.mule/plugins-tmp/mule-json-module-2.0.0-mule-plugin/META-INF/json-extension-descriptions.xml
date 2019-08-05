@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension-documentation>
+    <configs>
+        <config name="config">
+            <description><![CDATA[Default configuration]]></description>
+            <parameters/>
+        </config>
+    </configs>
+    <connections/>
+    <extension name="JSON">
+        <description><![CDATA[The JSON module contains tools to help you deal with JSON documents]]></description>
+        <parameters/>
+    </extension>
+    <operations>
+        <operation name="validateSchema">
+            <description><![CDATA[Validates that the input content is compliant with a given schema. This operation supports referencing many schemas (using comma as a separator) which include each other.]]></description>
+            <parameters>
+                <parameter name="schema">
+                    <description><![CDATA[The location in which the schema to validate against is to be found. This attribute supports URI representations such as "http://org.mule/schema.json" or "resource:/schema.json". It also supports a most common classpath reference such as simply "schema.json".]]></description>
+                </parameter>
+                <parameter name="content">
+                    <description><![CDATA[the json document to be validated]]></description>
+                </parameter>
+                <parameter name="schemaRedirects">
+                    <description><![CDATA[Allows to redirect any given URI in the Schema (or even the schema location itself) to any other specific URI. The most common use case for this feature is to map external namespace URIs without the need to a local resource]]></description>
+                </parameter>
+                <parameter name="dereferencing">
+                    <description><![CDATA[Draft v4 defines two dereferencing modes: canonical and inline. CANONICAL will be the default option but INLINE can also be specified. When validating a v3 draft this attribute is ignored.]]></description>
+                </parameter>
+                <parameter name="allowDuplicateKeys">
+                    <description><![CDATA[if true, the validator will allow duplicate keys, otherwise it will fail.]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+    </operations>
+    <sources/>
+    <types>
+        <type name="org.mule.module.json.api.SchemaRedirect">
+            <description><![CDATA[A redirection between a "from" and a "to" location
+
+ @since 1.0]]></description>
+            <parameters>
+                <parameter name="from">
+                    <description><![CDATA[The original location]]></description>
+                </parameter>
+                <parameter name="to">
+                    <description><![CDATA[The redirection location]]></description>
+                </parameter>
+            </parameters>
+        </type>
+    </types>
+</extension-documentation>

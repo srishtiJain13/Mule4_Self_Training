@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="fd" format="json">
+      <types:shape format="weave" example="examples/Json_Output1"><![CDATA[%dw 2.0
+
+type fd = Array<{|  airlineName: String,   code: String,   departureDate: String,   destination: String,   emptySeats: String,   origin: String,   planeType: String,   price: String|}> {"example": "[{\"airlineName\":\"Delta\",\"code\":\"A1B2C3\",\"departureDate\":\"2015\/03\/20\",\"destination\":\"SFO\",\"emptySeats\":\"40\",\"origin\":\"MUA\",\"planeType\":\"Boing 737\",\"price\":\"400.0\"},{\"airlineName\":\"Delta\",\"code\":\"A1B2C3\",\"departureDate\":\"2015\/03\/20\",\"destination\":\"SFO\",\"emptySeats\":\"40\",\"origin\":\"MUA\",\"planeType\":\"Boing 737\",\"price\":\"400.0\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#9328d34a-2568-4363-9622-a32a98fa0758">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="fd"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

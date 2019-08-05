@@ -1,0 +1,22 @@
+[
+	{
+		 "airlineName" : "Delta",
+         "code" : "A1B2C3",
+         "departureDate" : "2015/03/20",
+         "destination": "SFO",
+         "emptySeats":"40",
+         "origin": "MUA",
+         "planeType":"Boing 737",
+         "price":"400.0"
+	},
+	{
+		 "airlineName" : "Delta",
+         "code" : "A1B2C3",
+         "departureDate" : "2015/03/20",
+         "destination": "SFO",
+         "emptySeats":"40",
+         "origin": "MUA",
+         "planeType": "Boing 737",
+         "price": "400.0"
+	}
+]

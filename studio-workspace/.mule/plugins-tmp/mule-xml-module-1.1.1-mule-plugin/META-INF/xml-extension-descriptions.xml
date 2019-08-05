@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension-documentation>
+    <configs>
+        <config name="config">
+            <description><![CDATA[Default configuration]]></description>
+            <parameters>
+                <parameter name="namespaces">
+                    <description><![CDATA[Allows to globally map prefixes to namespace uris. On this version, the xpath-extract operation is the only one to consume these mappings]]></description>
+                </parameter>
+                <parameter name="expandEntities">
+                    <description><![CDATA[Defines how to treat entity expansion. Setting a value different than NEVER renders the application vulnerable to XXE and/or DoS attacks]]></description>
+                </parameter>
+                <parameter name="expirationPolicy">
+                    <description><![CDATA[Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit.]]></description>
+                </parameter>
+            </parameters>
+        </config>
+    </configs>
+    <connections/>
+    <extension name="XML">
+        <description><![CDATA[A Mule Module which provides functionality to handle XML. This module should be used for advanced use cases or use cases associated with XML standards such as XSLT, XPath and XQuery or XSD. Take in mind that DataWeave is not only perfectly capable to handle most of those use cases and can replace those standards the majority of the times, but it's also our recommended approach.]]></description>
+        <parameters/>
+    </extension>
+    <operations>
+        <operation name="validateSchema">
+            <description><![CDATA[Validates that the input content is compliant with a given schema. This operation supports referencing many schemas (using comma as a separator) which include each other.]]></description>
+            <parameters>
+                <parameter name="schemas">
+                    <description><![CDATA[The path to the schema file. You can specify multiple schema locations by using a comma separator]]></description>
+                </parameter>
+                <parameter name="schemaLanguage">
+                    <description><![CDATA[The schema language to use.]]></description>
+                </parameter>
+                <parameter name="content">
+                    <description><![CDATA[the XML content to validate]]></description>
+                </parameter>
+                <parameter name="expandEntities">
+                    <description><![CDATA[]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="xpathExtract">
+            <description><![CDATA[Evaluates an XPath expression the input content and returns the result. <p> Because XPath expressions can match any number of individual elements, this operation returns a List of Strings. If no element matched the expression, an empty list will be returned. <p> XPath expressions are also namespace aware, which is why this operation allows setting namespace mappings. These mappings will be merged with those optionally defined in the referenced namespace-directory, meaning that the evaluation will combine both sets of namespace mappings.]]></description>
+            <parameters>
+                <parameter name="content">
+                    <description><![CDATA[the XML content on which the XPath is evaluated]]></description>
+                </parameter>
+                <parameter name="xpath">
+                    <description><![CDATA[the XPath script]]></description>
+                </parameter>
+                <parameter name="contextProperties">
+                    <description><![CDATA[Properties that wil be made available to the transform context.]]></description>
+                </parameter>
+                <parameter name="namespaces">
+                    <description><![CDATA[namespace mappings that will be used in this evaluation. They will be combined with the ones in the config element]]></description>
+                </parameter>
+                <parameter name="namespaceDirectory">
+                    <description><![CDATA[the namespace directory from which take base namespace mappings]]></description>
+                </parameter>
+                <parameter name="expandEntities">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="xqueryTransform">
+            <description><![CDATA[Uses XQuery to transform the input content. You can set transformation context properties which will be made available on the XQuery execution]]></description>
+            <parameters>
+                <parameter name="content">
+                    <description><![CDATA[the XML content to transform]]></description>
+                </parameter>
+                <parameter name="xquery">
+                    <description><![CDATA[The XQuery script definition]]></description>
+                </parameter>
+                <parameter name="contextProperties">
+                    <description><![CDATA[Properties that wil be made available to the transform context.]]></description>
+                </parameter>
+                <parameter name="expandEntities">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="xsltTransform">
+            <description><![CDATA[Uses XSLT to transform the input content. You can set transformation context properties which will be made available on the stylesheet.]]></description>
+            <parameters>
+                <parameter name="content">
+                    <description><![CDATA[the XML content to transform]]></description>
+                </parameter>
+                <parameter name="xslt">
+                    <description><![CDATA[the XSLT script definition]]></description>
+                </parameter>
+                <parameter name="contextProperties">
+                    <description><![CDATA[Properties that wil be made available to the transform context.]]></description>
+                </parameter>
+                <parameter name="expandEntities">
+                    <description><![CDATA[]]></description>
+                </parameter>
+                <parameter name="outputMimeType">
+                    <description><![CDATA[The mime type of the payload that this operation outputs.]]></description>
+                </parameter>
+                <parameter name="target">
+                    <description><![CDATA[The name of a variable on which the operation's output will be placed]]></description>
+                </parameter>
+                <parameter name="targetValue">
+                    <description><![CDATA[An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+    </operations>
+    <sources/>
+    <types>
+        <type name="org.mule.module.xml.api.NamespaceDirectory">
+            <description><![CDATA[]]></description>
+            <parameters>
+                <parameter name="namespaces">
+                    <description><![CDATA[Globally maps prefixes to namespace uris. On this version, the xpath-extract operation is the only one
+ to consume these mappings]]></description>
+                </parameter>
+            </parameters>
+        </type>
+        <type name="org.mule.module.xml.api.NamespaceMapping">
+            <description><![CDATA[Maps a prefix to a namespace URI
+
+ @since 1.0]]></description>
+            <parameters>
+                <parameter name="prefix">
+                    <description><![CDATA[The prefix used in the XML document]]></description>
+                </parameter>
+                <parameter name="uri">
+                    <description><![CDATA[The namespace URI]]></description>
+                </parameter>
+            </parameters>
+        </type>
+    </types>
+</extension-documentation>

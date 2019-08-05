@@ -1,0 +1,8 @@
+{
+  "sampleData": {
+    "3c220930-fefd-4486-b2d5-18c7c044cdf8": {
+      "payload": "sample_data/object.dwl",
+      "vars-TransactionResult": "sample_data/unknown.dwl"
+    }
+  }
+}

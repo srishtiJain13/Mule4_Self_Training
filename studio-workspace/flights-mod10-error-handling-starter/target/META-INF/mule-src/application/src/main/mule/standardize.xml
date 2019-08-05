@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+	<sub-flow name="filterBinary" doc:id="018b3d19-1ad2-4afa-b557-983a08bd121b" >
+		<choice doc:name="Choice" doc:id="0b42dacc-1b08-46ec-99d9-d803494b0089" >
+			<when expression='#[typeOf(payload) as String != "Binary"]' >
+				<logger level="INFO" doc:name="Logger" doc:id="6148eccf-1276-40e2-b88f-766c62a80c33" message="Payload binary check complete"/>
+			</when>
+			<otherwise >
+				<set-payload value="#[[]]" doc:name="Set Payload" doc:id="9ea464be-a5a4-49c6-ae70-cc06e89dba39" />
+			</otherwise>
+		</choice>
+	</sub-flow>
+	<flow name="getAmerican" doc:id="9f9e6fef-5d73-429b-bb7c-9f32ffba48bc">
+		<http:request method="GET" doc:name="Get American Flights" doc:id="9e23c7a9-e43b-43a4-b839-46a120c9a9ab" config-ref="HTTP_Request_American" path="${american.path}">
+			<http:query-params><![CDATA[#[output application/java
+---
+{
+	destination : vars.destinationCode
+}]]]></http:query-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="f449cf5f-0b79-4678-b225-00aff8989023" message='#["American payload type: " ++ typeOf(payload)]' />
+		<choice doc:name="Choice" doc:id="5d0338d4-c21b-4ccf-b245-33cf633d103a">
+			<when expression="#[not isEmpty(payload)]">
+				<ee:transform doc:name="Transform Message" doc:id="283868c6-1fe6-4552-a1bc-39c55328684b">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload as Array map ((flight,index) ->
+	{
+		airline: "American",
+		code: upper (flight.code),
+		price: flight.price,
+		departureDate: flight.departureDate as DateTime as String {format: "YYYY/MM/dd"},
+		fromAirport: flight.origin,
+		toAirport: flight.destination,
+		plane: flight.plane['type'],
+		emptySeats: flight.emptySeats,
+		totalSeats: flight.plane.totalSeats
+	}
+)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+			</when>
+			<otherwise>
+				<set-payload value="#[[]]" doc:name="Set Payload" doc:id="2ae1468a-ec95-4383-a89e-22957aa09e5d" />
+			</otherwise>
+		</choice>
+		
+		<error-handler ref="standardize-error-handler"/>
+	
+</flow>
+	<flow name="getUnited" doc:id="bb5b84aa-df6b-4e13-be74-375bce1db7df">
+		<http:request method="GET" doc:name="Get United Flights" doc:id="ff859208-c4cf-40b6-a274-08a7d3fc8685" config-ref="HTTP_Request_United" path="${united.path}/{destinationCode}">
+			<http:uri-params><![CDATA[#[output application/java
+---
+{
+	destinationCode : vars.destinationCode
+}]]]></http:uri-params>
+		</http:request>
+		<flow-ref doc:name="filterBinary" doc:id="795aeede-3965-4696-9265-138a485e6e33" name="filterBinary" />
+		<logger level="INFO" doc:name="Logger" doc:id="494d913f-1d88-4405-bdf3-6ad676559d18" message='#["United payload type: " ++ typeOf(payload)]' />
+		<choice doc:name="Choice" doc:id="6aa60fb1-498b-40c3-a7e8-f3f20fb4c3b4">
+			<when expression="#[not isEmpty(payload.flights default [])]">
+				<ee:transform doc:name="Transform Message" doc:id="3a9cffbf-4240-480c-89d8-d9a81f62a919">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+
+(payload as Object).flights map((flight,index) ->
+	{
+		airline: flight.airlineName,
+		code: upper(flight.code),
+		price: flight.price,
+		departureDate: flight.departureDate,
+		fromAirport: flight.origin,
+		toAirport: flight.destination,
+		plane: flight.planeType,
+		emptySeats: flight.emptySeats,
+		totalSeats: 300
+	}
+)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+			</when>
+			<otherwise>
+				<set-payload value="#[[]]" doc:name="Set Payload" doc:id="cd5e240b-e5a6-46e8-9cc5-a0bea089e590" />
+			</otherwise>
+		</choice>
+		<error-handler ref="standardize-error-handler"/>
+	</flow>
+	<flow name="getDelta" doc:id="6c6e6047-3562-4b5e-8258-57162bb3c4d4" >
+		<ee:transform doc:name="Build SOAP request" doc:id="7a7a8d53-a6e8-4062-8e3b-ace9b0e765ef" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://soap.training.mulesoft.com/
+---
+{
+	ns0#findFlight: {
+		destination: vars.destinationCode
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<try doc:name="Try" doc:id="80b1b73f-4328-4a13-aa28-f667f69bc45c" >
+			<wsc:consume doc:name="Consume" doc:id="7ea12163-be51-4a88-b246-878b873fd4c6" config-ref="Web_Service_Delta" operation="findFlights" >
+				<error-mapping sourceType="WSC:BAD_REQUEST" targetType="DELTA:BAD_WSC_REQUEST" />
+			</wsc:consume>
+			<logger level="INFO" doc:name="Logger" doc:id="a928a159-4d3f-4a5c-9989-e6c14d39c00e" message='#["Delta payload type: " ++ typeOf(payload.body)]' />
+			<error-handler >
+				<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="ea20155b-2f64-464f-a23b-ab06ea65db3c" when='#[error.description contains("The provided operation [findFlights]")]'>
+					<logger level="INFO" doc:name="Logger" doc:id="9f3abb66-170a-4023-8f45-a0cfc84c7f88" message="Try Scope in getDelta-&gt;onErrorPropogate-&gt;findFlights: #[error.errorType.namespace] : #[error.errorType.identifier]"/>
+				</on-error-propagate>
+				<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="c56deaeb-b59b-4341-aba4-5f031369b524" type="WSC:BAD_REQUEST, WSC:BAD_RESPONSE, WSC:RETRY_EXHAUSTED, WSC:TIMEOUT">
+					<logger level="INFO" doc:name="Logger" doc:id="4723bb61-2f5a-4f02-b668-9df064a04af7" message="#[flow.name] -&gt; #[error.errorType.namespace] : #[error.errorType.identifier]"/>
+				</on-error-continue>
+				<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="4939dbfe-8bc4-45aa-a892-0ef75fd75e73" type="WSC:CANNOT_DISPATCH, WSC:CONNECTIVITY, WSC:ENCODING, WSC:INVALID_WSDL, WSC:SOAP_FAULT">
+					<logger level="INFO" doc:name="Logger" doc:id="e1561621-f063-4941-b6f2-032e3ca3d00b" message="#[flow.name] -&gt; #[error.errorType.namespace] : #[error.errorType.identifier]"/>
+				</on-error-propagate>
+			</error-handler>
+		</try>
+		<ee:transform doc:name="Transform Message" doc:id="22d2247f-206e-4cfb-82a4-a7a3aade1d6d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+(payload.body.findFlightResponse.*return as Array default []) map ( (flight,index) ->
+	{
+		airline: flight.airlineName,
+		code: upper(flight.code),
+		price: flight.price as Number,
+		departureDate: flight.departureDate,
+		fromAirport: flight.origin,
+		toAirport: flight.destination,
+		plane: flight.planeType replace /Boing/ with "Boeing",
+		emptySeats: flight.emptySeats as Number,
+		totalSeats: 300		
+	}	
+)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="072dad38-bfcf-4a32-8f2e-6b6701cf65ef" />
+		<error-handler ref="standardize-error-handler"/>
+	</flow>
+	<error-handler name="standardize-error-handler" doc:id="d4c19c4f-3d09-40d8-8799-f0975720b3eb">
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="a45fdfb2-f2a2-4439-8810-f6e8c20eeb50" type="HTTP:BAD_REQUEST">
+				<logger level="INFO" doc:name="Logger" doc:id="63226d19-6c0d-4f2f-8aa6-b68298d788e4" message="#[flow.name] : HTTP:BAD_REQUEST error" />
+				<set-payload value="#[[]]" doc:name="Set Payload" doc:id="d4c12506-40f2-4fc6-b99e-1e8f1f903cb0" />
+			</on-error-continue>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="f2c0698c-e1dd-426c-93e1-989e632a9a76" type="EXPRESSION">
+				<logger level="INFO" doc:name="Logger" doc:id="ac065a39-e596-4fb7-8d83-08455aba9bb8" message="#[flow.name]: #[error.errorType.namespace] :: #[error.errorType.identifier]" />
+			</on-error-propagate>
+			<!-- <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" type="DELTA:BAD_WSC_REQUEST">
+			<logger level="INFO" doc:name="Logger" doc:id="9ea5ee92-8553-4660-bb9c-9cb3589548c4" message="#[flow.name]: Bad request to Web Service Consumer: #[error.errorType.namespace]:#[error.errorType.identifier]"/>
+			</on-error-propagate> -->
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="201f7c8a-790a-4e97-9d37-724b7486b3e2" type="WSC:BAD_REQUEST">
+			<logger level="INFO" doc:name="Logger" doc:id="25b0a303-3c0b-4d9b-b367-a542dd669167" message="#[flow.name] - &gt; #[error.errorType.namespace]  : #[error.errorType.identifier]"/>
+		</on-error-propagate>
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="06a8371f-3b36-43c7-b941-67ffcf9460f8" type="DELTA:BAD_WSC_REQUEST">
+			<logger level="INFO" doc:name="Logger" doc:id="76a895be-da74-4f71-a177-937bb8d0e16b" message="#[flow.name] - &gt; #[error.errorType.namespace]  : #[error.errorType.identifier]"/>
+		</on-error-continue>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="d301e0ea-5148-4086-953b-7d2425116090" type="ANY">
+				<logger level="INFO" doc:name="ANY ERROR" doc:id="f60328ac-8c0a-4e35-97eb-76d50372bc29" message="#[error.errorType.identifier]: #[error.errorType.namespace]" />
+			</on-error-propagate>
+	</error-handler>
+
+</mule>

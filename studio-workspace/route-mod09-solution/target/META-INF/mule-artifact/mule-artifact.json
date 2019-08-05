@@ -1,0 +1,31 @@
+{
+  "configs": [
+    "implementation.xml",
+    "global.xml",
+    "main.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:route-mod09:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.1.2",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "configuration.yaml",
+        "global.xml",
+        "implementation.xml",
+        "log4j2.xml",
+        "main.xml",
+        "schemas/accountsSchema.json",
+        "schemas/flightsSchema.xsd"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

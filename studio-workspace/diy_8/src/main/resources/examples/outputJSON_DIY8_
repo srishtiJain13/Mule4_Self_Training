@@ -1,0 +1,27 @@
+[ {
+
+      "amount": "9717.0",
+
+      "customerRef": "4412",
+
+      "flightID": "UNITEDER09452015-06-11",
+
+      "region": "EU",
+
+      "transactionID": "181948488"
+
+    },
+
+    {
+
+      "amount": "1030.0",
+
+      "customerRef": "4985",
+
+      "flightID": "DELTAA1B3D42015-02-12",
+
+      "region": "US",
+
+      "transactionID": "181948625"
+
+    }]

@@ -1,0 +1,12 @@
+accounts:
+  host: "apdev-accounts-ws.cloudhub.io"
+  port: "80"
+  base: "/api"
+  endpoint: "/accounts"
+  
+flights:
+  wsdl: "http://mu.learn.mulesoft.com/essentials/delta?wsdl"
+  service: "TicketServiceService"
+  port: "TicketServicePort"
+  address: "http://mu.learn.mulesoft.com/essentials/delta"
+  

@@ -1,0 +1,183 @@
+{
+  "version": "1.1.0",
+  "artifactCoordinates": {
+    "groupId": "org.mule.modules",
+    "artifactId": "mule-json-module",
+    "version": "2.0.0",
+    "type": "jar",
+    "classifier": "mule-plugin"
+  },
+  "dependencies": [
+    {
+      "artifactCoordinates": {
+        "groupId": "com.fasterxml.jackson.core",
+        "artifactId": "jackson-databind",
+        "version": "2.9.5",
+        "type": "jar"
+      },
+      "uri": "repository/com/fasterxml/jackson/core/jackson-databind/2.9.5/jackson-databind-2.9.5.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.fasterxml.jackson.core",
+        "artifactId": "jackson-core",
+        "version": "2.9.5",
+        "type": "jar"
+      },
+      "uri": "repository/com/fasterxml/jackson/core/jackson-core/2.9.5/jackson-core-2.9.5.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.fasterxml.jackson.core",
+        "artifactId": "jackson-annotations",
+        "version": "2.9.5",
+        "type": "jar"
+      },
+      "uri": "repository/com/fasterxml/jackson/core/jackson-annotations/2.9.5/jackson-annotations-2.9.5.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.github.java-json-tools",
+        "artifactId": "json-schema-validator",
+        "version": "2.2.10",
+        "type": "jar"
+      },
+      "uri": "repository/com/github/java-json-tools/json-schema-validator/2.2.10/json-schema-validator-2.2.10.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.github.java-json-tools",
+        "artifactId": "json-schema-core",
+        "version": "1.2.10",
+        "type": "jar"
+      },
+      "uri": "repository/com/github/java-json-tools/json-schema-core/1.2.10/json-schema-core-1.2.10.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.github.java-json-tools",
+        "artifactId": "jackson-coreutils",
+        "version": "1.9",
+        "type": "jar"
+      },
+      "uri": "repository/com/github/java-json-tools/jackson-coreutils/1.9/jackson-coreutils-1.9.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.google.guava",
+        "artifactId": "guava",
+        "version": "16.0.1",
+        "type": "jar"
+      },
+      "uri": "repository/com/google/guava/guava/16.0.1/guava-16.0.1.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.github.fge",
+        "artifactId": "msg-simple",
+        "version": "1.1",
+        "type": "jar"
+      },
+      "uri": "repository/com/github/fge/msg-simple/1.1/msg-simple-1.1.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.github.fge",
+        "artifactId": "btf",
+        "version": "1.2",
+        "type": "jar"
+      },
+      "uri": "repository/com/github/fge/btf/1.2/btf-1.2.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.github.fge",
+        "artifactId": "uri-template",
+        "version": "0.9",
+        "type": "jar"
+      },
+      "uri": "repository/com/github/fge/uri-template/0.9/uri-template-0.9.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.mozilla",
+        "artifactId": "rhino",
+        "version": "1.7.7.1",
+        "type": "jar"
+      },
+      "uri": "repository/org/mozilla/rhino/1.7.7.1/rhino-1.7.7.1.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "javax.mail",
+        "artifactId": "mailapi",
+        "version": "1.4.3",
+        "type": "jar"
+      },
+      "uri": "repository/javax/mail/mailapi/1.4.3/mailapi-1.4.3.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "javax.activation",
+        "artifactId": "activation",
+        "version": "1.1",
+        "type": "jar"
+      },
+      "uri": "repository/javax/activation/activation/1.1/activation-1.1.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "joda-time",
+        "artifactId": "joda-time",
+        "version": "2.9.7",
+        "type": "jar"
+      },
+      "uri": "repository/joda-time/joda-time/2.9.7/joda-time-2.9.7.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.googlecode.libphonenumber",
+        "artifactId": "libphonenumber",
+        "version": "8.0.0",
+        "type": "jar"
+      },
+      "uri": "repository/com/googlecode/libphonenumber/libphonenumber/8.0.0/libphonenumber-8.0.0.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.google.code.findbugs",
+        "artifactId": "jsr305",
+        "version": "3.0.1",
+        "type": "jar"
+      },
+      "uri": "repository/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "net.sf.jopt-simple",
+        "artifactId": "jopt-simple",
+        "version": "5.0.3",
+        "type": "jar"
+      },
+      "uri": "repository/net/sf/jopt-simple/jopt-simple/5.0.3/jopt-simple-5.0.3.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.apache.commons",
+        "artifactId": "commons-pool2",
+        "version": "2.5.0",
+        "type": "jar"
+      },
+      "uri": "repository/org/apache/commons/commons-pool2/2.5.0/commons-pool2-2.5.0.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.apache.commons",
+        "artifactId": "commons-lang3",
+        "version": "3.7",
+        "type": "jar"
+      },
+      "uri": "repository/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar"
+    }
+  ]
+}

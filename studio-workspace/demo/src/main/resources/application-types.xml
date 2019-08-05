@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="output" format="json">
+      <types:shape format="weave" example="examples/united-flights-example.json"><![CDATA[%dw 2.0
+
+type output = {|
+  flights: Array<{|    airlineName: String,     price: Number {"typeId": "double"},     departureDate: String,     planeType: String,     origin: String,     code: String,     emptySeats: Number {"typeId": "int"},     destination: String  |}>
+|} {"example": "{\"flights\":[{\"airlineName\":\"United\",\"price\":400.00,\"departureDate\":\"2015\/03\/20\",\"planeType\":\"Boeing 737\",\"origin\":\"MUA\",\"code\":\"ER38sd\",\"emptySeats\":0,\"destination\":\"SFO\"},{\"airlineName\":\"United\",\"price\":345.99,\"departureDate\":\"2015\/02\/11\",\"planeType\":\"Boeing 737\",\"origin\":\"MUA\",\"code\":\"ER45if\",\"emptySeats\":52,\"destination\":\"LAX\"},{\"airlineName\":\"United\",\"price\":346.00,\"departureDate\":\"2015\/04\/11\",\"planeType\":\"Boeing 777\",\"origin\":\"MUA\",\"code\":\"ER45jd\",\"emptySeats\":12,\"destination\":\"LAX\"},{\"airlineName\":\"United\",\"price\":423.00,\"departureDate\":\"2015\/06\/11\",\"planeType\":\"Boeing 707\",\"origin\":\"MUA\",\"code\":\"ER0945\",\"emptySeats\":0,\"destination\":\"LAX\"},{\"airlineName\":\"United\",\"price\":845.00,\"departureDate\":\"2015\/07\/11\",\"planeType\":\"Boeing 727\",\"origin\":\"MUA\",\"code\":\"ER9fje\",\"emptySeats\":32,\"destination\":\"CLE\"},{\"airlineName\":\"United\",\"price\":245.00,\"departureDate\":\"2015\/08\/11\",\"planeType\":\"Boeing 747\",\"origin\":\"MUA\",\"code\":\"ER3kfd\",\"emptySeats\":13,\"destination\":\"CLE\"},{\"airlineName\":\"United\",\"price\":945.00,\"departureDate\":\"2015\/09\/11\",\"planeType\":\"Boeing 757\",\"origin\":\"MUA\",\"code\":\"ER39rk\",\"emptySeats\":54,\"destination\":\"SFO\"},{\"airlineName\":\"United\",\"price\":954.00,\"departureDate\":\"2015\/02\/12\",\"planeType\":\"Boeing 777\",\"origin\":\"MUA\",\"code\":\"ER39rj\",\"emptySeats\":23,\"destination\":\"SFO\"},{\"airlineName\":\"United\",\"price\":234.00,\"departureDate\":\"2015\/02\/12\",\"planeType\":\"Boeing 787\",\"origin\":\"MUA\",\"code\":\"ER95jf\",\"emptySeats\":23,\"destination\":\"PDF\"},{\"airlineName\":\"United\",\"price\":853.00,\"departureDate\":\"2015\/02\/13\",\"planeType\":\"Boeing 777\",\"origin\":\"MUA\",\"code\":\"ER49fd\",\"emptySeats\":0,\"destination\":\"PDX\"},{\"airlineName\":\"United\",\"price\":483.00,\"departureDate\":\"2015\/02\/20\",\"planeType\":\"Boeing 777\",\"origin\":\"MUA\",\"code\":\"ER95jf\",\"emptySeats\":95,\"destination\":\"PDX\"},{\"airlineName\":\"United\",\"price\":532.00,\"departureDate\":\"2015\/02\/12\",\"planeType\":\"Boeing 777\",\"origin\":\"MUA\",\"code\":\"ER04kf\",\"emptySeats\":30,\"destination\":\"PDX\"}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="input" format="json">
+      <types:shape format="weave" example="examples/inputjson"><![CDATA[%dw 2.0
+
+type input = {|
+  planeType: String, 
+  code2: String, 
+  takeOffDate: String, 
+  code1: String, 
+  fromAirport: String, 
+  price: Number {"typeId": "int"}, 
+  seatsAvailable: Number {"typeId": "int"}, 
+  toAirport: String, 
+  ID: Number {"typeId": "int"}, 
+  airlineName: String, 
+  totalSeats: Number {"typeId": "int"}
+|} {"example": "{\"planeType\":\"Boeing 787\",\"code2\":\"0001\",\"takeOffDate\":\"2016-01-20T00:00:00\",\"code1\":\"rree\",\"fromAirport\":\"MUA\",\"price\":541,\"seatsAvailable\":0,\"toAirport\":\"LAX\",\"ID\":1,\"airlineName\":\"American Airlines\",\"totalSeats\":200}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#c2b521e7-7314-4b71-b722-8bb275fb5788">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="input"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="output"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

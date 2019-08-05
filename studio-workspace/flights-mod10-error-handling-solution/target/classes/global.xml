@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="cea44bb2-63bd-4022-a254-884961d74428" >
+		<http:listener-connection host="0.0.0.0" port="8083" />
+	</http:listener-config>
+	
+	<wsc:config name="Web_Service_Delta" doc:name="Web Service Consumer Config" doc:id="a6d2b829-21ed-4826-b927-9a42b29a893d" >
+		<wsc:connection wsdlLocation="${delta.wsdl}" service="${delta.service}" port="${delta.port}" address="${delta.address}" />
+	</wsc:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="b149d808-4c5f-4903-910c-d8211f865f8f" file="configuration.yaml" />
+	<http:request-config name="HTTP_Request_American" doc:name="HTTP Request configuration" doc:id="2942369b-5d4d-4241-8036-61e82d68a8ec" >
+		<http:request-connection host="${american.host}" port="${american.port}" />
+	</http:request-config>
+	<http:request-config name="HTTP_Request_United" doc:name="HTTP Request configuration" doc:id="d3b79d3d-dfec-4736-9189-05eb3fc0508b" >
+		<http:request-connection host="${united.host}" port="${united.port}" />
+	</http:request-config>
+	<configuration doc:name="Configuration" doc:id="ea2132f5-393d-4713-a5b8-31de8cbd0efb" defaultErrorHandler-ref="globalError_Handler" />
+	<error-handler name="globalError_Handler" doc:id="5446d1c7-ac72-4e87-91f7-edff4f7b1444" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="b0bbaceb-5bf8-4c66-9f41-8e408e268815" >
+			<logger level="INFO" doc:name="Logger" doc:id="3336823d-3ba1-4342-be32-b14e3bae4985" message="globalErrorHandler: Error has ocurred! #[error.errorType.namespace]:#[error.errorType.identifier]"/>
+		</on-error-propagate>
+	</error-handler>
+
+	
+	
+	</mule>

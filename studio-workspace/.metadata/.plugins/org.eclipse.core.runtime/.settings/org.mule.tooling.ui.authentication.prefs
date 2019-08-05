@@ -1,0 +1,5 @@
+authenticated.users=[{"id"\:"f3d4f925-bc12-4609-8f1d-f6b827f055c8","token"\:"8a21e2b7-cd6c-4287-a857-997fe791827a","userId"\:"srishtijn","refreshToken"\:"","baseUrl"\:"https\://anypoint.mulesoft.com/"},{"id"\:"a9a1aca9-e805-4d43-97d0-135f8f4d6fce","token"\:"ed4654f3-aaa4-4f24-9187-ee18e0373f3b","userId"\:"srishtijain","refreshToken"\:"","baseUrl"\:"https\://anypoint.mulesoft.com/"}]
+current.token=8a21e2b7-cd6c-4287-a857-997fe791827a
+current.user=srishtijn
+eclipse.preferences.version=1
+org.mule.tooling.amc.apps={"userProjectMap"\:{"srishtijn"\:{"wt4-5"\:"{\\"applicationName\\"\:\\"cloudhub-american-flights\\",\\"muleRuntime\\"\:\\"4.2.0\\",\\"properties\\"\:{\\"http.port\\"\:\\"8086\\"}}"}}}
